@@ -1,6 +1,8 @@
 import { getHeader } from '../../utils/apiHelper';
-import config from '../../../configs';
-
+import config from '../common/configs';
+import _ from 'lodash';
+import $ from 'jquery';
+import * as types from '../common/method.type'
 function HttpRequest() { };
 global.indicatorKeys = [];
 

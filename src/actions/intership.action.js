@@ -1,7 +1,7 @@
 import * as types from '../core/common/action.types';
 import IntershipService from '../services/intership.services';
 
-export function getInternList() {
+export default function getInternList() {
     return function (dispatch) {
         IntershipService.getInternList(function (error, result, status, xhr) {
             if (error) {

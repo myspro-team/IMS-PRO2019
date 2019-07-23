@@ -9,7 +9,7 @@ export function getHeader(curEmp, method, url, body) {
         secret = localStorage.secret || null;
     }
     if (token) {
-        header = getSecurityHeaders(method, url, body, token, secret);
+        //header = getSecurityHeaders(method, url, body, token, secret);
     }
 
     header['Accept'] = 'application/json';

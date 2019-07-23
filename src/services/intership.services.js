@@ -6,7 +6,7 @@ class IntershipService {
 
     async getInternList(callback) {
       
-        let path = getApiPath(API.GET_INTERN_LIST, params);
+        let path = getApiPath(API.GET_INTERN_LIST);
         let result = await HttpRequest.get(path, callback);
         if (callback) {
             callback(result)

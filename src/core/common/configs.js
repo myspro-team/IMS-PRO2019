@@ -1,5 +1,6 @@
 
-export const config = {
+const config = {
     MAIN_CONTAINER: 'MainContainer',
     PLAY_CONTAINER: 'PLayContainer'
 };
+export default config

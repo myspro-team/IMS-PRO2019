@@ -1,0 +1,32 @@
+.root {
+    width: 100%;
+    margin-top: 20px;
+    overflow-x: auto
+}
+.table {
+    min-width: 500px;
+}
+.tableWrapper {
+    overflow-x: auto;
+
+}
+
+
+.rootPagination {
+    flex-shrink: 0
+    /* flexShrink: 0 */
+}
+.columnBody {
+    max-width: 300px;
+    
+}
+.search {
+    min-width: 300px
+}
+.inputSearch {
+    padding-left: 20px;
+    width: 250px
+}
+.spacer {
+    flex: 1 1 100px;
+}
