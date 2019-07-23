@@ -1,7 +1,8 @@
-import _ from 'lodash';
+// import _ from 'lodash';
+import { API } from '../common/app.routes';
 
 export function getApiPath(route, params) {
-    return getPath(route, params);
+    return getPath(route, params, API);
 }
 
 export function getUrlPath(route, params) {
@@ -11,30 +12,39 @@ export function getUrlPath(route, params) {
 /**
  * pathsCollection: URL or API. See core/common/app.routes.js for details
  */
-function getPath(route, params) {
-    let path = route;
-
-    let routeParams = _.map(path.match(/:\w+/g), function (param) {
-        return param.substring(1);
-    });
-
-    let queryArray = [];
-
-    _.each(_.keys(params), function (key) {
-        if (_.indexOf(routeParams, key) > -1) {
-            path = path.replace(':' + key, params[key]);
-        } else {
-            if (params[key] !== undefined) {
-                queryArray.push(key + '=' + params[key]);
-            }
-        }
-    });
-
-    path += (queryArray.length ? '?' + queryArray.join('&') : '');
-
-    return '/' + path;
+function getPathTemplate(route, pathsCollection) {
+    if (route.parent) {
+        let path = getPathTemplate(pathsCollection[route.parent], pathsCollection) + '/' + route.path;
+        return path;
+    }
+    return route.path;
 }
 
-export function checkReferrerURL(urlRefer, route) {
-    return _.isEmpty(route) ? true : (urlRefer === route);
+/**
+ * pathsCollection: URL or API. See core/common/app.routes.js for details
+ */
+function getPath(route, params, pathsCollection) {
+    let path = getPathTemplate(route, pathsCollection);
+    let queryArray = [];
+    let routeParams = [];
+
+    const rParams = path.match(/:\w+/g);
+    if (rParams) {
+        rParams.forEach(function (param) {
+            routeParams.push(param.substring(1));
+        });
+    }
+
+    if (params) {
+        Object.keys(params).forEach(function (key) {
+            if (routeParams.indexOf(key) > -1) {
+                path = path.replace(':' + key, params[key]);
+            } else {
+                queryArray.push(key + '=' + params[key]);
+            }
+        });
+        path += (queryArray.length ? '?' + queryArray.join('&') : '');
+    }
+
+    return path;
 }

@@ -1,5 +1,5 @@
 import { getHeader } from '../../utils/apiHelper';
-import config from '../common/configs';
+import config from '../../configs';
 import _ from 'lodash';
 import $ from 'jquery';
 import * as types from '../common/method.type'
@@ -37,7 +37,7 @@ HttpRequest.delete = function (url, data, callback) {
 };
 
 function getUrl(url) {
-    return config.API_DATA + url;
+    return config.API_URL + url;
 }
 
 function async(method, url, body, callback) {
