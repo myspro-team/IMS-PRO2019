@@ -15,16 +15,15 @@ class TableHead extends Component {
                     this.props.columns.map((value) => {
                         return(
                         <TableCell
-                        //className="columnBody"
                         key={value.id}
-                        align="center"
+                        align="left"
                         //padding={value.disablePadding ? 'none' : 'default'}
-                        sortDirection={this.props.orderBy === value.id ? this.props.order : false}>
+                        sortDirection={this.props.orderBy === value.id ? 'asc' : false}>
+                            <b>{value.label}</b>
                             <TableSortLabel 
-                            active={this.props.orderBy === value.id}
+                            active={true}
                             direction={this.props.order}
                             onClick={this.createSortHandler(value.id)}>
-                                {value.label}
                             </TableSortLabel>
                         </TableCell>
                         )

@@ -3,31 +3,33 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import Tooltip from '@material-ui/core/Tooltip';
 import InputBase from '@material-ui/core/InputBase';
-import SearchIcon from '@material-ui/icons/Search';
-import IconButton from '@material-ui/core/IconButton';
 import Paper from '@material-ui/core/Paper';
+import 'material-design-icons/iconfont/material-icons.css';
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 class ToolbarTable extends Component {
     handleChange = (event) => {
-        //console.log(event.target.value)
         this.props.handleSearch(event.target.value)
     }
     render() {
         return (
             <div>
                 <Toolbar>
-                    <Typography variant="h6" id="tableTitle">
-                        Internship
+                    <Typography id="tableTitle">
+                        <span className="title">INTERNSHIP</span>
                     </Typography>
                     <div className="spacer" />
                     <Paper className="search">
                         <InputBase 
-                        placeholder="Search" 
+                        placeholder="Search internship" 
                         className="inputSearch"
                         onChange={(event) => this.handleChange(event)}/>
-                        <IconButton  aria-label="Search">
-                            <SearchIcon />
-                        </IconButton>
+                        <i class="fa fa-search icon" aria-hidden="true"></i>   
                     </Paper>
+                    {/* <Tooltip> */}
+                        <Link to="/addInternship">
+                            <button type="button" class="btn buttonView">ADD</button>
+                        </Link>    
+                    {/* </Tooltip> */}
                 </Toolbar>
             </div>
         );

@@ -1,19 +1,18 @@
 import React, { Component } from 'react';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
+import { Route, Redirect } from 'react-router'
 import Paper from '@material-ui/core/Paper';
 import Table from '@material-ui/core/Table';
 import TableRow from '@material-ui/core/TableRow';
 import TableCell from '@material-ui/core/TableCell';
 import TableBody from '@material-ui/core/TableBody';
-import TableFooter from '@material-ui/core/TableFooter';
 import Pagination from './table/Pagination'
 import TableHead from './table/TableHead'
 import orderBy from 'lodash/orderBy'
 import ToolbarTable from './table/Toolbar'
+import Loading from './table/Loading'
 import * as title from '../core/common/column.js'
-import { connect } from 'react-redux'
-import { bindActionCreators } from 'redux'
-import getInternList from '../actions/intership.action'
+
 class InternshipTable extends Component {
     constructor(props){
         super(props)
@@ -28,107 +27,17 @@ class InternshipTable extends Component {
                 { id: 'Faculty', disablePadding: false, label: title.FACULTY },
                 { id: 'Course', disablePadding: false, label: title.COURSE },
             ],
-            rows: [
-                {
-                    Name: "Nguyễn Hữu Tài",
-                    Phone: "0948258364",
-                    Email: "nhtai124352@gmail.com",
-                    Gender: true ? "Male" : "Female",
-                    DOB: "19/07/1998",
-                    University: "Quy Nhơn",
-                    Faculty: "AT",
-                    Course: "React JS"
-                },
-                {
-                    Name: "Vguyễn Hữu Văn",
-                    Phone: "0948258364",
-                    Email: "nhtai124352@gmail.com",
-                    Gender: true ? "Male" : "Female",
-                    DOB: "19/07/1998",
-                    University: "Quy Nhơn",
-                    Faculty: "GT",
-                    Course: "React JS"
-                },
-                {
-                    Name: "Aguyễn Hữu Truyền",
-                    Phone: "0948258364",
-                    Email: "nhtai124352@gmail.com",
-                    Gender: true ? "Male" : "Female",
-                    DOB: "19/07/1998",
-                    University: "Quy Nhơn",
-                    Faculty: "JT",
-                    Course: "React JS"
-                },
-                {
-                    Name: "Dguyễn Hữu Đạt",
-                    Phone: "0948258364",
-                    Email: "nhtai124352@gmail.com",
-                    Gender: true ? "Male" : "Female",
-                    DOB: "19/07/1998",
-                    University: "Quy Nhơn",
-                    Faculty: "IT",
-                    Course: "React JS"
-                },
-                {
-                    Name: "Gguyễn Hữu Long",
-                    Phone: "0948258364",
-                    Email: "nhtai124352@gmail.com",
-                    Gender: true ? "Male" : "Female",
-                    DOB: "19/07/1998",
-                    University: "Quy Nhơn",
-                    Faculty: "IT",
-                    Course: "React JS"
-                },
-                {
-                    Name: "Tguyễn Hữu An",
-                    Phone: "0948258364",
-                    Email: "nhtai124352@gmail.com",
-                    Gender: true ? "Male" : "Female",
-                    DOB: "19/07/1998",
-                    University: "Quy Nhơn",
-                    Faculty: "IT",
-                    Course: "React JS"
-                },
-                {
-                    Name: "Nguyễn Hữu Duy",
-                    Phone: "0948258364",
-                    Email: "nhtai124352@gmail.com",
-                    Gender: true ? "Male" : "Female",
-                    DOB: "19/07/1998",
-                    University: "Quy Nhơn",
-                    Faculty: "IT",
-                    Course: "React JS"
-                },
-                {
-                    Name: "Nguyễn Hữu Bảo",
-                    Phone: "0948258364",
-                    Email: "nhtai124352@gmail.com",
-                    Gender: true ? "Male" : "Female",
-                    DOB: "19/07/1998",
-                    University: "Quy Nhơn",
-                    Faculty: "IT",
-                    Course: "React JS"
-                },
-                {
-                    Name: "Nguyễn Hữu Giang",
-                    Phone: "0948258364",
-                    Email: "nhtai124352@gmail.com",
-                    Gender: true ? "Male" : "Female",
-                    DOB: "19/07/1998",
-                    University: "Quy Nhơn",
-                    Faculty: "UT",
-                    Course: "React JS"
-                }
-            ],
             currentPage: 0,
-            rowPerPage: 5,
-            order: 'asc',
+            rowPerPage: 10,
+            order: 'desc',
             orderBy: "",
             typeOrder: {
                 asc: 'desc',
                 desc: 'asc'
             },
-            searchInfor: ''
+            searchInfor: '',
+            id: '',
+            redirect:true
         }
     }
 
@@ -166,75 +75,99 @@ class InternshipTable extends Component {
     }
     // end search
 
-    componentWillMount() {
-        this.props.getData()
-        console.log(this.props.listIntern)
+    // hadle redirect from table intern to page view
+    redirectViewPage = () => {
+        if(!this.state.redirect){
+            return <Redirect to={{pathname: "/detail." +this.state.id}}/>
+        }
     }
-    render() {
-        let indexOfLast = (this.state.currentPage + 1) * this.state.rowPerPage
-        let indexOfFirst = indexOfLast - this.state.rowPerPage
+
+    handleRedirect = (id) => {
+        this.setState({
+            redirect: false,
+            id: id
+        })
+    }
+    //end handle
+
+    // handle loading
+    displayTable = () => {
         let result = []
-        this.state.rows.map((value) => {
+        this.props.listIntern.map((value) => {
             if(value.Name.indexOf(this.state.searchInfor) !== -1){
                 result.push(value)
             }
         })
+        let indexOfLast = (this.state.currentPage + 1) * this.state.rowPerPage
+        let indexOfFirst = indexOfLast - this.state.rowPerPage
         let listIntern = orderBy(result,this.state.orderBy,this.state.order)
-                    .slice(indexOfFirst, indexOfLast)
-        console.log(listIntern)      
+                    .slice(indexOfFirst, indexOfLast) 
+        if(this.props.listIntern.length === 0){
+            return (
+                <Loading></Loading>
+            )
+        }else{
+            return (
+                <div>
+                    <Table className="table">
+                        <TableHead
+                        columns={this.state.columns}
+                        handleSort={(event, columnName) => this.handleSort(event, columnName)}
+                        order={this.state.order}
+                        orderBy={this.state.orderBy}>
+                        </TableHead>
+                        <TableBody className="tableBody">
+                            {
+                                listIntern.map((value) => {
+                                    return(
+                                        <TableRow 
+                                        hover
+                                        onClick={(id) => this.handleRedirect(value.ID)}
+                                        className="tableRow">
+                                            <TableCell align="left">{value.Name}</TableCell>
+                                            <TableCell align="left">{value.Phone}</TableCell>
+                                            <TableCell align="left">{value.Email}</TableCell>
+                                            <TableCell align="left">{value.Gender}</TableCell>
+                                            <TableCell align="left">{value.DOB}</TableCell>
+                                            <TableCell align="left">{value.University}</TableCell>
+                                            <TableCell align="left">{value.Faculty}</TableCell>
+                                            <TableCell align="left">{value.Course}</TableCell>
+                                        </TableRow>
+                                    )
+                                })
+                            }
+                        </TableBody>
+                    </Table>  
+                </div>
+            )
+        }
+    }
+    // end handle loading
+
+    render() {
+        let result = []
+        this.props.listIntern.map((value) => {
+            if(value.Name.indexOf(this.state.searchInfor) !== -1){
+                result.push(value)
+            }
+        })
         return (
+            <div className="cover">
+                {this.redirectViewPage()}
                 <Paper className="root">
                     <ToolbarTable handleSearch={(info) => this.handleSearch(info)}/>
                     <div className="tableWrapper">
-                        <Table className="table">
-                            <TableHead
-                            columns={this.state.columns}
-                            handleSort={(event, columnName) => this.handleSort(event, columnName)}
-                            order={this.state.order}
-                            orderBy={this.state.orderBy}>
-                            </TableHead>
-                            <TableBody>
-                                {
-                                    listIntern.map((value) => {
-                                        return(
-                                            <TableRow>
-                                                <TableCell align="center" >{value.Name}</TableCell>
-                                                <TableCell align="center">{value.Phone}</TableCell>
-                                                <TableCell align="center">{value.Email}</TableCell>
-                                                <TableCell align="center">{value.Gender}</TableCell>
-                                                <TableCell align="center">{value.DOB}</TableCell>
-                                                <TableCell align="center">{value.University}</TableCell>
-                                                <TableCell align="center">{value.Faculty}</TableCell>
-                                                <TableCell align="center">{value.Course}</TableCell>
-                                            </TableRow>
-                                        )
-                                    })
-                                }
-                            </TableBody>
-                            <TableFooter>
-                                <TableRow align="right">
-                                    <Pagination count={this.state.rows.length}
-                                    rowsPerPage={this.state.rowPerPage}
-                                    page={this.state.currentPage}
-                                    setCurrentPage={(page) => this.setCurrentPage(page)}
-                                    setRowPerPage={(row) => this.setRowPerPage(row)}></Pagination>
-                                </TableRow>
-                            </TableFooter>
-                        </Table>   
+                        {this.displayTable()}
                     </div>
+                    <Pagination count={result.length}
+                    rowsPerPage={this.state.rowPerPage}
+                    page={this.state.currentPage}
+                    setCurrentPage={(page) => this.setCurrentPage(page)}
+                    setRowPerPage={(row) => this.setRowPerPage(row)}></Pagination>
                 </Paper>
+            </div>
         );
     }
 }
 
-const mapStateToProps = (state, ownProps) => {
-    return {
-        listIntern: state.interships
-    }
-}
-
-const mapDispatchToProps = (dispatch, ownProps) => {
-    return { getData: bindActionCreators(getInternList,dispatch) }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(InternshipTable)
+export default InternshipTable

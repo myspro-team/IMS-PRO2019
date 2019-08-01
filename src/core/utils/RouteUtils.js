@@ -1,8 +1,8 @@
 // import _ from 'lodash';
 import { API } from '../common/app.routes';
 
-export function getApiPath(route, params) {
-    return getPath(route, params, API);
+export function getApiPath(route, email, params) {
+    return getPath(route, params, API, email);
 }
 
 export function getUrlPath(route, params) {
@@ -12,19 +12,19 @@ export function getUrlPath(route, params) {
 /**
  * pathsCollection: URL or API. See core/common/app.routes.js for details
  */
-function getPathTemplate(route, pathsCollection) {
+function getPathTemplate(route, pathsCollection, email) {
     if (route.parent) {
         let path = getPathTemplate(pathsCollection[route.parent], pathsCollection) + '/' + route.path;
-        return path;
+        return path + email;
     }
-    return route.path;
+    return route.path + email;
 }
 
 /**
  * pathsCollection: URL or API. See core/common/app.routes.js for details
  */
-function getPath(route, params, pathsCollection) {
-    let path = getPathTemplate(route, pathsCollection);
+function getPath(route, params, pathsCollection, email) {
+    let path = getPathTemplate(route, pathsCollection, email);
     let queryArray = [];
     let routeParams = [];
 

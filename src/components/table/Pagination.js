@@ -10,7 +10,6 @@ import PropTypes from 'prop-types';
 
 class Pagination extends Component {
     handleChangePage = (event, newPage) => {
-        console.log(newPage)
         this.props.setCurrentPage(newPage)
     }
     handleChangeRowsPerPage = (event) => {

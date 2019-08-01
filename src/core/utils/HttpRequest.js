@@ -50,6 +50,7 @@ function async(method, url, body, callback) {
         contentType: 'text/json',
         url: apiUrl,
         data: method === types.GET_METHOD ? null : JSON.stringify(body),
+        //data: JSON.stringify(body),
         headers: headers,
         success: function (result, status, xhr) {
             _.remove(global.indicatorKeys, function (n) {
@@ -69,6 +70,33 @@ function async(method, url, body, callback) {
         }
     });
 }
+
+// function async1(method, url, body, callback) {
+//     let apiUrl = getUrl(url);
+//     let headers = getHeader(null, method, apiUrl, body);
+//     let indicatorKey = Math.random();
+//     global.indicatorKeys.push(indicatorKey);
+//     return fetch(apiUrl, {
+//         method: method,
+//         mode: 'cors',
+//         success: function (result, status, xhr) {
+//             _.remove(global.indicatorKeys, function (n) {
+//                 return n == indicatorKey;
+//             });
+//             if (callback) {
+//                 callback(null, result, status, xhr);
+//             }
+//         },
+//         error: function (err) {
+//             _.remove(global.indicatorKeys, function (n) {
+//                 return n == indicatorKey;
+//             });
+//             if (callback) {
+//                 callback(err);
+//             }
+//         }
+//     });
+// }
 
 function asyncFormData(method, url, body, callback) {
     let apiUrl = getUrl(url);

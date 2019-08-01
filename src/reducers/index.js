@@ -2,7 +2,7 @@ import { combineReducers } from 'redux';
 import intership from './intership.reducer';
 
 const appReducer = combineReducers({
-    intership,
+    intership
 });
 
 const rootReducer = (state, action) => {
