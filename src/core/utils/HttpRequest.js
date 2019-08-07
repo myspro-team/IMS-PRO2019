@@ -54,7 +54,7 @@ function async(method, url, body, callback) {
         headers: headers,
         success: function (result, status, xhr) {
             _.remove(global.indicatorKeys, function (n) {
-                return n == indicatorKey;
+                return n === indicatorKey;
             });
             if (callback) {
                 callback(null, result, status, xhr);
@@ -62,7 +62,7 @@ function async(method, url, body, callback) {
         },
         error: function (err) {
             _.remove(global.indicatorKeys, function (n) {
-                return n == indicatorKey;
+                return n === indicatorKey;
             });
             if (callback) {
                 callback(err);
@@ -114,7 +114,7 @@ function asyncFormData(method, url, body, callback) {
         processData: false,
         success: function (result, status, xhr) {
             _.remove(global.indicatorKeys, function (n) {
-                return n == indicatorKey;
+                return n === indicatorKey;
             });
             if (callback) {
                 callback(null, result, status, xhr);
@@ -122,7 +122,7 @@ function asyncFormData(method, url, body, callback) {
         },
         error: function (err) {
             _.remove(global.indicatorKeys, function (n) {
-                return n == indicatorKey;
+                return n === indicatorKey;
             });
             if (callback) {
                 callback(err);

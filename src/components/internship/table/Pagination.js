@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import TablePagination from '@material-ui/core/TablePagination';
-import { makeStyles, useTheme } from '@material-ui/core/styles';
+import { useTheme } from '@material-ui/core/styles';
 import IconButton from '@material-ui/core/IconButton';
 import LastPageIcon from '@material-ui/icons/LastPage';
 import FirstPageIcon from '@material-ui/icons/FirstPage'

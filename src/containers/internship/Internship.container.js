@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import InternshipTable from '../../components/Internship.component'
+import InternshipTable from '../../components/internship/Internship.component'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import * as GetAPI from '../../actions/intership.action'

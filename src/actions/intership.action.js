@@ -10,7 +10,7 @@ export const getInternList = () => {
                 return;
             }
             let items = []
-            let stt = 1
+            //let stt = 1
             console.log(result)
             result.map((value => {
                 let middle = value.Intern.DoB.split('-', 3)
@@ -28,7 +28,7 @@ export const getInternList = () => {
                 item.CourseID = value.Intern.CourseID
                 //items.push([stt, value.Intern.ID, value.Intern.Name, value.Intern.PhoneNumber, value.Intern.Email, value.Intern.Gender ? "Male" : "Female", date, value.Intern.University, value.Intern.Faculty, value.Course, value.Intern.CourseID])
                 items.push(item)
-                stt++
+                //stt++
             }))
             console.log(items)
             return dispatch({
@@ -60,7 +60,7 @@ export const addIntern = (email,data) => {
                 return;
             }
             console.log(result)
-            if(result['message'] == "Success"){
+            if(result['message'] === "Success"){
                 console.log("OK")
                 IntershipService.addIntern(function(error, resultAdd, status, xhr) {
                     if(error){

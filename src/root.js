@@ -8,9 +8,11 @@ export const store = configureStore();
 
 function Root() {
     return (
-        <Provider store={store}>
+        <div className="wrapper">
+        <Provider store={store} >
             {routes}
         </Provider>
+        </div>
     );
 }
 

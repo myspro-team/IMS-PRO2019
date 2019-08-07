@@ -1,5 +1,10 @@
+.wrapper {
+    margin: auto;
+    width: 100%;
+}
+
 .cover {
-    padding: 10px
+    padding: 30px
 }
 
 .root {
@@ -14,8 +19,11 @@
     overflow: auto;
     height: 300px;
 }
+.columnName {
+    min-width: 190px;
+}
 .tableRow:nth-child(even) {
-    background-color: #dddddd;
+    background-color: #ebe7e7;
 }
 .iconAddHover {
     margin: 10px;
@@ -47,8 +55,12 @@
 }
 
 .appBar {
-    width: 320px;
-    margin-left: 50px
+    width: 850px;
+    margin-left: 50px;
+    /* background-color: #00a0af; */
+}
+.tabChild {
+    width: 425px;
 }
 
 .textField {
@@ -59,26 +71,19 @@
 
 .small {
     color: red;
-    margin-left: 10px;
+    margin-left: 0px;
 }
 
-.container {
-    display: flex;
-    width: 870px;
-}
-
-.inputForm {
-    margin-right: 30px;
-    height: 75px;
-}
 
 .header {
-    margin-right: 430px;
-    margin-bottom: 20px
+    margin-right: 220px;
+    margin-bottom: 0px;
+    width: 400px;
+    
 }
 .header1 {
     margin-right: 10px;
-    margin-bottom: 20px
+    margin-bottom: 20px;
 }
 .menu {
     width: 200px;
@@ -87,7 +92,7 @@
 .btnAdd {
     margin-top: 30px;
     margin-left: 630px;
-    display: inline;
+    display: flex;
 }
 .button{
     width: 160px;
@@ -104,12 +109,9 @@
     margin-right: 10px
 }
 .title {
-    padding-top: 20px;
+    padding-top: 35px;
     color: cornflowerblue;
     font-size: 20px
-}
-.typography {
-    padding-left: 20px
 }
 
 .loading {
@@ -118,4 +120,98 @@
 .react-loading {
 
     display: inline-block;
+}
+.dropzone {
+    width: 600px;
+    height: 350px;
+}
+
+.typography {
+    padding-left: 20px;
+    width: 500px;
+    /* background-color: rgb(151, 151, 151) */
+}
+
+.container {
+    display: flex;
+    width: 900px;
+    height: 90px;
+}
+
+.btnEdit {
+    padding-left: 10px;
+    height: 20px;
+    display: flex;
+}
+.inputForm {
+    margin-right: 30px;
+    height: 80px;
+}
+
+
+@media (max-width:700px) and (min-width:501px){
+    .header{
+        margin-right: 15px;
+    }
+    .appBar {
+        width: 535px;
+        margin-left: 50px;
+    }
+    .btnAdd {
+        margin-top: 30px;
+        margin-left: 320px;
+        display: flex;
+    }
+    .tabChild {
+        width: 250px;
+    }
+    .textField {
+        margin-left: 10px;
+        margin-right: 20px;
+        width: 150px
+    }
+    .small {
+        color: red;
+        margin-left: 0px;
+        font-size: 10px;
+    }  
+}
+
+
+@media (max-width:500px){
+    .container{
+        display: inline;
+        width: 200px;
+    }
+    .btnAdd {
+        margin-left: 40px;
+        display: inline;
+    }
+    .appBar {
+        width: 350px;
+        margin-left: 50px;
+    }
+    .tabChild {
+        width: 170px;
+    }
+    .buttonView{
+        margin-top: 30px;
+    }
+  
+    .header {
+        width: 400px;
+    }
+    .inputSearch {
+        padding-left: 20px;
+        height: 30px;
+        width: 150px;
+    }
+    .search {
+        min-width: 180px;
+        max-height: 32px;
+        margin-right: 20px;
+    }
+    .btnEdit{
+        margin-left: 135px;
+    }
 }

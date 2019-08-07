@@ -3,8 +3,9 @@ import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
-import DetailInternPage from './DetailInternPage'
-class ViewInternshipPage extends Component {
+import AddForm from './AddForm'
+
+class AddInternshipPage extends Component {
     constructor(props){
         super(props)
         this.state = {
@@ -19,13 +20,11 @@ class ViewInternshipPage extends Component {
     displayForm = () => {
         if(this.state.value === 0){
             return (
-                <DetailInternPage
-                id={this.props.id}
+                <AddForm
                 courseList={this.props.courseList}
-                intern={this.props.intern}
-                listIntern={this.props.listIntern}
-                updateIntern={(data,id) => this.props.updateIntern(data,id)}
-                deleteIntern={(id, data) => this.props.deleteIntern(id, data)}></DetailInternPage>
+                addIntern={this.props.addIntern}
+                listIntern={this.props.listIntern}>
+                </AddForm>
             )
         }else if(this.state.value === 1){
             return (
@@ -47,8 +46,8 @@ class ViewInternshipPage extends Component {
                     variant="scrollable"
                     scrollButtons="auto"
                     >
-                        <Tab label="Information" />
-                        <Tab label="Toeic" />
+                        <Tab label="Information" className="tabChild"/>
+                        <Tab label="Toeic" className="tabChild"/>
                     </Tabs>
                 </AppBar>
                 {this.displayForm()}
@@ -57,4 +56,4 @@ class ViewInternshipPage extends Component {
     }
 }
 
-export default ViewInternshipPage;
+export default AddInternshipPage

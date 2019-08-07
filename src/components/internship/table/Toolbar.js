@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
-import Tooltip from '@material-ui/core/Tooltip';
 import InputBase from '@material-ui/core/InputBase';
 import Paper from '@material-ui/core/Paper';
 import 'material-design-icons/iconfont/material-icons.css';
@@ -15,7 +14,7 @@ class ToolbarTable extends Component {
             <div>
                 <Toolbar>
                     <Typography id="tableTitle">
-                        <span className="title">INTERNSHIP</span>
+                        <span className="title">INTERNSHIPS</span>
                     </Typography>
                     <div className="spacer" />
                     <Paper className="search">

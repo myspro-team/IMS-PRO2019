@@ -2,12 +2,12 @@ import React, { Component } from 'react';
 import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
 import MenuItem from '@material-ui/core/MenuItem';
-import Button from '@material-ui/core/Button';
 import ReactNotification from "react-notifications-component";
 import "react-notifications-component/dist/theme.css";
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 import { Redirect } from 'react-router'
-import InternshipPage from '../containers/internship/Internship.container'
+import InternshipPage from '../../containers/internship/Internship.container'
+import * as messages from '../../core/common/message.en'
 class DetailInternPage extends Component {
     constructor(props){
         super(props)
@@ -16,7 +16,8 @@ class DetailInternPage extends Component {
             Name: {
                 value: '',
                 valid: false,
-                disabled: false
+                disabled: false,
+                error: ''
             },
             Phone: {
                 value: '',
@@ -78,21 +79,7 @@ class DetailInternPage extends Component {
         })
     }
 
-    displayButton = () => {
-        if(this.state.status){
-            return (
-                <div className="header1">   
-                    <button type="button" class="btn buttonView" onClick={() => this.handleEdit()}>EDIT</button>   
-                </div>
-            )
-        }else{
-            return (
-                <div className="header1">   
-                    <button type="button" class="btn buttonView" onClick={() => this.handleSave()}>SAVE</button>
-                </div>
-            )
-        }
-    }
+    
 
     handleEdit = () => {
         this.setState({
@@ -136,7 +123,7 @@ class DetailInternPage extends Component {
                         test = false
                     }else{
                         test = true
-                        err = "Email address is invalid"
+                        err = messages.EMAIL_ADDRESS_IS_INVALID
                     }
                 }
                 break
@@ -151,11 +138,11 @@ class DetailInternPage extends Component {
                             test = false
                         }else{
                             test = true
-                            err = "Phone number start number 0 and have 10 character"
+                            err = messages.PHONE_NUMBER_START_NUMBER_0_AND_HAVE_10_CHARACTER
                         }
                     }else{
                         test = true
-                        err = "Phone number start number 0 and have 10 character"
+                        err = messages.PHONE_NUMBER_START_NUMBER_0_AND_HAVE_10_CHARACTER
                     }
                 }
                 break
@@ -167,7 +154,7 @@ class DetailInternPage extends Component {
                 }else{
                     if(!testBirth){
                         test = true
-                        err = "DOB is invalid (dd/mm/yyyy)"
+                        err = messages.DOB_IS_INVALID
                     }else{
                         let d = new Date()
                         let arr = []
@@ -176,7 +163,7 @@ class DetailInternPage extends Component {
                             test = false
                         }else{
                             test = true
-                            err = "Value day or month or year is invalid"
+                            err = messages.VALUE_DAY_OR_MONTH_OR_YEAR_IS_INVALID
                         }
                     }
                 }
@@ -186,8 +173,10 @@ class DetailInternPage extends Component {
                     test = false
                 }else if(event.target.value.length > 25){
                     test = true
-                    err = "Name limit 25 character"
+                    err = messages.NAME_LIMIT_25_CHARACTER
                 }
+                break
+            default:
                 break
         }
         this.setState({
@@ -195,10 +184,146 @@ class DetailInternPage extends Component {
         })
     }
 
+    validateForm = (event) => {
+        let test
+        let err = ''
+        switch(event.target.name){
+            case "Name":
+                if(!event.target.value){
+                    err = messages.typeInvalid("name")
+                    test = true
+                }else{
+                    if(event.target.value.length === 0){
+                        test = false
+                    }else if(event.target.value.length > 25){
+                        test = true
+                        err = messages.NAME_LIMIT_25_CHARACTER
+                    }
+                }
+                break
+            case "Email":
+                if(!event.target.value){
+                    err = messages.typeInvalid("email")
+                    test = true
+                }else{
+                    let reEmail = /^[a-zA-Z0-9]+[.]{0,1}[a-zA-Z0-9]+[@][a-z]+([.][a-z]{2,})+$/
+                    let testEmail = reEmail.test(event.target.value)
+                    if(event.target.value.length === 0){
+                        test = false
+                    }else{
+                        if(testEmail){
+                            test = false
+                        }else{
+                            test = true
+                            err = messages.EMAIL_ADDRESS_IS_INVALID
+                        }
+                    }
+                }
+                break
+            case "Phone":
+                if(!event.target.value){
+                    err = messages.typeInvalid("phone")
+                    test = true
+                }else {
+                    let rePhone = /^[0][0-9]{1,9}$/
+                    let testPhone = rePhone.test(event.target.value)
+                    if(event.target.value.length === 0){
+                        test = false
+                    }else{
+                        if(testPhone){
+                            if(event.target.value.length === 10){
+                                test = false
+                            }else{
+                                test = true
+                                err = messages.PHONE_NUMBER_START_NUMBER_0_AND_HAVE_10_CHARACTER
+                            }
+                        }else{
+                            test = true
+                            err = messages.PHONE_NUMBER_START_NUMBER_0_AND_HAVE_10_CHARACTER
+                        }
+                    }
+                }
+                break
+            case "DOB":
+                if(!event.target.value){
+                    err = messages.typeInvalid("dob")
+                    test = true
+                }else{
+                    let reBirthday = /^[0-9]{2,2}[/][0-9]{2,2}[/][0-9]{4,4}$/
+                    let testBirth = reBirthday.test(event.target.value);
+                    if(event.target.value.length === 0){
+                        test = false
+                    }else{
+                        if(!testBirth){
+                            test = true
+                            err = messages.DOB_IS_INVALID
+                        }else{
+                            let d = new Date()
+                            let arr = []
+                            arr = event.target.value.split("/");
+                            if((parseInt(arr[0])>0 && parseInt(arr[0])<=31) && (parseInt(arr[1])>0 && parseInt(arr[1])<=12) && (parseInt(arr[2])<=d.getFullYear())){
+                                test = false
+                            }else{
+                                test = true
+                                err = messages.VALUE_DAY_OR_MONTH_OR_YEAR_IS_INVALID
+                            }
+                        }
+                    }
+                }
+                break
+            case "Gender":
+                if(!event.target.value){
+                    err = messages.selectInvalid("gender")
+                    test = true
+                }
+                break
+            case "Course":
+                if(!event.target.value){
+                    err = messages.selectInvalid("course")
+                    test = true
+                }
+                break
+            case "University":
+                if(!event.target.value){
+                    err = messages.typeInvalid("university")
+                    test = true
+                }
+                break
+            case "Faculty":
+                if(!event.target.value){
+                    err = messages.typeInvalid("faculty")
+                    test = true
+                }
+                break
+            default:
+                break
+        }
+        this.setState({
+            [event.target.name]: {value: event.target.value, valid:test, disabled: true, error: err}
+        })
+    }
+
+    disabledButtonAdd = () => {
+        if(this.state.Name.value.length>0 && this.state.Gender.value.length>0 
+            && this.state.DOB.value.length>0 && this.state.University.value.length>0 
+            && this.state.Faculty.value.length>0 && this.state.Course.value.length>0 
+            && this.state.Phone.value.length>0 && this.state.Email.value.length>0){
+                if(!this.state.Phone.valid && !this.state.Email.valid && !this.state.DOB.valid && !this.state.Name.valid &&
+                    !this.state.Gender.valid && !this.state.Course.valid && !this.state.University.valid && !this.state.Faculty.valid){
+                        return true
+                }
+                return false
+        }else{
+            return false
+        }
+    }
+
     displayValid = (valid,error) => {
         if(valid){
             return(
-                <small className="small">{error}</small>
+                <div>
+                    <small className="small">{error}</small>
+                </div>
             )
         }
     }
@@ -211,10 +336,10 @@ class DetailInternPage extends Component {
                     message: message,
                     type: "info",
                     insert: "top",
-                    container: "top-right",
+                    container: "bottom-right",
                     animationIn: ["animated", "fadeIn"],
                     animationOut: ["animated", "fadeOut"],
-                    dismiss: { duration: 1000 },
+                    dismiss: { duration: 2000 },
                     dismissable: { click: true }
                 });
                 break
@@ -224,55 +349,66 @@ class DetailInternPage extends Component {
                     message: message,
                     type: "danger",
                     insert: "top",
-                    container: "top-right",
+                    container: "bottom-right",
                     animationIn: ["animated", "fadeIn"],
                     animationOut: ["animated", "fadeOut"],
-                    dismiss: { duration: 1000 },
+                    dismiss: { duration: 2000 },
                     dismissable: { click: true }
                 });
+                break
+            default:
                 break
         }
     }
 
     handleSave = () => {
-        if(this.state.Name.value.length>0 && this.state.Gender.value.length>0 
-            && this.state.DOB.value.length>0 && this.state.University.value.length>0 
-            && this.state.Faculty.value.length>0 && this.state.Course.value.length>0 
-            && this.state.Phone.value.length>0 && this.state.Email.value.length>0){
-            if(!this.state.Phone.valid && !this.state.Email.valid && !this.state.DOB.valid){
-                let arr = this.state.DOB.value.split('/')
-                let d = arr[2] + "-" + arr[1] + "-" + arr[0]
-                const moment = require('moment');
-                let date = moment.utc(d).format();
-                let intern = {
-                    "Name": this.state.Name.value,
-                    "PhoneNumber": this.state.Phone.value,
-                    "Email": this.state.Email.value,
-                    "Gender": this.state.Gender.value === "Male" ? true : false,
-                    "DOB": date,
-                    "University": this.state.University.value,
-                    "Faculty": this.state.Faculty.value,
-                    "CourseID": this.state.Course.value,
-                    "IsDeleted": false
-                }
-    
-                    this.props.updateIntern(intern,this.props.id)
-                    this.resetForm()  
-                    this.notification("success","Update complete")
-            }else{
-                this.notification("error","Invalid input")
+        
+        if(!this.state.Phone.valid && !this.state.Email.valid && !this.state.DOB.valid && !this.state.Name.valid &&
+            !this.state.Gender.valid && !this.state.Course.valid && !this.state.University.valid && !this.state.Faculty.valid){
+            let arr = this.state.DOB.value.split('/')
+            let d = arr[2] + "-" + arr[1] + "-" + arr[0]
+            const moment = require('moment');
+            let date = moment.utc(d).format();
+            let intern = {
+                "Name": this.state.Name.value,
+                "PhoneNumber": this.state.Phone.value,
+                "Email": this.state.Email.value,
+                "Gender": this.state.Gender.value === "Male" ? true : false,
+                "DOB": date,
+                "University": this.state.University.value,
+                "Faculty": this.state.Faculty.value,
+                "CourseID": this.state.Course.value,
+                "IsDeleted": false
             }
-        }else{
-            this.notification("error","Please type all input")
+
+            this.props.getAPI.updateIntern(intern,this.props.id)
+            this.resetForm()  
+            this.notification("success",messages.UPDATE_SUCCESSFUL)
         }
     }
 
     handleDelete = () => {
-        this.props.deleteIntern(this.props.id, {})
-        this.notification("success","Delete complete")
+        this.props.getAPI.deleteIntern(this.props.id, {})
+        this.notification("success",messages.DELETE_SUCCESSFUL)
         // this.setState({
         //     redirect: false
         // })
+    }
+
+    displayButton = () => {
+        if(this.state.status){
+            return (
+                <div className="header1">   
+                    <button type="button" class="btn buttonView" onClick={() => this.handleEdit()}>EDIT</button>   
+                </div>
+            )
+        }else{
+            return (
+                <div className="header1">   
+                    <button type="button" disabled={this.disabledButtonAdd() ? false : true} class="btn buttonView" onClick={() => this.handleSave()}>SAVE</button>
+                </div> 
+            )
+        }
     }
 
     redirect = () => {
@@ -291,13 +427,13 @@ class DetailInternPage extends Component {
                 <div className="modal-dialog" role="document">
                 <div className="modal-content">
                     <div className="modal-header">
-                    <h5 className="modal-title" id="exampleModalLabel">Modal title</h5>
+                    <h5 className="modal-title" id="exampleModalLabel">Modal Notification</h5>
                     <button type="button" className="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">×</span>
                     </button>
                     </div>
                     <div className="modal-body">
-                    Are you sure delete intern???
+                    Are you sure delete intern?
                     </div>
                     <div className="modal-footer">
                     <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -311,20 +447,22 @@ class DetailInternPage extends Component {
                     <div className="header">
                     DETAIL INTERNSHIP   
                     </div> 
-                    {
-                        this.displayButton()
-                    }
-                    <div className="header1">  
-                        <button type="button" 
-                        class="btn buttonView" 
-                        data-toggle="modal"
-                        data-target="#exampleModal">DELETE</button> 
-                    </div>     
+                    <div className="btnEdit ">
+                        {
+                            this.displayButton()
+                        }
+                        <div className="header1">  
+                            <button type="button" 
+                            class="btn buttonView" 
+                            data-toggle="modal"
+                            data-target="#exampleModal">DELETE</button> 
+                        </div>     
+                    </div>
                 </div>
                 <div className="container">
                     <div className="inputForm">     
                         <TextField
-                            error={this.state.Phone.valid}
+                            error={this.state.Name.valid}
                             defaultValue={this.props.intern.Name}
                             disabled={this.state.Name.disabled ? false : true}
                             id="name"
@@ -333,6 +471,7 @@ class DetailInternPage extends Component {
                             className="textField"
                             margin="normal"
                             onChange={(event) => this.handleChange(event)}
+                            onBlur={(event) => this.validateForm(event)}
                         />
                         {this.displayValid(this.state.Name.valid,this.state.Name.error)}
                     </div>
@@ -347,6 +486,7 @@ class DetailInternPage extends Component {
                             className="textField"
                             margin="normal"
                             onChange={(event) => this.handleChange(event)}
+                            onBlur={(event) => this.validateForm(event)}
                         />
                         {this.displayValid(this.state.Phone.valid,this.state.Phone.error)}
                     </div>
@@ -361,6 +501,7 @@ class DetailInternPage extends Component {
                             className="textField"
                             margin="normal"
                             onChange={(event) => this.handleChange(event)}
+                            onBlur={(event) => this.validateForm(event)}
                         />
                         {this.displayValid(this.state.Email.valid,this.state.Email.error)}
                     </div>
@@ -378,11 +519,13 @@ class DetailInternPage extends Component {
                             className="textField"
                             margin="normal"
                             onChange={(event) => this.handleChange(event)}
+                            onBlur={(event) => this.validateForm(event)}
                         />
                         {this.displayValid(this.state.DOB.valid,this.state.DOB.error)}
                     </div>
                     <div className="inputForm">
                         <TextField
+                            error={this.state.Gender.valid}
                             id="gender"
                             value={this.state.Gender.value}
                             disabled={this.state.Gender.disabled ? false : true}
@@ -390,6 +533,7 @@ class DetailInternPage extends Component {
                             label="Gender"
                             className="textField"
                             onChange={(event) => this.handleChange(event)}
+                            onBlur={(event) => this.validateForm(event)}
                             name="Gender"
                             SelectProps={{
                             MenuProps: {
@@ -405,9 +549,11 @@ class DetailInternPage extends Component {
                             Female
                             </MenuItem>
                         </TextField>
+                        {this.displayValid(this.state.Gender.valid,this.state.Gender.error)}
                     </div>
-                    <div>
+                    <div className="inputForm">
                         <TextField
+                            error={this.state.Course.valid}
                             id="course"
                             value={this.state.Course.value}
                             disabled={this.state.Course.disabled ? false : true}
@@ -415,6 +561,7 @@ class DetailInternPage extends Component {
                             label="Course"
                             className="textField"
                             onChange={(event) => this.handleChange(event)}
+                            onBlur={(event) => this.validateForm(event)}
                             name="Course"
                             SelectProps={{
                             MenuProps: {
@@ -434,11 +581,13 @@ class DetailInternPage extends Component {
                             }
                             
                         </TextField>
+                        {this.displayValid(this.state.Gender.valid,this.state.Gender.error)}
                     </div>
                 </div>
                 <div className="container">
                     <div className="inputForm">     
                         <TextField
+                            error={this.state.University.valid}
                             id="university"
                             defaultValue={this.props.intern.University}
                             disabled={this.state.University.disabled ? false : true}
@@ -447,10 +596,13 @@ class DetailInternPage extends Component {
                             className="textField"
                             margin="normal"
                             onChange={(event) => this.handleChange(event)}
+                            onBlur={(event) => this.validateForm(event)}
                         />
+                        {this.displayValid(this.state.University.valid,this.state.University.error)}
                     </div>
                     <div className="inputForm">
                         <TextField
+                            error={this.state.Faculty.valid}
                             id="faculty"
                             defaultValue={this.props.intern.Faculty}
                             disabled={this.state.Faculty.disabled ? false : true}
@@ -459,7 +611,9 @@ class DetailInternPage extends Component {
                             className="textField"
                             margin="normal"
                             onChange={(event) => this.handleChange(event)}
+                            onBlur={(event) => this.validateForm(event)}
                         />
+                        {this.displayValid(this.state.Faculty.valid,this.state.Faculty.error)}
                     </div>
                 </div>
             </Typography>
@@ -469,6 +623,7 @@ class DetailInternPage extends Component {
     }
 
     render() {
+        console.log(this.disabledButtonAdd())
         return (
             <div>
                 {this.redirect()}

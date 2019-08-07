@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { makeStyles, useTheme } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import { Route, Redirect } from 'react-router'
 import Paper from '@material-ui/core/Paper';
 import Table from '@material-ui/core/Table';
@@ -11,7 +11,7 @@ import TableHead from './table/TableHead'
 import orderBy from 'lodash/orderBy'
 import ToolbarTable from './table/Toolbar'
 import Loading from './table/Loading'
-import * as title from '../core/common/column.js'
+import * as title from '../../core/common/column.js'
 
 class InternshipTable extends Component {
     constructor(props){
@@ -70,7 +70,8 @@ class InternshipTable extends Component {
     handleSearch = (info) => {
         console.log(info)
         this.setState({
-            searchInfor: info
+            searchInfor: info,
+            currentPage: 0
         })
     }
     // end search
@@ -94,7 +95,7 @@ class InternshipTable extends Component {
     displayTable = () => {
         let result = []
         this.props.listIntern.map((value) => {
-            if(value.Name.indexOf(this.state.searchInfor) !== -1){
+            if(value.Name.toLowerCase().indexOf(this.state.searchInfor.toLowerCase()) !== -1){
                 result.push(value)
             }
         })
@@ -124,7 +125,7 @@ class InternshipTable extends Component {
                                         hover
                                         onClick={(id) => this.handleRedirect(value.ID)}
                                         className="tableRow">
-                                            <TableCell align="left">{value.Name}</TableCell>
+                                            <TableCell align="left" className="columnName">{value.Name}</TableCell>
                                             <TableCell align="left">{value.Phone}</TableCell>
                                             <TableCell align="left">{value.Email}</TableCell>
                                             <TableCell align="left">{value.Gender}</TableCell>
@@ -147,7 +148,7 @@ class InternshipTable extends Component {
     render() {
         let result = []
         this.props.listIntern.map((value) => {
-            if(value.Name.indexOf(this.state.searchInfor) !== -1){
+            if(value.Name.toLowerCase().indexOf(this.state.searchInfor.toLowerCase()) !== -1){
                 result.push(value)
             }
         })
