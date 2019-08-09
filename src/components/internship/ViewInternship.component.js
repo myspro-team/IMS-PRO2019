@@ -4,11 +4,13 @@ import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 import DetailInternPage from './DetailInternPage'
+import Modal from './Modal'
 class ViewInternshipPage extends Component {
     constructor(props){
         super(props)
         this.state = {
-            value: 0
+            value: 0,
+            open: false,
         }
     }
     handleChange = (event, newValue) => {
@@ -16,6 +18,19 @@ class ViewInternshipPage extends Component {
             value: newValue
         })
     }
+
+    handleClose = (value) => {
+        this.setState({
+            open: value,
+        })
+    }
+
+    handleOpen = () => {
+        this.setState({
+            open: true,
+        })
+    }
+
     displayForm = () => {
         if(this.state.value === 0){
             return (
@@ -29,7 +44,10 @@ class ViewInternshipPage extends Component {
         }else if(this.state.value === 1){
             return (
                 <Typography component="div" style={{ padding: 8 * 3 }}>
-                    Page toeic
+                    <button type="button" class="btn buttonAttach" onClick={() => this.handleOpen()}>ATTACH FILE</button>
+                    <Modal
+                    open={this.state.open}
+                    handleClose={(value) => this.handleClose(value)}></Modal>
                 </Typography>
             )
         }

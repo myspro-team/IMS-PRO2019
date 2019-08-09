@@ -10,7 +10,8 @@
 .root {
     width: 100%;
     margin-top: 20px;
-    height: 100%
+    height: 100%;
+    min-width: 550px;
 }
 .table {
     min-width: 500px;
@@ -18,6 +19,7 @@
 .tableWrapper {
     overflow: auto;
     height: 300px;
+    min-width: 550px;
 }
 .columnName {
     min-width: 190px;
@@ -33,6 +35,14 @@
 .rootPagination {
     flex-shrink: 0
     /* flexShrink: 0 */
+}
+
+.buttonAttach {
+    width: 125px;
+    height: 32px;
+    background-color: #00a0af;
+    font-size: 12.5px;
+    color: #fff;
 }
 
 .search {
@@ -55,7 +65,8 @@
 }
 
 .appBar {
-    width: 850px;
+    /* width: 850px; */
+    width: 730px;
     margin-left: 50px;
     /* background-color: #00a0af; */
 }
@@ -66,16 +77,20 @@
 .textField {
     margin-left: 10px;
     margin-right: 20px;
-    width: 250px
+    width: 200px;
+    /* width: 200px; */
 }
 
 .small {
     color: red;
     margin-left: 0px;
 }
-
+.coverSmall {
+    width: 170px;
+}
 
 .header {
+    margin-top: 20px;
     margin-right: 220px;
     margin-bottom: 0px;
     width: 400px;
@@ -111,7 +126,7 @@
 .title {
     padding-top: 35px;
     color: cornflowerblue;
-    font-size: 20px
+    font-size: 20px;
 }
 
 .loading {
@@ -128,7 +143,8 @@
 
 .typography {
     padding-left: 20px;
-    width: 500px;
+    /* width: 500px; */
+    width: 100%
     /* background-color: rgb(151, 151, 151) */
 }
 
@@ -137,19 +153,76 @@
     width: 900px;
     height: 90px;
 }
-
-.btnEdit {
-    padding-left: 10px;
-    height: 20px;
-    display: flex;
-}
 .inputForm {
     margin-right: 30px;
     height: 80px;
 }
 
+.grid {
+    margin-right: 30px;
+    height: 100px;
+    display: flex;
+    padding-left: 500px;
+    margin-top: 30px;
+}
 
-@media (max-width:700px) and (min-width:501px){
+.btnEdit {
+    margin-top: 17px;
+    padding-left: 135px;
+    height: 20px;
+    display: flex;
+}
+
+@media (max-width:700px) {
+    .appBar {
+        width: 600px;
+        margin-left: 50px;
+    }
+    .tabChild {
+        width: 300px;
+    }
+
+    .grid {
+        margin-right: 30px;
+        height: 90px;
+        display: flex;
+        padding-left: 240px;
+        margin-top: 30px;
+    }
+    .btnEdit {
+        margin-top: 17px;
+        padding-left: 100px;
+        height: 20px;
+        display: flex;
+    }
+}
+
+@media (max-width: 550px) {
+    .appBar {
+        width: 430px;
+        margin-left: 50px;
+    }
+    .tabChild {
+        width: 210px;
+    }
+
+    .grid {
+        margin-right: 30px;
+        height: 90px;
+        display: flex;
+        padding-left: 210px;
+        margin-top: 30px;
+    }
+
+    .btnEdit {
+        margin-top: 17px;
+        padding-left: 18px;
+        height: 20px;
+        display: flex;
+    }
+}
+
+/* @media (max-width:700px) and (min-width:501px){
     .header{
         margin-right: 15px;
     }
@@ -214,4 +287,4 @@
     .btnEdit{
         margin-left: 135px;
     }
-}
+} */

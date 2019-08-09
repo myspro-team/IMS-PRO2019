@@ -103,7 +103,7 @@ class InternshipTable extends Component {
         let indexOfFirst = indexOfLast - this.state.rowPerPage
         let listIntern = orderBy(result,this.state.orderBy,this.state.order)
                     .slice(indexOfFirst, indexOfLast) 
-        if(this.props.listIntern.length === 0){
+        if(this.props.loading === false) {
             return (
                 <Loading></Loading>
             )

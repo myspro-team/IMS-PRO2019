@@ -11,7 +11,8 @@ class InternshipPage extends Component {
         return (
             <div>
                 <InternshipTable
-                listIntern={this.props.listIntern}></InternshipTable>
+                listIntern={this.props.listIntern}
+                loading={this.props.load}></InternshipTable>
             </div>
         );
     }
@@ -20,7 +21,8 @@ class InternshipPage extends Component {
 
 const mapStateToProps = (state, ownProps) => {
     return {
-        listIntern: state.intership.interships
+        listIntern: state.intership.interships,
+        load: state.intership.loading
     }
 }
 

@@ -11,6 +11,7 @@ class ViewInternship extends Component {
         }
     }
     componentWillMount() {
+        console.log(this.props.getAPI.getSourseList())
         this.props.getAPI.getSourseList()
         this.props.listIntern.map((value) => {
             if(value.ID === this.props.match.params.id){

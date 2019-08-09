@@ -8,34 +8,36 @@ export const getInternList = () => {
                 // TODO: Handle erorr
                 console.log('Error: ....');
                 return;
+            }else{
+                console.log(error)
+                let items = []
+                //let stt = 1
+                console.log(result)
+                result.map((value => {
+                    let middle = value.Intern.DoB.split('-', 3)
+                    let date = middle[2].substring(0, 2) + "/" + middle[1] + "/" + middle[0]
+                    let item = {}
+                    item.ID = value.Intern.ID
+                    item.Name = value.Intern.Name
+                    item.Phone = value.Intern.PhoneNumber
+                    item.Email = value.Intern.Email
+                    item.Gender = value.Intern.Gender ? "Male" : "Female"
+                    item.DOB = date
+                    item.University = value.Intern.University
+                    item.Faculty = value.Intern.Faculty
+                    item.Course = value.Course
+                    item.CourseID = value.Intern.CourseID
+                    //items.push([stt, value.Intern.ID, value.Intern.Name, value.Intern.PhoneNumber, value.Intern.Email, value.Intern.Gender ? "Male" : "Female", date, value.Intern.University, value.Intern.Faculty, value.Course, value.Intern.CourseID])
+                    items.push(item)
+                    //stt++
+                }))
+                console.log(items)
+                return dispatch({
+                    type: types.GET_INTERSHIP_LIST,
+                    internship: items,
+                    meta: result.meta
+                });
             }
-            let items = []
-            //let stt = 1
-            console.log(result)
-            result.map((value => {
-                let middle = value.Intern.DoB.split('-', 3)
-                let date = middle[2].substring(0, 2) + "/" + middle[1] + "/" + middle[0]
-                let item = {}
-                item.ID = value.Intern.ID
-                item.Name = value.Intern.Name
-                item.Phone = value.Intern.PhoneNumber
-                item.Email = value.Intern.Email
-                item.Gender = value.Intern.Gender ? "Male" : "Female"
-                item.DOB = date
-                item.University = value.Intern.University
-                item.Faculty = value.Intern.Faculty
-                item.Course = value.Course
-                item.CourseID = value.Intern.CourseID
-                //items.push([stt, value.Intern.ID, value.Intern.Name, value.Intern.PhoneNumber, value.Intern.Email, value.Intern.Gender ? "Male" : "Female", date, value.Intern.University, value.Intern.Faculty, value.Course, value.Intern.CourseID])
-                items.push(item)
-                //stt++
-            }))
-            console.log(items)
-            return dispatch({
-                type: types.GET_INTERSHIP_LIST,
-                internship: items,
-                meta: result.meta
-            });
         });
     }
 }

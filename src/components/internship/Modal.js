@@ -15,61 +15,44 @@ class Modal extends Component {
             open: false
         }
     }
-    handleClickOpen = () => {
-        this.setState({
-            open: true
-        })
-    }
-    handleClose = () => {
-        this.setState({
-            open: false
-        })
-    }
     
-    getUploadParams = ({meta}) => {
-        console.log(meta)
-        return { url: 'E:\May_tai\Du_Lieu\HK6' }
-    }
+    // getUploadParams = ({meta}) => {
+    //     console.log(meta)
+    //     return { url: 'E:\May_tai\Du_Lieu\HK6' }
+    // }
 
-    handleChangeStatus = ({meta, file}, status) => {
-        console.log(meta)
-        console.log(file)
-        console.log(status)
-    }
-    handleSubmit = (files, allFiles) => {
-        console.log(files)
-        console.log(allFiles)
-        allFiles.forEach(f => f.remove())
-    }
+    // handleChangeStatus = ({meta, file}, status) => {
+    //     console.log(meta)
+    //     console.log(file)
+    //     console.log(status)
+    // }
+    // handleSubmit = (files, allFiles) => {
+    //     console.log(files)
+    //     console.log(allFiles)
+    //     allFiles.forEach(f => f.remove())
+    // }
     render() {
         return (
             <div>
-                <Button variant="outlined" color="primary" onClick={() => this.handleClickOpen()}>
-                    Open alert dialog
-                </Button>
                 <Dialog
-                    open={this.state.open}
-                    onClose={() => this.handleClose()}
+                    open={this.props.open}
+                    onClose={(value) => this.props.handleClose(!this.props.open)}
                     aria-labelledby="alert-dialog-title"
                     aria-describedby="alert-dialog-description"
                 >
                     <DialogTitle id="alert-dialog-title">{"ATTACH FILE"}</DialogTitle>
                     <DialogContent className="dropzone">
-                    <DialogContentText id="alert-dialog-description">
-                        <Dropzone
-                        getUploadParams={this.getUploadParams}
-                        onChangeStatus={this.handleChangeStatus}
-                        onSubmit={this.handleSubmit}/>
-                    </DialogContentText>
-                        
+                        <DialogContentText id="alert-dialog-description">
+                            <Dropzone/>
+                        </DialogContentText>
                     </DialogContent>
                     <DialogActions>
-                    <Button onClick={() => this.handleClose()} color="primary">
-                        Close
-                    </Button>
-                    <Button onClick={() => this.handleClose()} color="primary" autoFocus>
-                        Attach
-                    </Button>
+                        <Button onClick={(value) => this.props.handleClose(!this.props.open)} color="primary">
+                            Close
+                        </Button>
+                        <Button onClick={(value) => this.props.handleClose(!this.props.open)} color="primary" autoFocus>
+                            Attach
+                        </Button>
                     </DialogActions>
                 </Dialog>
             </div>

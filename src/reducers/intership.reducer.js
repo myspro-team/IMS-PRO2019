@@ -5,15 +5,15 @@ const defaultState = {
     interships: [],
     course: [],
     newIntern: {},
-    oldIntern: {}
+    oldIntern: {},
+    loading: false
 };
 
 
 const IntershipReducer = function (state = defaultState, action) {
     switch (action.type) {
         case types.GET_INTERSHIP_LIST: {
-            return _.assign({}, state, { interships: action.internship });
-            //return {...state, interships:action.internship }
+            return _.assign({}, state, { interships: action.internship, loading: true });
         }
         case types.GET_COURSE_LIST: {
             return _.assign({}, state, { course: action.course });
@@ -25,7 +25,7 @@ const IntershipReducer = function (state = defaultState, action) {
             return state;
         }
         case types.DELETE_INTERN: {
-            return _.assign({}, state, { oldIntern: action.oldIntern     });
+            return _.assign({}, state, { oldIntern: action.oldIntern});
         }
         default: {
             return state;

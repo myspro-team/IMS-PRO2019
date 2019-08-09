@@ -6,6 +6,8 @@ import 'bootstrap'
 import ReactNotification from "react-notifications-component";
 import "react-notifications-component/dist/theme.css";
 import * as messages from '../../core/common/message.en'
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import Grid from '@material-ui/core/Grid';
 class AddForm extends Component {
     constructor(props){
         super(props)
@@ -75,13 +77,13 @@ class AddForm extends Component {
                 }
                 break
             case "Phone":
-                let rePhone = /^[0][0-9]{1,9}$/
+                let rePhone = /^[0][0-9]{1,10}$/
                 let testPhone = rePhone.test(event.target.value)
                 if(event.target.value.length === 0){
                     test = false
                 }else{
                     if(testPhone){
-                        if(event.target.value.length === 10){
+                        if(event.target.value.length === 10 || event.target.value.length === 11){
                             test = false
                         }else{
                             test = true
@@ -94,26 +96,27 @@ class AddForm extends Component {
                 }
                 break
             case "DOB":
-                let reBirthday = /^[0-9]{2,2}[/][0-9]{2,2}[/][0-9]{4,4}$/
-                let testBirth = reBirthday.test(event.target.value);
+                // let reBirthday = /^[0-9]{2,2}[/][0-9]{2,2}[/][0-9]{4,4}$/
+                // let testBirth = reBirthday.test(event.target.value);
                 if(event.target.value.length === 0){
                     test = false
-                }else{
-                    if(!testBirth){
-                        test = true
-                        err = messages.DOB_IS_INVALID
-                    }else{
-                        let d = new Date()
-                        let arr = []
-                        arr = event.target.value.split("/");
-                        if((parseInt(arr[0])>0 && parseInt(arr[0])<=31) && (parseInt(arr[1])>0 && parseInt(arr[1])<=12) && (parseInt(arr[2])<=d.getFullYear())){
-                            test = false
-                        }else{
-                            test = true
-                            err = messages.VALUE_DAY_OR_MONTH_OR_YEAR_IS_INVALID
-                        }
-                    }
                 }
+                // else{
+                //     if(!testBirth){
+                //         test = true
+                //         err = messages.DOB_IS_INVALID
+                //     }else{
+                //         let d = new Date()
+                //         let arr = []
+                //         arr = event.target.value.split("/");
+                //         if((parseInt(arr[0])>0 && parseInt(arr[0])<=31) && (parseInt(arr[1])>0 && parseInt(arr[1])<=12) && (parseInt(arr[2])<=d.getFullYear())){
+                //             test = false
+                //         }else{
+                //             test = true
+                //             err = messages.VALUE_DAY_OR_MONTH_OR_YEAR_IS_INVALID
+                //         }
+                //     }
+                // }
                 break
             case "Name":
                 if(event.target.value.length === 0){
@@ -172,13 +175,13 @@ class AddForm extends Component {
                     err = messages.typeInvalid("phone")
                     test = true
                 }else {
-                    let rePhone = /^[0][0-9]{1,9}$/
+                    let rePhone = /^[0][0-9]{1,10}$/
                     let testPhone = rePhone.test(event.target.value)
                     if(event.target.value.length === 0){
                         test = false
                     }else{
                         if(testPhone){
-                            if(event.target.value.length === 10){
+                            if(event.target.value.length === 10 || event.target.value.length === 11){
                                 test = false
                             }else{
                                 test = true
@@ -195,28 +198,29 @@ class AddForm extends Component {
                 if(!event.target.value){
                     err = messages.typeInvalid("dob")
                     test = true
-                }else{
-                    let reBirthday = /^[0-9]{2,2}[/][0-9]{2,2}[/][0-9]{4,4}$/
-                    let testBirth = reBirthday.test(event.target.value);
-                    if(event.target.value.length === 0){
-                        test = false
-                    }else{
-                        if(!testBirth){
-                            test = true
-                            err = messages.DOB_IS_INVALID
-                        }else{
-                            let d = new Date()
-                            let arr = []
-                            arr = event.target.value.split("/");
-                            if((parseInt(arr[0])>0 && parseInt(arr[0])<=31) && (parseInt(arr[1])>0 && parseInt(arr[1])<=12) && (parseInt(arr[2])<=d.getFullYear())){
-                                test = false
-                            }else{
-                                test = true
-                                err = messages.VALUE_DAY_OR_MONTH_OR_YEAR_IS_INVALID
-                            }
-                        }
-                    }
                 }
+                // else{
+                //     let reBirthday = /^[0-9]{2,2}[/][0-9]{2,2}[/][0-9]{4,4}$/
+                //     let testBirth = reBirthday.test(event.target.value);
+                //     if(event.target.value.length === 0){
+                //         test = false
+                //     }else{
+                //         if(!testBirth){
+                //             test = true
+                //             err = messages.DOB_IS_INVALID
+                //         }else{
+                //             let d = new Date()
+                //             let arr = []
+                //             arr = event.target.value.split("/");
+                //             if((parseInt(arr[0])>0 && parseInt(arr[0])<=31) && (parseInt(arr[1])>0 && parseInt(arr[1])<=12) && (parseInt(arr[2])<=d.getFullYear())){
+                //                 test = false
+                //             }else{
+                //                 test = true
+                //                 err = messages.VALUE_DAY_OR_MONTH_OR_YEAR_IS_INVALID
+                //             }
+                //         }
+                //     }
+                // }
                 break
             case "Gender":
                 if(!event.target.value){
@@ -251,24 +255,23 @@ class AddForm extends Component {
     }
 
     disabledButtonAdd = () => {
-        if(this.state.Name.value.length>0 && this.state.Gender.value.length>0 
-            && this.state.DOB.value.length>0 && this.state.University.value.length>0 
-            && this.state.Faculty.value.length>0 && this.state.Course.value.length>0 
-            && this.state.Phone.value.length>0 && this.state.Email.value.length>0){
-                if(!this.state.Phone.valid && !this.state.Email.valid && !this.state.DOB.valid && !this.state.Name.valid &&
-                    !this.state.Gender.valid && !this.state.Course.valid && !this.state.University.valid && !this.state.Faculty.valid){
+        if(this.state.Name.value.length>0 && this.state.DOB.value.length>0 
+            && this.state.Course.value.length>0 && this.state.Email.value.length>0){
+                if(!this.state.Phone.valid && !this.state.Email.valid && !this.state.DOB.valid 
+                    && !this.state.Name.valid && !this.state.Course.valid){
                         return true
                 }
                 return false
         }else{
             return false
         }
+        // return true
     }
 
     displayValid = (valid,err) => {
         if(valid){
             return(
-                <div>
+                <div className="coverSmall">
                 <small className="small">{err}</small>
                 </div>
             )
@@ -320,12 +323,12 @@ class AddForm extends Component {
     }
     handleAdd = () => {
         let check = true
-        if(!this.state.Phone.valid && !this.state.Email.valid && !this.state.DOB.valid && !this.state.Name.valid &&
-            !this.state.Gender.valid && !this.state.Course.valid && !this.state.University.valid && !this.state.Faculty.valid){
-            let arr = this.state.DOB.value.split('/')
-            let d = arr[2] + "-" + arr[1] + "-" + arr[0]
+        // if(!this.state.Phone.valid && !this.state.Email.valid && !this.state.DOB.valid && !this.state.Name.valid &&
+        //     !this.state.Gender.valid && !this.state.Course.valid && !this.state.University.valid && !this.state.Faculty.valid){
+            // let arr = this.state.DOB.value.split('/')
+            // let d = arr[2] + "-" + arr[1] + "-" + arr[0]
             const moment = require('moment');
-            let date = moment.utc(d).format();
+            let date = moment.utc(this.state.DOB.value).format();
             let intern = {
                 "Name": this.state.Name.value,
                 "PhoneNumber": this.state.Phone.value,
@@ -349,7 +352,7 @@ class AddForm extends Component {
             }else{
                 this.notification("error", messages.EMAIL_ALREADY_EXISTS)
             }
-        }
+        // }
     }
     render() {
         console.log(this.disabledButtonAdd())
@@ -357,17 +360,24 @@ class AddForm extends Component {
             <div>
                 <ReactNotification ref={this.notificationDOMRef}/>
                 <Typography component="div" className="typography">
-                    <div className="container title">
-                        <div className="header">
-                        FORM ADD INTERNSHIP
-                        </div>
-                    </div>
-                    <div className="container">
-                        <div class="inputForm">     
+                    {/* <div className="container title"> */}
+                    <Grid container spacing={2}>
+                        <Grid item xs={12} className="title">
+                            <div className="header">
+                            FORM ADD INTERNSHIP
+                            </div>
+                        </Grid>
+                    </Grid>
+                    {/* </div> */}
+                    {/* <div className="container"> */}
+                    <Grid container spacing={2}>
+                        {/* <div class="inputForm">  */}
+                        <Grid item xs={5} sm={3} style={{marginRight:"60px", height: "110px"}}>    
                             <TextField
                                 error={this.state.Name.valid}
+                                InputLabelProps={{required: true, style: {color: "black"}}}
                                 id="name"
-                                label="Name"
+                                label="Name "
                                 name="Name"
                                 className="textField"
                                 margin="normal"
@@ -375,25 +385,31 @@ class AddForm extends Component {
                                 onBlur={(event) => this.validateForm(event)} 
                             />
                             {this.displayValid(this.state.Name.valid,this.state.Name.error)}
-                        </div>
-                        <div class="inputForm">
+                        </Grid>
+                        {/* </div> */}
+                        {/* <div class="inputForm"> */}
+                        <Grid item xs={5} sm={3} style={{marginRight:"60px", height: "110px"}}>
                             <TextField
                                 error={this.state.Phone.valid}
+                                InputLabelProps={{style: {color: "black"}}}
                                 id="phone"
                                 label="Phone"
                                 name="Phone"
                                 className="textField"
                                 margin="normal"
                                 onChange={(event) => this.handleChange(event)}
-                                onBlur={(event) => this.validateForm(event)} 
+                                // onBlur={(event) => this.validateForm(event)} 
                             />
                             {this.displayValid(this.state.Phone.valid,this.state.Phone.error)}
-                        </div>
-                        <div className="inputForm">
+                        </Grid>
+                        {/* </div> */}
+                        {/* <div className="inputForm"> */}
+                        <Grid item xs={5} sm={3} style={{marginRight:"60px", height: "110px"}}>
                             <TextField
                                 error={this.state.Email.valid}
+                                InputLabelProps={{required: true, style: {color: "black"}}}
                                 id="email"
-                                label="Email"
+                                label="Email "
                                 name="Email"
                                 className="textField"
                                 margin="normal"
@@ -401,33 +417,43 @@ class AddForm extends Component {
                                 onBlur={(event) => this.validateForm(event)} 
                             />
                             {this.displayValid(this.state.Email.valid,this.state.Email.error)}
-                        </div>
-                    </div>
-                    <div className="container">
-                        <div class="inputForm">     
+                        </Grid>
+                        {/* </div> */}
+                    </Grid>
+                    {/* </div> */}
+                    {/* <div className="container"> */}
+                    <Grid container spacing={2}>
+                        {/* <div class="inputForm"> */}
+                        <Grid item xs={5} sm={3} style={{marginRight:"60px", height: "110px"}}>     
                             <TextField
                                 error={this.state.DOB.valid}
+                                // InputLabelProps={{style: {color: "black"}}}
+                                InputLabelProps={{ shrink: true, required: true, style: {color: "black", fontSize:"17px"} }}
                                 id="dob"
-                                label="DOB"
+                                label="DOB "
                                 name="DOB"
                                 placeholder="dd/mm/yyyy"
                                 className="textField"
+                                type="date"
                                 margin="normal"
                                 onChange={(event) => this.handleChange(event)}
                                 onBlur={(event) => this.validateForm(event)} 
                             />
                             {this.displayValid(this.state.DOB.valid,this.state.DOB.error)}
-                        </div>
-                        <div class="inputForm">
+                        </Grid>
+                        {/* </div> */}
+                        {/* <div class="inputForm"> */}
+                        <Grid item xs={5} sm={3} style={{marginRight:"60px", height: "110px"}}>
                             <TextField
                                 error={this.state.Gender.valid}
+                                InputLabelProps={{style: {color: "black"}}}
                                 id="gender"
                                 select
                                 label="Gender"
                                 className="textField"
                                 value={this.state.Gender.value}
                                 onChange={(event) => this.handleChange(event)}
-                                onBlur={(event) => this.validateForm(event)} 
+                                // onBlur={(event) => this.validateForm(event)} 
                                 name="Gender"
                                 SelectProps={{
                                 MenuProps: {
@@ -444,13 +470,16 @@ class AddForm extends Component {
                                 </MenuItem>
                             </TextField>
                             {this.displayValid(this.state.Gender.valid,this.state.Gender.error)}
-                        </div>
-                        <div>
+                        </Grid>
+                        {/* </div> */}
+                        {/* <div> */}
+                        <Grid item xs={5} sm={3} style={{marginRight:"60px", height: "110px"}}>
                             <TextField
                                 error={this.state.Course.valid}
+                                InputLabelProps={{required: true, style: {color: "black"}}}
                                 id="course"
                                 select
-                                label="Course"
+                                label="Course "
                                 className="textField"
                                 value={this.state.Course.value}
                                 onChange={(event) => this.handleChange(event)}
@@ -475,42 +504,58 @@ class AddForm extends Component {
                                 
                             </TextField>
                             {this.displayValid(this.state.Course.valid,this.state.Course.error)}
-                        </div>
-                    </div>
-                    <div className="container">
-                        <div class="inputForm">     
+                        </Grid>
+                        {/* </div> */}
+                    </Grid>
+                    {/* </div> */}
+                    {/* <div className="container"> */}
+                    <Grid container spacing={2}>
+                        {/* <div class="inputForm">   */}
+                        <Grid item xs={5} sm={3} style={{marginRight:"60px", height: "110px"}}>   
                             <TextField
                                 error={this.state.University.valid}
+                                InputLabelProps={{style: {color: "black"}}}
                                 id="university"
                                 label="University"
                                 name="University"
                                 className="textField"
                                 margin="normal"
                                 onChange={(event) => this.handleChange(event)}
-                                onBlur={(event) => this.validateForm(event)}
+                                // onBlur={(event) => this.validateForm(event)}
                             />
                             {this.displayValid(this.state.University.valid,this.state.University.error)}
-                        </div>
-                        <div class="inputForm">
+                        </Grid>
+                        {/* </div> */}
+                        {/* <div class="inputForm"> */}
+                        <Grid item xs={5} sm={3} style={{marginRight:"60px", height: "110px"}}> 
                             <TextField
                                 error={this.state.Faculty.valid}
+                                InputLabelProps={{style: {color: "black"}}}
                                 id="faculty"
                                 label="Faculty"
                                 name="Faculty"
                                 className="textField"
                                 margin="normal"
                                 onChange={(event) => this.handleChange(event)}
-                                onBlur={(event) => this.validateForm(event)}
+                                // onBlur={(event) => this.validateForm(event)}
                             />
                             {this.displayValid(this.state.Faculty.valid,this.state.Faculty.error)}
-                        </div>
-                    </div>
-                    <div className="container">
-                        <div className="btnAdd">
-                            <button type="button" class="btn buttonView space" onClick={() => this.handleAdd()}>CANCLE</button>
+                        </Grid>
+                        {/* </div> */}
+                    </Grid>
+                    {/* </div> */}
+                    {/* <div className="container"> */}
+                    <Grid container spacing={2}>
+                        {/* <div className="btnAdd"> */}
+                        <div className="grid">
+                        <Grid item xs={12} >
+                            <Link to="/internship"><button type="button" class="btn buttonView space">CANCLE</button></Link>
                             <button type="button" disabled={this.disabledButtonAdd() ? false : true} class="btn buttonView" onClick={() => this.handleAdd()}>ADD</button>
+                        </Grid>
                         </div>
-                    </div>
+                        {/* </div> */}
+                    </Grid>
+                    {/* </div> */}
                 </Typography>
             </div>
         );

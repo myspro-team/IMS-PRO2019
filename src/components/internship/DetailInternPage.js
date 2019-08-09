@@ -8,6 +8,7 @@ import { BrowserRouter as Router, Route } from 'react-router-dom'
 import { Redirect } from 'react-router'
 import InternshipPage from '../../containers/internship/Internship.container'
 import * as messages from '../../core/common/message.en'
+import Grid from '@material-ui/core/Grid';
 class DetailInternPage extends Component {
     constructor(props){
         super(props)
@@ -128,13 +129,13 @@ class DetailInternPage extends Component {
                 }
                 break
             case "Phone":
-                let rePhone = /^[0][0-9]{1,9}$/
+                let rePhone = /^[0][0-9]{1,10}$/
                 let testPhone = rePhone.test(event.target.value)
                 if(event.target.value.length === 0){
                     test = false
                 }else{
                     if(testPhone){
-                        if(event.target.value.length === 10){
+                        if(event.target.value.length === 10 || event.target.value.length === 11){
                             test = false
                         }else{
                             test = true
@@ -147,26 +148,27 @@ class DetailInternPage extends Component {
                 }
                 break
             case "DOB":
-                let reBirthday = /^[0-9]{2,2}[/][0-9]{2,2}[/][0-9]{4,4}$/
-                let testBirth = reBirthday.test(event.target.value);
+                // let reBirthday = /^[0-9]{2,2}[/][0-9]{2,2}[/][0-9]{4,4}$/
+                // let testBirth = reBirthday.test(event.target.value);
                 if(event.target.value.length === 0){
                     test = false
-                }else{
-                    if(!testBirth){
-                        test = true
-                        err = messages.DOB_IS_INVALID
-                    }else{
-                        let d = new Date()
-                        let arr = []
-                        arr = event.target.value.split("/");
-                        if((parseInt(arr[0])>0 && parseInt(arr[0])<=31) && (parseInt(arr[1])>0 && parseInt(arr[1])<=12) && (parseInt(arr[2])<=d.getFullYear())){
-                            test = false
-                        }else{
-                            test = true
-                            err = messages.VALUE_DAY_OR_MONTH_OR_YEAR_IS_INVALID
-                        }
-                    }
                 }
+                // else{
+                //     if(!testBirth){
+                //         test = true
+                //         err = messages.DOB_IS_INVALID
+                //     }else{
+                //         let d = new Date()
+                //         let arr = []
+                //         arr = event.target.value.split("/");
+                //         if((parseInt(arr[0])>0 && parseInt(arr[0])<=31) && (parseInt(arr[1])>0 && parseInt(arr[1])<=12) && (parseInt(arr[2])<=d.getFullYear())){
+                //             test = false
+                //         }else{
+                //             test = true
+                //             err = messages.VALUE_DAY_OR_MONTH_OR_YEAR_IS_INVALID
+                //         }
+                //     }
+                // }
                 break
             case "Name":
                 if(event.target.value.length === 0){
@@ -205,7 +207,8 @@ class DetailInternPage extends Component {
                 if(!event.target.value){
                     err = messages.typeInvalid("email")
                     test = true
-                }else{
+                }
+                else{
                     let reEmail = /^[a-zA-Z0-9]+[.]{0,1}[a-zA-Z0-9]+[@][a-z]+([.][a-z]{2,})+$/
                     let testEmail = reEmail.test(event.target.value)
                     if(event.target.value.length === 0){
@@ -225,13 +228,13 @@ class DetailInternPage extends Component {
                     err = messages.typeInvalid("phone")
                     test = true
                 }else {
-                    let rePhone = /^[0][0-9]{1,9}$/
+                    let rePhone = /^[0][0-9]{1,10}$/
                     let testPhone = rePhone.test(event.target.value)
                     if(event.target.value.length === 0){
                         test = false
                     }else{
                         if(testPhone){
-                            if(event.target.value.length === 10){
+                            if(event.target.value.length === 10 || event.target.value.length === 11){
                                 test = false
                             }else{
                                 test = true
@@ -248,28 +251,29 @@ class DetailInternPage extends Component {
                 if(!event.target.value){
                     err = messages.typeInvalid("dob")
                     test = true
-                }else{
-                    let reBirthday = /^[0-9]{2,2}[/][0-9]{2,2}[/][0-9]{4,4}$/
-                    let testBirth = reBirthday.test(event.target.value);
-                    if(event.target.value.length === 0){
-                        test = false
-                    }else{
-                        if(!testBirth){
-                            test = true
-                            err = messages.DOB_IS_INVALID
-                        }else{
-                            let d = new Date()
-                            let arr = []
-                            arr = event.target.value.split("/");
-                            if((parseInt(arr[0])>0 && parseInt(arr[0])<=31) && (parseInt(arr[1])>0 && parseInt(arr[1])<=12) && (parseInt(arr[2])<=d.getFullYear())){
-                                test = false
-                            }else{
-                                test = true
-                                err = messages.VALUE_DAY_OR_MONTH_OR_YEAR_IS_INVALID
-                            }
-                        }
-                    }
                 }
+                // else{
+                //     let reBirthday = /^[0-9]{2,2}[/][0-9]{2,2}[/][0-9]{4,4}$/
+                //     let testBirth = reBirthday.test(event.target.value);
+                //     if(event.target.value.length === 0){
+                //         test = false
+                //     }else{
+                //         if(!testBirth){
+                //             test = true
+                //             err = messages.DOB_IS_INVALID
+                //         }else{
+                //             let d = new Date()
+                //             let arr = []
+                //             arr = event.target.value.split("/");
+                //             if((parseInt(arr[0])>0 && parseInt(arr[0])<=31) && (parseInt(arr[1])>0 && parseInt(arr[1])<=12) && (parseInt(arr[2])<=d.getFullYear())){
+                //                 test = false
+                //             }else{
+                //                 test = true
+                //                 err = messages.VALUE_DAY_OR_MONTH_OR_YEAR_IS_INVALID
+                //             }
+                //         }
+                //     }
+                // }
                 break
             case "Gender":
                 if(!event.target.value){
@@ -304,12 +308,10 @@ class DetailInternPage extends Component {
     }
 
     disabledButtonAdd = () => {
-        if(this.state.Name.value.length>0 && this.state.Gender.value.length>0 
-            && this.state.DOB.value.length>0 && this.state.University.value.length>0 
-            && this.state.Faculty.value.length>0 && this.state.Course.value.length>0 
-            && this.state.Phone.value.length>0 && this.state.Email.value.length>0){
-                if(!this.state.Phone.valid && !this.state.Email.valid && !this.state.DOB.valid && !this.state.Name.valid &&
-                    !this.state.Gender.valid && !this.state.Course.valid && !this.state.University.valid && !this.state.Faculty.valid){
+        if(this.state.Name.value.length>0 && this.state.DOB.value.length>0
+            && this.state.Course.value.length>0 && this.state.Email.value.length>0){
+                if(!this.state.Phone.valid && !this.state.Email.valid 
+                    && !this.state.Name.valid && !this.state.Course.valid){
                         return true
                 }
                 return false
@@ -321,7 +323,7 @@ class DetailInternPage extends Component {
     displayValid = (valid,error) => {
         if(valid){
             return(
-                <div>
+                <div className="coverSmall">
                     <small className="small">{error}</small>
                 </div>
             )
@@ -363,12 +365,12 @@ class DetailInternPage extends Component {
 
     handleSave = () => {
         
-        if(!this.state.Phone.valid && !this.state.Email.valid && !this.state.DOB.valid && !this.state.Name.valid &&
-            !this.state.Gender.valid && !this.state.Course.valid && !this.state.University.valid && !this.state.Faculty.valid){
-            let arr = this.state.DOB.value.split('/')
-            let d = arr[2] + "-" + arr[1] + "-" + arr[0]
+        if(!this.state.Phone.valid && !this.state.Email.valid && !this.state.Name.valid 
+            && !this.state.DOB.valid && !this.state.Course.valid){
+            // let arr = this.state.DOB.value.split('/')
+            // let d = arr[2] + "-" + arr[1] + "-" + arr[0]
             const moment = require('moment');
-            let date = moment.utc(d).format();
+            let date = moment.utc(this.state.DOB.value).format();
             let intern = {
                 "Name": this.state.Name.value,
                 "PhoneNumber": this.state.Phone.value,
@@ -412,6 +414,8 @@ class DetailInternPage extends Component {
     }
 
     redirect = () => {
+        let arr = this.props.intern.DOB.split('/')
+        let d = arr[2] + "-" + arr[1] + "-" + arr[0]
         if(!this.state.redirect){
             return (
                 <div>
@@ -443,7 +447,7 @@ class DetailInternPage extends Component {
                 </div>
             </div>
             <Typography component="div" className="typography">
-                <div className="container title">
+                {/* <div className="container title">
                     <div className="header">
                     DETAIL INTERNSHIP   
                     </div> 
@@ -458,82 +462,120 @@ class DetailInternPage extends Component {
                             data-target="#exampleModal">DELETE</button> 
                         </div>     
                     </div>
-                </div>
-                <div className="container">
-                    <div className="inputForm">     
+                </div> */}
+                <Grid container spacing={2}>
+                    <Grid item xs={6} className="title">
+                        <div className="header">
+                        DETAIL INTERNSHIP
+                        </div>
+                    </Grid>
+                    <Grid item xs={6} className="title">
+                        <div className="btnEdit ">
+                            {
+                                this.displayButton()
+                            }
+                            <div className="header1">  
+                                <button type="button" 
+                                class="btn buttonView" 
+                                data-toggle="modal"
+                                data-target="#exampleModal">DELETE</button> 
+                            </div>     
+                        </div>
+                    </Grid>
+                </Grid>
+                <Grid container spacing={2}>
+                    {/* <div class="inputForm">  */}
+                    <Grid item xs={5} sm={3} style={{marginRight:"60px", height: "110px"}}>    
                         <TextField
                             error={this.state.Name.valid}
+                            InputLabelProps={{required: true, style: {color: "black"}}}
                             defaultValue={this.props.intern.Name}
                             disabled={this.state.Name.disabled ? false : true}
                             id="name"
-                            label="Name"
+                            label="Name "
                             name="Name"
                             className="textField"
                             margin="normal"
                             onChange={(event) => this.handleChange(event)}
-                            onBlur={(event) => this.validateForm(event)}
+                            onBlur={(event) => this.validateForm(event)} 
                         />
                         {this.displayValid(this.state.Name.valid,this.state.Name.error)}
-                    </div>
-                    <div className="inputForm">
+                    </Grid>
+                    {/* </div> */}
+                    {/* <div class="inputForm"> */}
+                    <Grid item xs={5} sm={3} style={{marginRight:"60px", height: "110px"}}>
                         <TextField
                             error={this.state.Phone.valid}
-                            id="phone"
+                            InputLabelProps={{style: {color: "black"}}}
                             defaultValue={this.props.intern.Phone}
                             disabled={this.state.Phone.disabled ? false : true}
+                            id="phone"
                             label="Phone"
                             name="Phone"
                             className="textField"
                             margin="normal"
                             onChange={(event) => this.handleChange(event)}
-                            onBlur={(event) => this.validateForm(event)}
+                            // onBlur={(event) => this.validateForm(event)} 
                         />
                         {this.displayValid(this.state.Phone.valid,this.state.Phone.error)}
-                    </div>
-                    <div className="inputForm">
+                    </Grid>
+                    {/* </div> */}
+                    {/* <div className="inputForm"> */}
+                    <Grid item xs={5} sm={3} style={{marginRight:"60px", height: "110px"}}>
                         <TextField
                             error={this.state.Email.valid}
-                            id="email"
+                            InputLabelProps={{required: true, style: {color: "black"}}}
                             defaultValue={this.props.intern.Email}
                             disabled={this.state.Email.disabled ? false : true}
-                            label="Email"
+                            id="email"
+                            label="Email "
                             name="Email"
                             className="textField"
                             margin="normal"
                             onChange={(event) => this.handleChange(event)}
-                            onBlur={(event) => this.validateForm(event)}
+                            onBlur={(event) => this.validateForm(event)} 
                         />
                         {this.displayValid(this.state.Email.valid,this.state.Email.error)}
-                    </div>
-                </div>
-                <div className="container">
-                    <div className="inputForm">     
+                    </Grid>
+                    {/* </div> */}
+                </Grid>
+                {/* </div> */}
+                {/* <div className="container"> */}
+                <Grid container spacing={2}>
+                    {/* <div class="inputForm"> */}
+                    <Grid item xs={5} sm={3} style={{marginRight:"60px", height: "110px"}}>     
                         <TextField
                             error={this.state.DOB.valid}
-                            id="dob"
-                            defaultValue={this.props.intern.DOB}
+                            // InputLabelProps={{style: {color: "black"}}}
+                            InputLabelProps={{ shrink: true, required: true, style: {color: "black"} }}
+                            defaultValue={d}
                             disabled={this.state.DOB.disabled ? false : true}
-                            label="DOB"
+                            id="dob"
+                            label="DOB "
                             name="DOB"
-                            // type="date"
+                            // placeholder="dd/mm/yyyy"
                             className="textField"
+                            type="date"
                             margin="normal"
                             onChange={(event) => this.handleChange(event)}
-                            onBlur={(event) => this.validateForm(event)}
+                            onBlur={(event) => this.validateForm(event)} 
                         />
                         {this.displayValid(this.state.DOB.valid,this.state.DOB.error)}
-                    </div>
-                    <div className="inputForm">
+                    </Grid>
+                    {/* </div> */}
+                    {/* <div class="inputForm"> */}
+                    <Grid item xs={5} sm={3} style={{marginRight:"60px", height: "110px"}}>
                         <TextField
                             error={this.state.Gender.valid}
-                            id="gender"
-                            value={this.state.Gender.value}
+                            InputLabelProps={{style: {color: "black"}}}
                             disabled={this.state.Gender.disabled ? false : true}
+                            id="gender"
                             select
                             label="Gender"
                             className="textField"
+                            value={this.state.Gender.value}
                             onChange={(event) => this.handleChange(event)}
-                            onBlur={(event) => this.validateForm(event)}
+                            // onBlur={(event) => this.validateForm(event)} 
                             name="Gender"
                             SelectProps={{
                             MenuProps: {
@@ -546,20 +588,23 @@ class DetailInternPage extends Component {
                                 Male
                             </MenuItem>
                             <MenuItem value="Female">
-                            Female
+                                Female
                             </MenuItem>
                         </TextField>
                         {this.displayValid(this.state.Gender.valid,this.state.Gender.error)}
-                    </div>
-                    <div className="inputForm">
+                    </Grid>
+                    {/* </div> */}
+                    {/* <div> */}
+                    <Grid item xs={5} sm={3} style={{marginRight:"60px", height: "110px"}}>
                         <TextField
                             error={this.state.Course.valid}
-                            id="course"
-                            value={this.state.Course.value}
+                            InputLabelProps={{required: true, style: {color: "black"}}}
                             disabled={this.state.Course.disabled ? false : true}
+                            id="course"
                             select
-                            label="Course"
+                            label="Course "
                             className="textField"
+                            value={this.state.Course.value}
                             onChange={(event) => this.handleChange(event)}
                             onBlur={(event) => this.validateForm(event)}
                             name="Course"
@@ -581,41 +626,50 @@ class DetailInternPage extends Component {
                             }
                             
                         </TextField>
-                        {this.displayValid(this.state.Gender.valid,this.state.Gender.error)}
-                    </div>
-                </div>
-                <div className="container">
-                    <div className="inputForm">     
+                        {this.displayValid(this.state.Course.valid,this.state.Course.error)}
+                    </Grid>
+                    {/* </div> */}
+                </Grid>
+                {/* </div> */}
+                {/* <div className="container"> */}
+                <Grid container spacing={2}>
+                    {/* <div class="inputForm">   */}
+                    <Grid item xs={5} sm={3} style={{marginRight:"60px", height: "110px"}}>   
                         <TextField
                             error={this.state.University.valid}
-                            id="university"
+                            InputLabelProps={{style: {color: "black"}}}
                             defaultValue={this.props.intern.University}
                             disabled={this.state.University.disabled ? false : true}
+                            id="university"
                             label="University"
                             name="University"
                             className="textField"
                             margin="normal"
                             onChange={(event) => this.handleChange(event)}
-                            onBlur={(event) => this.validateForm(event)}
+                            // onBlur={(event) => this.validateForm(event)}
                         />
                         {this.displayValid(this.state.University.valid,this.state.University.error)}
-                    </div>
-                    <div className="inputForm">
+                    </Grid>
+                    {/* </div> */}
+                    {/* <div class="inputForm"> */}
+                    <Grid item xs={5} sm={3} style={{marginRight:"60px", height: "110px"}}> 
                         <TextField
                             error={this.state.Faculty.valid}
-                            id="faculty"
+                            InputLabelProps={{style: {color: "black"}}}
                             defaultValue={this.props.intern.Faculty}
                             disabled={this.state.Faculty.disabled ? false : true}
+                            id="faculty"
                             label="Faculty"
                             name="Faculty"
                             className="textField"
                             margin="normal"
                             onChange={(event) => this.handleChange(event)}
-                            onBlur={(event) => this.validateForm(event)}
+                            // onBlur={(event) => this.validateForm(event)}
                         />
                         {this.displayValid(this.state.Faculty.valid,this.state.Faculty.error)}
-                    </div>
-                </div>
+                    </Grid>
+                    {/* </div> */}
+                </Grid>
             </Typography>
             </div>
             )
@@ -623,7 +677,7 @@ class DetailInternPage extends Component {
     }
 
     render() {
-        console.log(this.disabledButtonAdd())
+        console.log(this.props.intern)
         return (
             <div>
                 {this.redirect()}
