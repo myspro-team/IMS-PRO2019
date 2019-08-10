@@ -28,3 +28,13 @@
     height: 100vh;
     width: 1275px !important;
 }
+.root{
+    display: flex;
+}
+.drawer{
+    width: 100%;
+    flex-Shrink: 0,
+}
+.drawerHeader{
+    width: 100%;
+}
