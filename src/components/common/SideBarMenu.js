@@ -18,6 +18,7 @@ import ListItemText from '@material-ui/core/ListItemText';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
 import SvgIcon from '@material-ui/core/SvgIcon';
+import MenuSettingComponent from './MenuSetting.component';
 
 const drawerWidth = 300;
 
@@ -26,6 +27,7 @@ const useStyles = makeStyles(theme => ({
         display: 'flex',
     },
     appBar: {
+        backgroundColor: '#17a2b8',
         transition: theme.transitions.create(['margin', 'width'], {
             easing: theme.transitions.easing.sharp,
             duration: theme.transitions.duration.leavingScreen,
@@ -58,7 +60,8 @@ const useStyles = makeStyles(theme => ({
     },
     content: {
         flexGrow: 1,
-        padding: theme.spacing(3),
+        paddingLeft: theme.spacing(3),
+        paddingRight: theme.spacing(3),
         transition: theme.transitions.create('margin', {
             easing: theme.transitions.easing.sharp,
             duration: theme.transitions.duration.leavingScreen,
@@ -75,10 +78,6 @@ const useStyles = makeStyles(theme => ({
 }));
 
 export default function PersistentDrawerLeft(data) {
-
-    console.log('====================================');
-    console.log(data.children);
-    console.log('====================================');
 
     const classes = useStyles();
     const theme = useTheme();
@@ -129,7 +128,7 @@ export default function PersistentDrawerLeft(data) {
                     [classes.appBarShift]: open,
                 })}
             >
-                <Toolbar>
+                <Toolbar className="toolbar-cus" >
                     <IconButton
                         color="inherit"
                         aria-label="open drawer"
@@ -160,7 +159,8 @@ export default function PersistentDrawerLeft(data) {
                 </div>
                 <Divider />
                 <List>
-                    {['Home', 'Internship Managements', 'Internship', 'Import', 'Courses', 'Setting'].map((text, index) => (
+                    <MenuSettingComponent />
+                    {/* {['Home', 'Internship Managements', 'Internship', 'Import', 'Courses', 'Setting'].map((text, index) => (
                         <ListItem button key={text}>
                             <ListItemIcon>
                                 {
@@ -169,7 +169,7 @@ export default function PersistentDrawerLeft(data) {
                             </ListItemIcon>
                             <ListItemText primary={text} />
                         </ListItem>
-                    ))}
+                    ))} */}
                 </List>
 
 

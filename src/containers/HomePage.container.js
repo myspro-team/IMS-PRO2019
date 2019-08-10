@@ -8,7 +8,9 @@ class HomePageContainer extends React.Component {
 		let childrentContent = !_.isEmpty(this.props.children) ? this.props.children : '';
 		return (
 			<div>
-				<SideBarMenuComponent children={childrentContent}/>
+				<SideBarMenuComponent 
+					children={childrentContent}
+				/>
 			</div>
 		)
 	}
