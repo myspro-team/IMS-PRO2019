@@ -14,7 +14,7 @@ class ViewInternship extends Component {
         console.log(this.props.getAPI.getSourseList())
         this.props.getAPI.getSourseList()
         this.props.listIntern.map((value) => {
-            if(value.ID === this.props.match.params.id){
+            if(value.ID === this.props.params.id){
                 this.setState({
                     info: value
                 })
@@ -22,10 +22,11 @@ class ViewInternship extends Component {
         })
     }
     render() {
+        console.log(this.props)
         return (
             <div>
                 <ViewInternshipPage
-                id={this.props.match.params.id}
+                id={this.props.params.id}
                 courseList={this.props.courseList}
                 intern={this.state.info}
                 listIntern={this.props.listIntern}

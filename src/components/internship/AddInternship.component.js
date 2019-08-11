@@ -60,7 +60,7 @@ class AddInternshipPage extends Component {
     }
     render() {
         return (
-            <div  className="appBar">
+            <div >
                 <AppBar position="static" color="default">
                     <Tabs
                     value={this.state.value}

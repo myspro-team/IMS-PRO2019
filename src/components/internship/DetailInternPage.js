@@ -153,22 +153,6 @@ class DetailInternPage extends Component {
                 if(event.target.value.length === 0){
                     test = false
                 }
-                // else{
-                //     if(!testBirth){
-                //         test = true
-                //         err = messages.DOB_IS_INVALID
-                //     }else{
-                //         let d = new Date()
-                //         let arr = []
-                //         arr = event.target.value.split("/");
-                //         if((parseInt(arr[0])>0 && parseInt(arr[0])<=31) && (parseInt(arr[1])>0 && parseInt(arr[1])<=12) && (parseInt(arr[2])<=d.getFullYear())){
-                //             test = false
-                //         }else{
-                //             test = true
-                //             err = messages.VALUE_DAY_OR_MONTH_OR_YEAR_IS_INVALID
-                //         }
-                //     }
-                // }
                 break
             case "Name":
                 if(event.target.value.length === 0){
@@ -252,28 +236,6 @@ class DetailInternPage extends Component {
                     err = messages.typeInvalid("dob")
                     test = true
                 }
-                // else{
-                //     let reBirthday = /^[0-9]{2,2}[/][0-9]{2,2}[/][0-9]{4,4}$/
-                //     let testBirth = reBirthday.test(event.target.value);
-                //     if(event.target.value.length === 0){
-                //         test = false
-                //     }else{
-                //         if(!testBirth){
-                //             test = true
-                //             err = messages.DOB_IS_INVALID
-                //         }else{
-                //             let d = new Date()
-                //             let arr = []
-                //             arr = event.target.value.split("/");
-                //             if((parseInt(arr[0])>0 && parseInt(arr[0])<=31) && (parseInt(arr[1])>0 && parseInt(arr[1])<=12) && (parseInt(arr[2])<=d.getFullYear())){
-                //                 test = false
-                //             }else{
-                //                 test = true
-                //                 err = messages.VALUE_DAY_OR_MONTH_OR_YEAR_IS_INVALID
-                //             }
-                //         }
-                //     }
-                // }
                 break
             case "Gender":
                 if(!event.target.value){
@@ -367,10 +329,10 @@ class DetailInternPage extends Component {
         
         if(!this.state.Phone.valid && !this.state.Email.valid && !this.state.Name.valid 
             && !this.state.DOB.valid && !this.state.Course.valid){
-            // let arr = this.state.DOB.value.split('/')
-            // let d = arr[2] + "-" + arr[1] + "-" + arr[0]
+            let arr = this.state.DOB.value.split('/')
+            let d = arr[2] + "-" + arr[1] + "-" + arr[0]
             const moment = require('moment');
-            let date = moment.utc(this.state.DOB.value).format();
+            let date = moment.utc(d).format();
             let intern = {
                 "Name": this.state.Name.value,
                 "PhoneNumber": this.state.Phone.value,
@@ -382,7 +344,6 @@ class DetailInternPage extends Component {
                 "CourseID": this.state.Course.value,
                 "IsDeleted": false
             }
-
             this.props.getAPI.updateIntern(intern,this.props.id)
             this.resetForm()  
             this.notification("success",messages.UPDATE_SUCCESSFUL)
@@ -413,18 +374,12 @@ class DetailInternPage extends Component {
         }
     }
 
-    redirect = () => {
+
+    render() {
+        console.log(this.props.id)
         let arr = this.props.intern.DOB.split('/')
         let d = arr[2] + "-" + arr[1] + "-" + arr[0]
-        if(!this.state.redirect){
-            return (
-                <div>
-                    <Redirect to={{pathname: "/internship"}}/>
-                    <Route path='/internship' component={InternshipPage} />
-                </div>
-            )
-        }else{
-            return (
+        return (
             <div>
             <ReactNotification ref={this.notificationDOMRef}/>
             <div className="modal fade" id="exampleModal" tabIndex={-1} role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -447,22 +402,6 @@ class DetailInternPage extends Component {
                 </div>
             </div>
             <Typography component="div" className="typography">
-                {/* <div className="container title">
-                    <div className="header">
-                    DETAIL INTERNSHIP   
-                    </div> 
-                    <div className="btnEdit ">
-                        {
-                            this.displayButton()
-                        }
-                        <div className="header1">  
-                            <button type="button" 
-                            class="btn buttonView" 
-                            data-toggle="modal"
-                            data-target="#exampleModal">DELETE</button> 
-                        </div>     
-                    </div>
-                </div> */}
                 <Grid container spacing={2}>
                     <Grid item xs={6} className="title">
                         <div className="header">
@@ -484,7 +423,6 @@ class DetailInternPage extends Component {
                     </Grid>
                 </Grid>
                 <Grid container spacing={2}>
-                    {/* <div class="inputForm">  */}
                     <Grid item xs={5} sm={3} style={{marginRight:"60px", height: "110px"}}>    
                         <TextField
                             error={this.state.Name.valid}
@@ -501,8 +439,6 @@ class DetailInternPage extends Component {
                         />
                         {this.displayValid(this.state.Name.valid,this.state.Name.error)}
                     </Grid>
-                    {/* </div> */}
-                    {/* <div class="inputForm"> */}
                     <Grid item xs={5} sm={3} style={{marginRight:"60px", height: "110px"}}>
                         <TextField
                             error={this.state.Phone.valid}
@@ -515,12 +451,9 @@ class DetailInternPage extends Component {
                             className="textField"
                             margin="normal"
                             onChange={(event) => this.handleChange(event)}
-                            // onBlur={(event) => this.validateForm(event)} 
                         />
                         {this.displayValid(this.state.Phone.valid,this.state.Phone.error)}
                     </Grid>
-                    {/* </div> */}
-                    {/* <div className="inputForm"> */}
                     <Grid item xs={5} sm={3} style={{marginRight:"60px", height: "110px"}}>
                         <TextField
                             error={this.state.Email.valid}
@@ -537,23 +470,17 @@ class DetailInternPage extends Component {
                         />
                         {this.displayValid(this.state.Email.valid,this.state.Email.error)}
                     </Grid>
-                    {/* </div> */}
                 </Grid>
-                {/* </div> */}
-                {/* <div className="container"> */}
                 <Grid container spacing={2}>
-                    {/* <div class="inputForm"> */}
                     <Grid item xs={5} sm={3} style={{marginRight:"60px", height: "110px"}}>     
                         <TextField
                             error={this.state.DOB.valid}
-                            // InputLabelProps={{style: {color: "black"}}}
                             InputLabelProps={{ shrink: true, required: true, style: {color: "black"} }}
                             defaultValue={d}
                             disabled={this.state.DOB.disabled ? false : true}
                             id="dob"
                             label="DOB "
                             name="DOB"
-                            // placeholder="dd/mm/yyyy"
                             className="textField"
                             type="date"
                             margin="normal"
@@ -562,8 +489,6 @@ class DetailInternPage extends Component {
                         />
                         {this.displayValid(this.state.DOB.valid,this.state.DOB.error)}
                     </Grid>
-                    {/* </div> */}
-                    {/* <div class="inputForm"> */}
                     <Grid item xs={5} sm={3} style={{marginRight:"60px", height: "110px"}}>
                         <TextField
                             error={this.state.Gender.valid}
@@ -593,8 +518,6 @@ class DetailInternPage extends Component {
                         </TextField>
                         {this.displayValid(this.state.Gender.valid,this.state.Gender.error)}
                     </Grid>
-                    {/* </div> */}
-                    {/* <div> */}
                     <Grid item xs={5} sm={3} style={{marginRight:"60px", height: "110px"}}>
                         <TextField
                             error={this.state.Course.valid}
@@ -628,12 +551,8 @@ class DetailInternPage extends Component {
                         </TextField>
                         {this.displayValid(this.state.Course.valid,this.state.Course.error)}
                     </Grid>
-                    {/* </div> */}
                 </Grid>
-                {/* </div> */}
-                {/* <div className="container"> */}
                 <Grid container spacing={2}>
-                    {/* <div class="inputForm">   */}
                     <Grid item xs={5} sm={3} style={{marginRight:"60px", height: "110px"}}>   
                         <TextField
                             error={this.state.University.valid}
@@ -646,12 +565,9 @@ class DetailInternPage extends Component {
                             className="textField"
                             margin="normal"
                             onChange={(event) => this.handleChange(event)}
-                            // onBlur={(event) => this.validateForm(event)}
                         />
                         {this.displayValid(this.state.University.valid,this.state.University.error)}
                     </Grid>
-                    {/* </div> */}
-                    {/* <div class="inputForm"> */}
                     <Grid item xs={5} sm={3} style={{marginRight:"60px", height: "110px"}}> 
                         <TextField
                             error={this.state.Faculty.valid}
@@ -664,25 +580,13 @@ class DetailInternPage extends Component {
                             className="textField"
                             margin="normal"
                             onChange={(event) => this.handleChange(event)}
-                            // onBlur={(event) => this.validateForm(event)}
                         />
                         {this.displayValid(this.state.Faculty.valid,this.state.Faculty.error)}
                     </Grid>
-                    {/* </div> */}
                 </Grid>
             </Typography>
             </div>
-            )
-        }
-    }
-
-    render() {
-        console.log(this.props.intern)
-        return (
-            <div>
-                {this.redirect()}
-            </div>
-        );
+        )
     }
 }
 

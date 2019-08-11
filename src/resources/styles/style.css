@@ -73,7 +73,7 @@
 .textField {
     margin-left: 10px;
     margin-right: 20px;
-    width: 200px;
+    width: 250px;
     /* width: 200px; */
 }
 
@@ -140,19 +140,11 @@
 .typography {
     padding-left: 20px;
     /* width: 500px; */
-    width: 100%
+    /* width: 100% */
+    width: 900px;
     /* background-color: rgb(151, 151, 151) */
 }
 
-.container {
-    display: flex;
-    width: 900px;
-    height: 90px;
-}
-.inputForm {
-    margin-right: 30px;
-    height: 80px;
-}
 
 .grid {
     margin-right: 30px;
