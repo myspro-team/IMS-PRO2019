@@ -31,3 +31,46 @@
     transform: rotate(360deg);
   }
 }
+.table{
+  border:solid 1px gray;
+  width: 500px;
+  height: 500px;
+  table-layout:center;
+  margin-left:500px;
+  margin-top:50px;
+  border-radius: 20px;
+  
+}
+.paper{
+  margin-Top: 50px ;
+  display: flex;
+  flex-Direction: column;
+  align-Items: center;
+}
+.avatar{
+  margin: 30px;
+ color: red;
+}
+.form{
+  width: 400px;
+   margin-Top: 10px;
+}
+.submit{
+  margin-top:40px ;
+}
+.top{
+  margin-top:10px ;
+}
+.image{
+  height: 100%;
+  background-color: aquamarine;
+}
+.paper1 {
+  padding:20px;
+  text-Align: center;
+ 
+
+}
+.root {
+  flex-Grow: 1;
+}
