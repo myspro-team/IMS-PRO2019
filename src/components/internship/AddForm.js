@@ -333,7 +333,7 @@ class AddForm extends Component {
                         </Grid>
                     </Grid>
                     <Grid container spacing={2}>
-                        <Grid item xs={5} sm={3} style={{marginRight:"60px", height: "110px"}}>    
+                        <Grid item xs={6} sm={3} style={{height: "110px"}}>    
                             <TextField
                                 error={this.state.Name.valid}
                                 InputLabelProps={{required: true, style: {color: "black"}}}
@@ -347,7 +347,7 @@ class AddForm extends Component {
                             />
                             {this.displayValid(this.state.Name.valid,this.state.Name.error)}
                         </Grid>
-                        <Grid item xs={5} sm={3} style={{marginRight:"60px", height: "110px"}}>
+                        <Grid item xs={6} sm={3} style={{height: "110px"}}>
                             <TextField
                                 error={this.state.Phone.valid}
                                 InputLabelProps={{style: {color: "black"}}}
@@ -360,7 +360,7 @@ class AddForm extends Component {
                             />
                             {this.displayValid(this.state.Phone.valid,this.state.Phone.error)}
                         </Grid>
-                        <Grid item xs={5} sm={3} style={{marginRight:"60px", height: "110px"}}>
+                        <Grid item xs={6} sm={3} style={{height: "110px"}}>
                             <TextField
                                 error={this.state.Email.valid}
                                 InputLabelProps={{required: true, style: {color: "black"}}}
@@ -374,9 +374,7 @@ class AddForm extends Component {
                             />
                             {this.displayValid(this.state.Email.valid,this.state.Email.error)}
                         </Grid>
-                    </Grid>
-                    <Grid container spacing={2}>
-                        <Grid item xs={5} sm={3} style={{marginRight:"60px", height: "110px"}}>     
+                        <Grid item xs={6} sm={3} style={{height: "110px"}}>     
                             <TextField
                                 error={this.state.DOB.valid}
                                 InputLabelProps={{ shrink: true, required: true, style: {color: "black", fontSize:"17px"} }}
@@ -392,7 +390,9 @@ class AddForm extends Component {
                             />
                             {this.displayValid(this.state.DOB.valid,this.state.DOB.error)}
                         </Grid>
-                        <Grid item xs={5} sm={3} style={{marginRight:"60px", height: "110px"}}>
+                    </Grid>
+                    <Grid container spacing={2}>
+                        <Grid item xs={6} sm={3} style={{height: "110px"}}>
                             <TextField
                                 error={this.state.Gender.valid}
                                 InputLabelProps={{style: {color: "black"}}}
@@ -419,7 +419,7 @@ class AddForm extends Component {
                             </TextField>
                             {this.displayValid(this.state.Gender.valid,this.state.Gender.error)}
                         </Grid>
-                        <Grid item xs={5} sm={3} style={{marginRight:"60px", height: "110px"}}>
+                        <Grid item xs={6} sm={3} style={{height: "110px"}}>
                             <TextField
                                 error={this.state.Course.valid}
                                 InputLabelProps={{required: true, style: {color: "black"}}}
@@ -447,13 +447,10 @@ class AddForm extends Component {
                                         )
                                     })
                                 }
-                                
                             </TextField>
                             {this.displayValid(this.state.Course.valid,this.state.Course.error)}
                         </Grid>
-                    </Grid>
-                    <Grid container spacing={2}>
-                        <Grid item xs={5} sm={3} style={{marginRight:"60px", height: "110px"}}>   
+                        <Grid item xs={6} sm={3} style={{height: "110px"}}>   
                             <TextField
                                 error={this.state.University.valid}
                                 InputLabelProps={{style: {color: "black"}}}
@@ -466,7 +463,7 @@ class AddForm extends Component {
                             />
                             {this.displayValid(this.state.University.valid,this.state.University.error)}
                         </Grid>
-                        <Grid item xs={5} sm={3} style={{marginRight:"60px", height: "110px"}}> 
+                        <Grid item xs={6} sm={3} style={{height: "110px"}}> 
                             <TextField
                                 error={this.state.Faculty.valid}
                                 InputLabelProps={{style: {color: "black"}}}
@@ -481,12 +478,12 @@ class AddForm extends Component {
                         </Grid>
                     </Grid>
                     <Grid container spacing={2}>
-                        <div className="grid">
                         <Grid item xs={12} >
-                            <button type="button" class="btn buttonView space" onClick={this.onCancelAddInter.bind(this)}>CANCLE</button>
-                            <button type="button" disabled={this.disabledButtonAdd() ? false : true} class="btn buttonView" onClick={() => this.handleAdd()}>ADD</button>
+                            <div className="grid">
+                                <button type="button" class="btn buttonView space" onClick={this.onCancelAddInter.bind(this)}>CANCLE</button>
+                                <button type="button" disabled={this.disabledButtonAdd() ? false : true} class="btn buttonView" onClick={() => this.handleAdd()}>ADD</button>
+                            </div>
                         </Grid>
-                        </div>
                     </Grid>
                 </Typography>
             </div>

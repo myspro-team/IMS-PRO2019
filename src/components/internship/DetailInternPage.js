@@ -2,11 +2,9 @@ import React, { Component } from 'react';
 import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
 import MenuItem from '@material-ui/core/MenuItem';
+import PropTypes from 'prop-types'
 import ReactNotification from "react-notifications-component";
 import "react-notifications-component/dist/theme.css";
-import { BrowserRouter as Router, Route } from 'react-router-dom'
-import { Redirect } from 'react-router'
-import InternshipPage from '../../containers/internship/Internship.container'
 import * as messages from '../../core/common/message.en'
 import Grid from '@material-ui/core/Grid';
 class DetailInternPage extends Component {
@@ -353,9 +351,13 @@ class DetailInternPage extends Component {
     handleDelete = () => {
         this.props.getAPI.deleteIntern(this.props.id, {})
         this.notification("success",messages.DELETE_SUCCESSFUL)
-        // this.setState({
-        //     redirect: false
-        // })
+        setTimeout(() => {
+            this.context.router.push("/internship")
+        },2000)
+    }
+
+    onCancleViewIntern = () => {
+        this.context.router.push("/internship")
     }
 
     displayButton = () => {
@@ -401,6 +403,7 @@ class DetailInternPage extends Component {
                 </div>
                 </div>
             </div>
+            
             <Typography component="div" className="typography">
                 <Grid container spacing={2}>
                     <Grid item xs={6} className="title">
@@ -410,6 +413,11 @@ class DetailInternPage extends Component {
                     </Grid>
                     <Grid item xs={6} className="title">
                         <div className="btnEdit ">
+                            <div className="header1">  
+                                <button type="button"
+                                class="btn buttonView"
+                                onClick={() => this.onCancleViewIntern()}>CANCLE</button> 
+                            </div>     
                             {
                                 this.displayButton()
                             }
@@ -423,7 +431,7 @@ class DetailInternPage extends Component {
                     </Grid>
                 </Grid>
                 <Grid container spacing={2}>
-                    <Grid item xs={5} sm={3} style={{marginRight:"60px", height: "110px"}}>    
+                    <Grid item xs={6} sm={3} style={{ height: "130px"}}>    
                         <TextField
                             error={this.state.Name.valid}
                             InputLabelProps={{required: true, style: {color: "black"}}}
@@ -439,7 +447,7 @@ class DetailInternPage extends Component {
                         />
                         {this.displayValid(this.state.Name.valid,this.state.Name.error)}
                     </Grid>
-                    <Grid item xs={5} sm={3} style={{marginRight:"60px", height: "110px"}}>
+                    <Grid item xs={6} sm={3} style={{ height: "130px"}}>
                         <TextField
                             error={this.state.Phone.valid}
                             InputLabelProps={{style: {color: "black"}}}
@@ -454,7 +462,7 @@ class DetailInternPage extends Component {
                         />
                         {this.displayValid(this.state.Phone.valid,this.state.Phone.error)}
                     </Grid>
-                    <Grid item xs={5} sm={3} style={{marginRight:"60px", height: "110px"}}>
+                    <Grid item xs={6} sm={3} style={{ height: "130px"}}>
                         <TextField
                             error={this.state.Email.valid}
                             InputLabelProps={{required: true, style: {color: "black"}}}
@@ -470,9 +478,7 @@ class DetailInternPage extends Component {
                         />
                         {this.displayValid(this.state.Email.valid,this.state.Email.error)}
                     </Grid>
-                </Grid>
-                <Grid container spacing={2}>
-                    <Grid item xs={5} sm={3} style={{marginRight:"60px", height: "110px"}}>     
+                    <Grid item xs={6} sm={3} style={{height: "130px"}}>     
                         <TextField
                             error={this.state.DOB.valid}
                             InputLabelProps={{ shrink: true, required: true, style: {color: "black"} }}
@@ -489,7 +495,9 @@ class DetailInternPage extends Component {
                         />
                         {this.displayValid(this.state.DOB.valid,this.state.DOB.error)}
                     </Grid>
-                    <Grid item xs={5} sm={3} style={{marginRight:"60px", height: "110px"}}>
+                </Grid>
+                <Grid container spacing={2}>
+                    <Grid item xs={6} sm={3} style={{height: "130px"}}>
                         <TextField
                             error={this.state.Gender.valid}
                             InputLabelProps={{style: {color: "black"}}}
@@ -518,7 +526,7 @@ class DetailInternPage extends Component {
                         </TextField>
                         {this.displayValid(this.state.Gender.valid,this.state.Gender.error)}
                     </Grid>
-                    <Grid item xs={5} sm={3} style={{marginRight:"60px", height: "110px"}}>
+                    <Grid item xs={6} sm={3} style={{height: "130px"}}>
                         <TextField
                             error={this.state.Course.valid}
                             InputLabelProps={{required: true, style: {color: "black"}}}
@@ -551,9 +559,7 @@ class DetailInternPage extends Component {
                         </TextField>
                         {this.displayValid(this.state.Course.valid,this.state.Course.error)}
                     </Grid>
-                </Grid>
-                <Grid container spacing={2}>
-                    <Grid item xs={5} sm={3} style={{marginRight:"60px", height: "110px"}}>   
+                    <Grid item xs={6} sm={3} style={{height: "130px"}}>   
                         <TextField
                             error={this.state.University.valid}
                             InputLabelProps={{style: {color: "black"}}}
@@ -568,7 +574,7 @@ class DetailInternPage extends Component {
                         />
                         {this.displayValid(this.state.University.valid,this.state.University.error)}
                     </Grid>
-                    <Grid item xs={5} sm={3} style={{marginRight:"60px", height: "110px"}}> 
+                    <Grid item xs={6} sm={3} style={{height: "130px"}}> 
                         <TextField
                             error={this.state.Faculty.valid}
                             InputLabelProps={{style: {color: "black"}}}
@@ -588,6 +594,10 @@ class DetailInternPage extends Component {
             </div>
         )
     }
+}
+
+DetailInternPage.contextTypes = {
+    router: PropTypes.object
 }
 
 export default DetailInternPage;
