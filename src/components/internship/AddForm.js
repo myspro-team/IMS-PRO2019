@@ -97,27 +97,9 @@ class AddForm extends Component {
                 }
                 break
             case "DOB":
-                // let reBirthday = /^[0-9]{2,2}[/][0-9]{2,2}[/][0-9]{4,4}$/
-                // let testBirth = reBirthday.test(event.target.value);
                 if(event.target.value.length === 0){
                     test = false
                 }
-                // else{
-                //     if(!testBirth){
-                //         test = true
-                //         err = messages.DOB_IS_INVALID
-                //     }else{
-                //         let d = new Date()
-                //         let arr = []
-                //         arr = event.target.value.split("/");
-                //         if((parseInt(arr[0])>0 && parseInt(arr[0])<=31) && (parseInt(arr[1])>0 && parseInt(arr[1])<=12) && (parseInt(arr[2])<=d.getFullYear())){
-                //             test = false
-                //         }else{
-                //             test = true
-                //             err = messages.VALUE_DAY_OR_MONTH_OR_YEAR_IS_INVALID
-                //         }
-                //     }
-                // }
                 break
             case "Name":
                 if(event.target.value.length === 0){
@@ -200,28 +182,6 @@ class AddForm extends Component {
                     err = messages.typeInvalid("dob")
                     test = true
                 }
-                // else{
-                //     let reBirthday = /^[0-9]{2,2}[/][0-9]{2,2}[/][0-9]{4,4}$/
-                //     let testBirth = reBirthday.test(event.target.value);
-                //     if(event.target.value.length === 0){
-                //         test = false
-                //     }else{
-                //         if(!testBirth){
-                //             test = true
-                //             err = messages.DOB_IS_INVALID
-                //         }else{
-                //             let d = new Date()
-                //             let arr = []
-                //             arr = event.target.value.split("/");
-                //             if((parseInt(arr[0])>0 && parseInt(arr[0])<=31) && (parseInt(arr[1])>0 && parseInt(arr[1])<=12) && (parseInt(arr[2])<=d.getFullYear())){
-                //                 test = false
-                //             }else{
-                //                 test = true
-                //                 err = messages.VALUE_DAY_OR_MONTH_OR_YEAR_IS_INVALID
-                //             }
-                //         }
-                //     }
-                // }
                 break
             case "Gender":
                 if(!event.target.value){
@@ -353,7 +313,6 @@ class AddForm extends Component {
             }else{
                 this.notification("error", messages.EMAIL_ALREADY_EXISTS)
             }
-        // }
     }
 
     onCancelAddInter() {
@@ -366,7 +325,6 @@ class AddForm extends Component {
             <div>
                 <ReactNotification ref={this.notificationDOMRef}/>
                 <Typography component="div" className="typography">
-                    {/* <div className="container title"> */}
                     <Grid container spacing={2}>
                         <Grid item xs={12} className="title">
                             <div className="header">
@@ -374,11 +332,8 @@ class AddForm extends Component {
                             </div>
                         </Grid>
                     </Grid>
-                    {/* </div> */}
-                    {/* <div className="container"> */}
                     <Grid container spacing={2}>
-                        {/* <div class="inputForm">  */}
-                        <Grid item xs={5} sm={3} style={{marginRight:"60px", height: "110px"}}>    
+                        <Grid item xs={6} sm={3} style={{height: "110px"}}>    
                             <TextField
                                 error={this.state.Name.valid}
                                 InputLabelProps={{required: true, style: {color: "black"}}}
@@ -392,9 +347,7 @@ class AddForm extends Component {
                             />
                             {this.displayValid(this.state.Name.valid,this.state.Name.error)}
                         </Grid>
-                        {/* </div> */}
-                        {/* <div class="inputForm"> */}
-                        <Grid item xs={5} sm={3} style={{marginRight:"60px", height: "110px"}}>
+                        <Grid item xs={6} sm={3} style={{height: "110px"}}>
                             <TextField
                                 error={this.state.Phone.valid}
                                 InputLabelProps={{style: {color: "black"}}}
@@ -403,14 +356,11 @@ class AddForm extends Component {
                                 name="Phone"
                                 className="textField"
                                 margin="normal"
-                                onChange={(event) => this.handleChange(event)}
-                                // onBlur={(event) => this.validateForm(event)} 
+                                onChange={(event) => this.handleChange(event)} 
                             />
                             {this.displayValid(this.state.Phone.valid,this.state.Phone.error)}
                         </Grid>
-                        {/* </div> */}
-                        {/* <div className="inputForm"> */}
-                        <Grid item xs={5} sm={3} style={{marginRight:"60px", height: "110px"}}>
+                        <Grid item xs={6} sm={3} style={{height: "110px"}}>
                             <TextField
                                 error={this.state.Email.valid}
                                 InputLabelProps={{required: true, style: {color: "black"}}}
@@ -424,16 +374,9 @@ class AddForm extends Component {
                             />
                             {this.displayValid(this.state.Email.valid,this.state.Email.error)}
                         </Grid>
-                        {/* </div> */}
-                    </Grid>
-                    {/* </div> */}
-                    {/* <div className="container"> */}
-                    <Grid container spacing={2}>
-                        {/* <div class="inputForm"> */}
-                        <Grid item xs={5} sm={3} style={{marginRight:"60px", height: "110px"}}>     
+                        <Grid item xs={6} sm={3} style={{height: "110px"}}>     
                             <TextField
                                 error={this.state.DOB.valid}
-                                // InputLabelProps={{style: {color: "black"}}}
                                 InputLabelProps={{ shrink: true, required: true, style: {color: "black", fontSize:"17px"} }}
                                 id="dob"
                                 label="DOB "
@@ -447,9 +390,9 @@ class AddForm extends Component {
                             />
                             {this.displayValid(this.state.DOB.valid,this.state.DOB.error)}
                         </Grid>
-                        {/* </div> */}
-                        {/* <div class="inputForm"> */}
-                        <Grid item xs={5} sm={3} style={{marginRight:"60px", height: "110px"}}>
+                    </Grid>
+                    <Grid container spacing={2}>
+                        <Grid item xs={6} sm={3} style={{height: "110px"}}>
                             <TextField
                                 error={this.state.Gender.valid}
                                 InputLabelProps={{style: {color: "black"}}}
@@ -459,7 +402,6 @@ class AddForm extends Component {
                                 className="textField"
                                 value={this.state.Gender.value}
                                 onChange={(event) => this.handleChange(event)}
-                                // onBlur={(event) => this.validateForm(event)} 
                                 name="Gender"
                                 SelectProps={{
                                 MenuProps: {
@@ -477,9 +419,7 @@ class AddForm extends Component {
                             </TextField>
                             {this.displayValid(this.state.Gender.valid,this.state.Gender.error)}
                         </Grid>
-                        {/* </div> */}
-                        {/* <div> */}
-                        <Grid item xs={5} sm={3} style={{marginRight:"60px", height: "110px"}}>
+                        <Grid item xs={6} sm={3} style={{height: "110px"}}>
                             <TextField
                                 error={this.state.Course.valid}
                                 InputLabelProps={{required: true, style: {color: "black"}}}
@@ -507,17 +447,10 @@ class AddForm extends Component {
                                         )
                                     })
                                 }
-                                
                             </TextField>
                             {this.displayValid(this.state.Course.valid,this.state.Course.error)}
                         </Grid>
-                        {/* </div> */}
-                    </Grid>
-                    {/* </div> */}
-                    {/* <div className="container"> */}
-                    <Grid container spacing={2}>
-                        {/* <div class="inputForm">   */}
-                        <Grid item xs={5} sm={3} style={{marginRight:"60px", height: "110px"}}>   
+                        <Grid item xs={6} sm={3} style={{height: "110px"}}>   
                             <TextField
                                 error={this.state.University.valid}
                                 InputLabelProps={{style: {color: "black"}}}
@@ -527,13 +460,10 @@ class AddForm extends Component {
                                 className="textField"
                                 margin="normal"
                                 onChange={(event) => this.handleChange(event)}
-                                // onBlur={(event) => this.validateForm(event)}
                             />
                             {this.displayValid(this.state.University.valid,this.state.University.error)}
                         </Grid>
-                        {/* </div> */}
-                        {/* <div class="inputForm"> */}
-                        <Grid item xs={5} sm={3} style={{marginRight:"60px", height: "110px"}}> 
+                        <Grid item xs={6} sm={3} style={{height: "110px"}}> 
                             <TextField
                                 error={this.state.Faculty.valid}
                                 InputLabelProps={{style: {color: "black"}}}
@@ -543,26 +473,18 @@ class AddForm extends Component {
                                 className="textField"
                                 margin="normal"
                                 onChange={(event) => this.handleChange(event)}
-                                // onBlur={(event) => this.validateForm(event)}
                             />
                             {this.displayValid(this.state.Faculty.valid,this.state.Faculty.error)}
                         </Grid>
-                        {/* </div> */}
                     </Grid>
-                    {/* </div> */}
-                    {/* <div className="container"> */}
                     <Grid container spacing={2}>
-                        {/* <div className="btnAdd"> */}
-                        <div className="grid">
                         <Grid item xs={12} >
-                         
-                            <button type="button" class="btn buttonView space" onClick={this.onCancelAddInter.bind(this)}>CANCLE</button>
-                            <button type="button" disabled={this.disabledButtonAdd() ? false : true} class="btn buttonView" onClick={() => this.handleAdd()}>ADD</button>
+                            <div className="grid">
+                                <button type="button" class="btn buttonView space" onClick={this.onCancelAddInter.bind(this)}>CANCLE</button>
+                                <button type="button" disabled={this.disabledButtonAdd() ? false : true} class="btn buttonView" onClick={() => this.handleAdd()}>ADD</button>
+                            </div>
                         </Grid>
-                        </div>
-                        {/* </div> */}
                     </Grid>
-                    {/* </div> */}
                 </Typography>
             </div>
         );

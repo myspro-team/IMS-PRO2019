@@ -19,7 +19,7 @@ class Pagination extends Component {
     render() {
         return (
             <TablePagination
-                rowsPerPageOptions={[5, 10, 25]}
+                rowsPerPageOptions={[10, 50, 100]}
                 colSpan={7}
                 count={this.props.count}
                 rowsPerPage={this.props.rowsPerPage}

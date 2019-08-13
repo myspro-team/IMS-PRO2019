@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import AppBar from '@material-ui/core/AppBar';
+import Paper from '@material-ui/core/Paper';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
@@ -54,7 +55,8 @@ class ViewInternshipPage extends Component {
     }
     render() {
         return (
-            <div  className="appBar">
+            <div>
+                <Paper className="root">
                 <AppBar position="static" color="default">
                     <Tabs
                     value={this.state.value}
@@ -69,6 +71,7 @@ class ViewInternshipPage extends Component {
                     </Tabs>
                 </AppBar>
                 {this.displayForm()}
+                </Paper>
             </div>
         );
     }

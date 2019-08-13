@@ -30,7 +30,6 @@
 
 .rootPagination {
     flex-shrink: 0
-    /* flexShrink: 0 */
 }
 
 .buttonAttach {
@@ -61,10 +60,8 @@
 }
 
 .appBar {
-    /* width: 850px; */
     width: 730px;
     margin-left: 50px;
-    /* background-color: #00a0af; */
 }
 .tabChild {
     width: 425px;
@@ -72,9 +69,8 @@
 
 .textField {
     margin-left: 10px;
-    margin-right: 20px;
-    width: 200px;
-    /* width: 200px; */
+    margin-right: 0px;
+    width: 220px;
 }
 
 .small {
@@ -139,39 +135,28 @@
 
 .typography {
     padding-left: 20px;
-    /* width: 500px; */
     width: 100%
-    /* background-color: rgb(151, 151, 151) */
-}
-
-.container {
-    display: flex;
-    width: 900px;
-    height: 90px;
-}
-.inputForm {
-    margin-right: 30px;
-    height: 80px;
 }
 
 .grid {
-    margin-right: 30px;
-    height: 100px;
+
+    height: 50px;
     display: flex;
-    padding-left: 500px;
-    margin-top: 30px;
+    margin-top: 20px;
+    margin-right: 10px;
+    float: right;
 }
 
 .btnEdit {
+    float: right;
     margin-top: 17px;
-    padding-left: 135px;
     height: 20px;
     display: flex;
 }
 
 @media (max-width:700px) {
     .appBar {
-        width: 600px;
+        width: 700px;
         margin-left: 50px;
     }
     .tabChild {
@@ -180,20 +165,25 @@
 
     .grid {
         margin-right: 30px;
-        height: 90px;
+        height: 50px;
         display: flex;
         padding-left: 240px;
         margin-top: 30px;
     }
     .btnEdit {
         margin-top: 17px;
-        padding-left: 100px;
         height: 20px;
         display: flex;
     }
+    .textField {
+        margin-left: 10px;
+        margin-right: 0px;
+        width: 140px;
+        /* width: 200px; */
+    }
 }
 
-@media (max-width: 550px) {
+@media (max-width: 600px) {
     .appBar {
         width: 430px;
         margin-left: 50px;
@@ -204,7 +194,7 @@
 
     .grid {
         margin-right: 30px;
-        height: 90px;
+        height: 50px;
         display: flex;
         padding-left: 210px;
         margin-top: 30px;
@@ -216,6 +206,15 @@
         height: 20px;
         display: flex;
     }
+    .textField {
+        margin-left: 10px;
+        margin-right: 0px;
+        width: 200px;
+    }
+}
+
+.modal {
+    margin-top: 30px;
 }
 
 /* FOR SIDEBAR */
@@ -224,69 +223,3 @@
 }
 /* END */
 
-/* @media (max-width:700px) and (min-width:501px){
-    .header{
-        margin-right: 15px;
-    }
-    .appBar {
-        width: 535px;
-        margin-left: 50px;
-    }
-    .btnAdd {
-        margin-top: 30px;
-        margin-left: 320px;
-        display: flex;
-    }
-    .tabChild {
-        width: 250px;
-    }
-    .textField {
-        margin-left: 10px;
-        margin-right: 20px;
-        width: 150px
-    }
-    .small {
-        color: red;
-        margin-left: 0px;
-        font-size: 10px;
-    }  
-}
-
-
-@media (max-width:500px){
-    .container{
-        display: inline;
-        width: 200px;
-    }
-    .btnAdd {
-        margin-left: 40px;
-        display: inline;
-    }
-    .appBar {
-        width: 350px;
-        margin-left: 50px;
-    }
-    .tabChild {
-        width: 170px;
-    }
-    .buttonView{
-        margin-top: 30px;
-    }
-  
-    .header {
-        width: 400px;
-    }
-    .inputSearch {
-        padding-left: 20px;
-        height: 30px;
-        width: 150px;
-    }
-    .search {
-        min-width: 180px;
-        max-height: 32px;
-        margin-right: 20px;
-    }
-    .btnEdit{
-        margin-left: 135px;
-    }
-} */

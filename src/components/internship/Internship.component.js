@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import { Route, Redirect } from 'react-router'
+// import { makeStyles } from '@material-ui/core/styles';
+import PropTypes from 'prop-types';
+// import { Route, Redirect } from 'react-router'
 import Paper from '@material-ui/core/Paper';
 import Table from '@material-ui/core/Table';
 import TableRow from '@material-ui/core/TableRow';
@@ -37,11 +38,10 @@ class InternshipTable extends Component {
             },
             searchInfor: '',
             id: '',
-            redirect:true
         }
     }
 
-    classes = makeStyles()
+    // classes = makeStyles()
 
     // Pagination
     setCurrentPage = (page) => {
@@ -77,17 +77,8 @@ class InternshipTable extends Component {
     // end search
 
     // hadle redirect from table intern to page view
-    redirectViewPage = () => {
-        if(!this.state.redirect){
-            return <Redirect to={{pathname: "/detail." +this.state.id}}/>
-        }
-    }
-
-    handleRedirect = (id) => {
-        this.setState({
-            redirect: false,
-            id: id
-        })
+    onViewInternship (id) {
+        this.context.router.push("/detail." + id)
     }
     //end handle
 
@@ -110,7 +101,7 @@ class InternshipTable extends Component {
         }else{
             return (
                 <div>
-                    <Table className="table">
+                    <Table className="table">   
                         <TableHead
                         columns={this.state.columns}
                         handleSort={(event, columnName) => this.handleSort(event, columnName)}
@@ -123,7 +114,7 @@ class InternshipTable extends Component {
                                     return(
                                         <TableRow 
                                         hover
-                                        onClick={(id) => this.handleRedirect(value.ID)}
+                                        onClick={(id) => this.onViewInternship(value.ID)}
                                         className="tableRow">
                                             <TableCell align="left" className="columnName">{value.Name}</TableCell>
                                             <TableCell align="left">{value.Phone}</TableCell>
@@ -154,7 +145,6 @@ class InternshipTable extends Component {
         })
         return (
             <div>
-                {this.redirectViewPage()}
                 <Paper className="root">
                     <ToolbarTable handleSearch={(info) => this.handleSearch(info)}/>
                     <div className="tableWrapper">
@@ -169,6 +159,10 @@ class InternshipTable extends Component {
             </div>
         );
     }
+}
+
+InternshipTable.contextTypes = {
+    router: PropTypes.object
 }
 
 export default InternshipTable
