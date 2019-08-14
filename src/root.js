@@ -8,11 +8,9 @@ export const store = configureStore();
 
 function Root() {
     return (
-        //<div className="image">
         <Provider store={store}>
             {routes}
         </Provider>
-        //</div>
     );
 }
 

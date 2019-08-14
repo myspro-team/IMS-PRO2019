@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import {Route, Switch} from "react-router-dom";
-import Admin from "./admin"
+import HomePageContainer from "./HomePage.container"
 class Routes extends Component {
 
     render() {
         return (
           <Switch>
-              <Route path='/' exact component={Admin} />
+              <Route path='/' exact component={HomePageContainer} />
           </Switch>  
         );
     }

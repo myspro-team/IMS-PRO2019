@@ -19,12 +19,12 @@ class Login extends Component {
       showError: false
     };
   }
-  userName(e) {
-    this.setState({ username: e.target.value })
+  userName(a) {
+    this.setState({ username: a.target.value })
     console.log(this.state.username)
   }
-  password(e) {
-    this.setState({ password: e.target.value })
+  password(a) {
+    this.setState({ password: a.target.value })
     console.log(this.state.password)
   }
   handleclick(event) {
@@ -35,11 +35,10 @@ class Login extends Component {
         headers: { "Content-Type": "application/json", },
         body: JSON.stringify({ "UserName": this.state.username, "Password": this.state.password })//truyen data vao user de so sanh neu khop thi ....
       }
-
     )
       .then(response =>
         response.json()
-      )//du lieu tra ve
+      )// tra ve dữ liệu JSON
       .then(data => {
         if (data.ID !== undefined && data.Role === 3) {
           sessionStorage.setItem("user", JSON.stringify(data));//luu data sau khi dang nhap
@@ -54,62 +53,65 @@ class Login extends Component {
   };
   render() {
     return (
-      // <div className="table">
-      <div className="paper1">
-        <Grid iteam="true" xs={12} >
-          <Container component="main" maxWidth="xs">
-            <CssBaseline />
-            <div className="paper" >
-              <Avatar style={{ color: "#eceff1", backgroundColor: "#ff1744" }}>
-                <LockOutlinedIcon />
-              </Avatar>
-              <Typography component="h1" variant="h5">
-                Login
-                </Typography>
-              <form className="form" noValidate>
-                <TextField
-                  variant="outlined"
-                  margin="normal"
-                  fullWidth
-                  label="Email Address"
-                  autoComplete="email"
-                  onChange={this.userName.bind(this)}
-                />
-                <div className="top">
-                  <TextField
-                    variant="outlined"
-                    margin="normal"
-                    fullWidth
-                    label="Password"
-                    type="password"
-                    autoComplete="current-password"
-                    onChange={this.password.bind(this)}
-                  />
-                </div>
-                {this.state.showError ?
-                  <div className="alert alert-danger custom-top">
-                    "userName or password is not correct!"
-              </div> : null
-                }
-                <div className="submit">
-                  <Button
-                    type="submit"
-                    fullWidth
-                    variant="contained"
-                    color="primary"
-                    onClick={this.handleclick.bind(this)}
-                  >
+      <div className="root">
+        <Grid item xs>
+          <div className="table">
+            <Grid item xs>
+              <Container component="main" maxWidth="xs">
+                <CssBaseline />
+                <div className="paper" >
+                  <Avatar style={{ color: "#eceff1", backgroundColor: "#ff1744" }}>
+                    <LockOutlinedIcon />
+                  </Avatar>
+                  <Typography component="h1" variant="h5">
                     Login
+                </Typography>
+                  <form className="form" noValidate>
+                    <TextField
+                      variant="outlined"
+                      margin="normal"
+                      fullWidth
+                      label="Email Address"
+                      autoComplete="email"
+                      onChange={this.userName.bind(this)}
+                    />
+                    <div className="top">
+                      <TextField
+                        variant="outlined"
+                        margin="normal"
+                        fullWidth
+                        label="Password"
+                        type="password"
+                        autoComplete="current-password"
+                        onChange={this.password.bind(this)}
+                      />
+                    </div>
+                    {this.state.showError ?
+                      <div className="alert alert-danger custom-top">
+                        "userName or password is not correct!"
+              </div> : null
+                    }
+                    <div className="submit">
+                      <Button
+                        type="submit"
+                        fullWidth
+                        variant="contained"
+                        color="primary"
+                        onClick={this.handleclick.bind(this)}
+                      >
+                        Login
                   </Button>
+                    </div>
+                  </form>
                 </div>
-              </form>
-            </div>
-          </Container>
+              </Container>
+            </Grid>
+          </div>
         </Grid>
       </div>
     );
   }
 }
-// }
+
 
 export default Login;
