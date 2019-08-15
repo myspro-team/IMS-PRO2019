@@ -45,17 +45,17 @@ class AddInternshipPage extends Component {
         }else if(this.state.value === 1){
             return (
                 <Typography component="div" style={{ padding: 8 * 3 }}>
-                    <button type="button" class="btn buttonAttach" onClick={() => this.handleOpen()}>ATTACH FILE</button>
+                    <div className="toeic">
+                        <button type="button" class="btn buttonAttach" onClick={() => this.handleOpen()}>ATTACH FILE</button>
+                        <button type="button" class="btn buttonAttach" onClick={() => this.handleOpen()}>CREATE</button>
+                    </div>
                     <Modal
                     open={this.state.open}
-                    handleClose={(value) => this.handleClose(value)}></Modal>
+                    handleClose={(value) => this.handleClose(value)}
+                    accept="image/*"
+                    maxFiles={3}
+                    ></Modal>
                 </Typography>
-            )
-        }else if(this.state.value === 2){
-            return(
-                <Modal
-                open={this.state.open}
-                handleClose={(value) => this.handleClose(value)}></Modal>
             )
         }
     }
