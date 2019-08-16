@@ -8,6 +8,7 @@ class InternshipPage extends Component {
         this.props.getAPI.getInternList() 
     }
     render() {
+        console.log(this.props.listIntern)
         return (
             <div>
                 <InternshipTable

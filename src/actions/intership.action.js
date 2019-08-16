@@ -27,9 +27,7 @@ export const getInternList = () => {
                     item.Faculty = value.Intern.Faculty
                     item.Course = value.Course
                     item.CourseID = value.Intern.CourseID
-                    //items.push([stt, value.Intern.ID, value.Intern.Name, value.Intern.PhoneNumber, value.Intern.Email, value.Intern.Gender ? "Male" : "Female", date, value.Intern.University, value.Intern.Faculty, value.Course, value.Intern.CourseID])
                     items.push(item)
-                    //stt++
                 }))
                 console.log(items)
                 return dispatch({

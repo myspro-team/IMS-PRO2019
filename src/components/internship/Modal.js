@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
@@ -12,26 +11,55 @@ class Modal extends Component {
     constructor(props){
         super(props)
         this.state = {
-            open: false
+            open: false,
+            files: []
+        }
+    }
+
+    handleChangeStatus = ({ meta, file }, status) => {
+        console.log(status)
+        console.log(meta)
+        console.log(file)
+        if(status === 'done'){
+            let arr = this.state.files
+            arr.push(file)
+            this.setState({
+                files: arr
+            })
         }
     }
     
-    // getUploadParams = ({meta}) => {
-    //     console.log(meta)
-    //     return { url: 'E:\May_tai\Du_Lieu\HK6' }
-    // }
+    disabledButton = () => {
+        if(this.state.files.length > 0){
+            return true
+        }else {
+            return  false
+        }
+    }
 
-    // handleChangeStatus = ({meta, file}, status) => {
-    //     console.log(meta)
-    //     console.log(file)
-    //     console.log(status)
-    // }
-    // handleSubmit = (files, allFiles) => {
-    //     console.log(files)
-    //     console.log(allFiles)
-    //     allFiles.forEach(f => f.remove())
-    // }
+    Preview = ({ meta, fileWithMeta }) => {
+        const { name, size, previewUrl } = meta
+        let src = previewUrl
+        if(previewUrl === undefined){
+            src = 'https://img-16.ccm2.net/cJWsKe0SX47XzGL5nJQrYssqjYM=/2000x/20dc4a90563849048d5221a18e04745b/ccm-faq/2000px-Microsoft_Excel_2013_logo.svg.png'
+        }
+        return (
+            <div className="preview">
+                <div className="image">
+                    <img src={src}></img>
+                </div>
+                <div className="content">
+                    <p><font color="black">{name}</font>, {size + "bytes"}</p>
+                </div>
+                <div className="iconCancle dzu-previewButton">
+                    <i class="fa fa-trash" aria-hidden="true" onClick={() => fileWithMeta.remove()}></i>
+                </div>
+            </div>
+        )
+    }
+
     render() {
+        console.log(this.state.files)
         return (
             <div>
                 <Dialog
@@ -40,19 +68,28 @@ class Modal extends Component {
                     aria-labelledby="alert-dialog-title"
                     aria-describedby="alert-dialog-description"
                 >
-                    <DialogTitle id="alert-dialog-title">{"ATTACH FILE"}</DialogTitle>
+                    <DialogTitle id="alert-dialog-title">{<font face="Arial" color="#3a3a3a">ATTACH FILE</font>}</DialogTitle>
                     <DialogContent className="dropzone">
                         <DialogContentText id="alert-dialog-description">
-                            <Dropzone/>
+                            <Dropzone
+                            PreviewComponent={this.Preview}
+                            onChangeStatus={this.handleChangeStatus}
+                            accept={this.props.accept}
+                            maxFiles={this.props.maxFiles}
+                            maxSizeBytes={this.props.maxSize}
+                            inputWithFilesContent={files => (this.props.maxFiles ? `${files.length}/${this.props.maxFiles}` : 'Add file')}
+                            inputContent={(files, extra) => (extra.reject ? 'File invalid' : 'Drag files or click to browse')}
+                            styles={{ dropzone: { minHeight: 300, maxHeight: 300 }, 
+                            inputLabel: (files, extra) => (extra.reject ? { color: 'red'} : {}),
+                            dropzoneReject: { borderColor: 'red', backgroundColor: '#DAA' }, }}
+                            />
                         </DialogContentText>
                     </DialogContent>
                     <DialogActions>
-                        <Button onClick={(value) => this.props.handleClose(!this.props.open)} color="primary">
-                            Close
-                        </Button>
-                        <Button onClick={(value) => this.props.handleClose(!this.props.open)} color="primary" autoFocus>
-                            Attach
-                        </Button>
+                        <button type="button" class="btn buttonView btnColor" onClick={(value) => this.props.handleClose(!this.props.open)}>CLOSE</button>
+                        <button type="button" 
+                        class="btn buttonView" onClick={(value) => this.props.handleClose(!this.props.open)}
+                        disabled={this.disabledButton() ? false : true}>ATTACH</button>
                     </DialogActions>
                 </Dialog>
             </div>
