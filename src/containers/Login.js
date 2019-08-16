@@ -5,11 +5,12 @@ import TextField from '@material-ui/core/TextField';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
-import "./../App.css"
+import "./../Style.css"
 import React, { Component } from 'react';
 import { SERVER_NAME } from "../constant";
 import Grid from '@material-ui/core/Grid';
-import "./../../src/App.css"
+import {connect} from "react-redux";
+// import "./../../src/App.css"
 class Login extends Component {
   constructor(props) {
     super(props);
@@ -39,10 +40,12 @@ class Login extends Component {
       .then(response =>
         response.json()
       )// tra ve dữ liệu JSON
-      .then(data => {
-        if (data.ID !== undefined && data.Role === 3) {
-          sessionStorage.setItem("user", JSON.stringify(data));//luu data sau khi dang nhap
-          this.props.onLogin(data);
+      .then(d => {
+        console.log(d)
+        console.log(this.response)
+        if (d.ID !== undefined && d.Role === 3) {
+          sessionStorage.setItem("user", JSON.stringify(d));//luu data sau khi dang nhap
+          this.props.onLogin(d);
         }
         else {
           this.setState({
@@ -52,6 +55,8 @@ class Login extends Component {
       });
   };
   render() {
+    var {data}=this.props;
+    console.log(data);
     return (
       <div className="root">
         <Grid item xs>
@@ -87,7 +92,7 @@ class Login extends Component {
                       />
                     </div>
                     {this.state.showError ?
-                      <div className="alert alert-danger custom-top">
+                      <div className="alert alert-danger custom-top text">
                         "userName or password is not correct!"
               </div> : null
                     }
@@ -112,6 +117,10 @@ class Login extends Component {
     );
   }
 }
+const mapStateToProps=state=>{
+  return{
+    data:state.intership
+  }
+}
 
-
-export default Login;
+export default connect(mapStateToProps,null) (Login);

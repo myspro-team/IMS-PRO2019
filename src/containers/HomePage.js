@@ -1,7 +1,7 @@
-import Login from './form';
+import Login from './Login';
 import React, { Component } from 'react';
-import { Redirect } from 'react-router-dom'
 import Routes from "./route"
+
  import "./../App.css"
 class HomePage extends Component {
   constructor(props) {
@@ -24,11 +24,10 @@ class HomePage extends Component {
     });
     sessionStorage.clear();
   }
-  changeComponent () {
+  handleComponent () {
     if (this.state.user === null) {
       return (
       <div className="flexible-content">
-      <Redirect to='/'/>  
       <main id="content" className="p-5">
       <Login onLogin = {this.onLogin.bind(this)}></Login>
       </main>
@@ -46,7 +45,7 @@ class HomePage extends Component {
   };
   render() {
     // console.log(this.state.user)
-    let Component=this.changeComponent();
+    let Component=this.handleComponent();
     return (
       <div >
         {Component}

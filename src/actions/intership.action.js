@@ -26,3 +26,17 @@ export function getInternList() {
         });
     }
 }
+export function putInternList(){
+    return function(dispatch){
+        IntershipService.putInternList(function(error,result){
+            if (result.ID !== undefined && result.Role === 3) {
+                sessionStorage.setItem("user", JSON.stringify(result));//luu data sau khi dang nhap
+                this.props.onLogin(result);
+              }
+        return dispatch({
+            type: types.GET_INTERSHIP_LIST,
+            interships:result,
+        })    
+        });
+    }
+}

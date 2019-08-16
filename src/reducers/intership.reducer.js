@@ -2,7 +2,7 @@ import _ from 'lodash';
 import * as types from '../core/common/action.types';
 
 let defaultState = {
-    interships: {}
+    interships: []
 };
 
 let IntershipReducer = function (state = defaultState, action) {
