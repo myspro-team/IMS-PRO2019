@@ -1,5 +1,5 @@
 import _ from 'lodash';
-import * as types from '../core/common/action.types';
+import * as types from "./../core/common/action.types";
 
 const defaultState = {
     interships: [],
@@ -26,6 +26,9 @@ const IntershipReducer = function (state = defaultState, action) {
         }
         case types.DELETE_INTERN: {
             return _.assign({}, state, { oldIntern: action.oldIntern});
+        }
+        case types.LOGIN_INTERSHIP_LIST: {
+            return _.assign({}, state, { course: action.course });
         }
         default: {
             return state;

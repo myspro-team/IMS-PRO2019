@@ -1,40 +1,80 @@
-
- .panel {
-    position: fixed;
-    left: 0em !important; 
-    top: 0;
-    bottom: 0;
-    height: 100%;
+.App {
+  text-align: center;
 }
 
-.panel, .push {
-    -webkit-transition: all 300ms ease; 
-    -ms-transition: all 300ms ease;
-    -o-transition: all 300ms ease;
-    transition: all 300ms ease;
+.App-logo {
+  animation: App-logo-spin infinite 20s linear;
+  height: 40vmin;
+  pointer-events: none;
 }
 
-.panel {
-    margin-left: -10px;
-    background: #EEEEEE;
-    width: 295px !important;
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
 }
 
-.wrap {
-    position: relative;
-    padding: 20px;
-    background-color: #DCDCDC;
-    margin-left: 35px !important;
-    height: 100vh;
-    width: 1275px !important;
+.App-link {
+  color: #61dafb;
 }
-.root{
-    display: flex;
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
-.drawer{
-    width: 100%;
-    flex-Shrink: 0,
+.table{
+  padding-top: 10px;
+  border:solid 0px gray;
+  width: 40%;
+  height: 450px;
+  margin-left: 20%;
+  margin-top:1%;
+  border-radius: 20px;
+  background-color: white;
+  box-shadow: 2px 2px 6px 6px #D3D3D3;   
 }
-.drawerHeader{
-    width: 100%;
+.paper{
+  margin-Top: 50px ;
+  display: flex;
+  flex-Direction: column;
+  align-Items: center;
+}
+.avatar{
+  margin: 30px;
+ color: red;
+}
+.form{
+  width: 100%;
+   margin-Top: 10px;
+}
+.submit{
+  margin-top:40px ;
+}
+.top{
+  margin-top:10px ;
+}
+.image{
+  height: 100%;
+  background-color: aquamarine;
+}
+.paper1 {
+  border: solid 0px red;
+  padding:20px;
+  text-Align: center;
+  background-color: #F5F5F5;
+}
+.root {
+  flex-Grow: 1;
+}
+.text{
+  color: red;
 }

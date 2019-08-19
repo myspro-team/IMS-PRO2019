@@ -27,7 +27,9 @@ export const getInternList = () => {
                     item.Faculty = value.Intern.Faculty
                     item.Course = value.Course
                     item.CourseID = value.Intern.CourseID
+                    //items.push([stt, value.Intern.ID, value.Intern.Name, value.Intern.PhoneNumber, value.Intern.Email, value.Intern.Gender ? "Male" : "Female", date, value.Intern.University, value.Intern.Faculty, value.Course, value.Intern.CourseID])
                     items.push(item)
+                    //stt++
                 }))
                 console.log(items)
                 return dispatch({
@@ -36,6 +38,20 @@ export const getInternList = () => {
                     meta: result.meta
                 });
             }
+        });
+    }
+}
+export function putInternList(){
+    return function(dispatch){
+        IntershipService.putInternList(function(error,result){
+            if (result.ID !== undefined && result.Role === 3) {
+                sessionStorage.setItem("user", JSON.stringify(result));//luu data sau khi dang nhap
+                this.props.onLogin(result);
+              }
+        return dispatch({
+            type: types.GET_INTERSHIP_LIST,
+            interships:result,
+        })    
         });
     }
 }
@@ -99,3 +115,16 @@ export const deleteIntern = (id, data) => {
         },id, data)
     }
 }
+
+export const getLoginList = (data) => {
+    return function (dispatch) {
+        IntershipService.getLoginList(function (error, result, status, xhr) {
+            if (error) {
+                console.log('Sourse error: ....');
+                return;
+            }
+            return dispatch({ type: types.LOGIN_INTERSHIP_LIST, course: result })
+        }, data)
+    }
+}
+

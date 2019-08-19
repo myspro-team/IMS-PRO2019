@@ -54,6 +54,16 @@ class IntershipService {
             callback(result)
         }
     }
+
+    async getLoginList(callback, data) {
+        let path = getApiPath(API.GET_LOGIN_LIST, "");
+        console.log(path)
+        let result = await HttpRequest.put(path, data, callback);
+        if (callback) {
+            callback(result)
+            console.log(result)
+        }
+    }
 }
 
 export default new IntershipService();

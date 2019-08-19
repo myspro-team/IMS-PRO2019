@@ -2,6 +2,9 @@ export const API = {
     GET_INTERN_LIST: {
         path: 'intern'
     },
+    GET_LOGIN_LIST: {
+        path: 'login'
+    },
     UPDATE_INTERN: {
         path: 'internu/'
     },
