@@ -1,6 +1,8 @@
 import { getHeader } from '../../utils/apiHelper';
-import config from '../../../configs';
-
+import config from '../../configs';
+import _ from 'lodash';
+import $ from 'jquery';
+import * as types from '../common/method.type'
 function HttpRequest() { };
 global.indicatorKeys = [];
 
@@ -35,7 +37,7 @@ HttpRequest.delete = function (url, data, callback) {
 };
 
 function getUrl(url) {
-    return config.API_DATA + url;
+    return config.API_URL + url;
 }
 
 function async(method, url, body, callback) {
@@ -48,10 +50,11 @@ function async(method, url, body, callback) {
         contentType: 'text/json',
         url: apiUrl,
         data: method === types.GET_METHOD ? null : JSON.stringify(body),
+        //data: JSON.stringify(body),
         headers: headers,
         success: function (result, status, xhr) {
             _.remove(global.indicatorKeys, function (n) {
-                return n == indicatorKey;
+                return n === indicatorKey;
             });
             if (callback) {
                 callback(null, result, status, xhr);
@@ -59,7 +62,7 @@ function async(method, url, body, callback) {
         },
         error: function (err) {
             _.remove(global.indicatorKeys, function (n) {
-                return n == indicatorKey;
+                return n === indicatorKey;
             });
             if (callback) {
                 callback(err);
@@ -67,6 +70,33 @@ function async(method, url, body, callback) {
         }
     });
 }
+
+// function async1(method, url, body, callback) {
+//     let apiUrl = getUrl(url);
+//     let headers = getHeader(null, method, apiUrl, body);
+//     let indicatorKey = Math.random();
+//     global.indicatorKeys.push(indicatorKey);
+//     return fetch(apiUrl, {
+//         method: method,
+//         mode: 'cors',
+//         success: function (result, status, xhr) {
+//             _.remove(global.indicatorKeys, function (n) {
+//                 return n == indicatorKey;
+//             });
+//             if (callback) {
+//                 callback(null, result, status, xhr);
+//             }
+//         },
+//         error: function (err) {
+//             _.remove(global.indicatorKeys, function (n) {
+//                 return n == indicatorKey;
+//             });
+//             if (callback) {
+//                 callback(err);
+//             }
+//         }
+//     });
+// }
 
 function asyncFormData(method, url, body, callback) {
     let apiUrl = getUrl(url);
@@ -84,7 +114,7 @@ function asyncFormData(method, url, body, callback) {
         processData: false,
         success: function (result, status, xhr) {
             _.remove(global.indicatorKeys, function (n) {
-                return n == indicatorKey;
+                return n === indicatorKey;
             });
             if (callback) {
                 callback(null, result, status, xhr);
@@ -92,7 +122,7 @@ function asyncFormData(method, url, body, callback) {
         },
         error: function (err) {
             _.remove(global.indicatorKeys, function (n) {
-                return n == indicatorKey;
+                return n === indicatorKey;
             });
             if (callback) {
                 callback(err);

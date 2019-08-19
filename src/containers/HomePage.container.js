@@ -1,6 +1,7 @@
 import React from 'react';
 import SideBarMenuComponent from '../components/common/SideBarMenu';
 import _ from 'lodash';
+import './../App.css';
 
 class HomePageContainer extends React.Component {
 
@@ -8,7 +9,9 @@ class HomePageContainer extends React.Component {
 		let childrentContent = !_.isEmpty(this.props.children) ? this.props.children : '';
 		return (
 			<div>
-				<SideBarMenuComponent children={childrentContent}/>
+				<SideBarMenuComponent 
+					children={childrentContent}
+				/>
 			</div>
 		)
 	}
