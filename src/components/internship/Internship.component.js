@@ -86,6 +86,7 @@ class InternshipTable extends Component {
     displayTable = () => {
         let result = []
         this.props.listIntern.map((value) => {
+            // console.log(value.Name)
             if(value.Name.toLowerCase().indexOf(this.state.searchInfor.toLowerCase()) !== -1){
                 result.push(value)
             }
@@ -139,6 +140,7 @@ class InternshipTable extends Component {
     render() {
         let result = []
         this.props.listIntern.map((value) => {
+            console.log(value.Name)
             if(value.Name.toLowerCase().indexOf(this.state.searchInfor.toLowerCase()) !== -1){
                 result.push(value)
             }
