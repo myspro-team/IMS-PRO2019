@@ -1,15 +1,17 @@
 div.active {
-	background-color: #DCDCDC;
+	background-color: #8B8989;
 	color: white;
 }
 
-.custom {
+.custom:active {
 	font-size: 1px !important;
 	color: gray;
-	padding-left: 30px;
-	margin-top: -12px;
 }
 
-.mb-12 {
-	margin-bottom: -12px;
+.custom {
+	margin-left: 20px;
+}
+
+.ml-x {
+	margin-left: -16px;
 }
