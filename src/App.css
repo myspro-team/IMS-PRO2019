@@ -1,40 +1,17 @@
-
- .panel {
-    position: fixed;
-    left: 0em !important; 
-    top: 0;
-    bottom: 0;
-    height: 100%;
+div.active {
+	background-color: #8B8989;
+	color: white;
 }
 
-.panel, .push {
-    -webkit-transition: all 300ms ease; 
-    -ms-transition: all 300ms ease;
-    -o-transition: all 300ms ease;
-    transition: all 300ms ease;
+.custom:active {
+	font-size: 1px !important;
+	color: gray;
 }
 
-.panel {
-    margin-left: -10px;
-    background: #EEEEEE;
-    width: 295px !important;
+.custom {
+	margin-left: 20px;
 }
 
-.wrap {
-    position: relative;
-    padding: 20px;
-    background-color: #DCDCDC;
-    margin-left: 35px !important;
-    height: 100vh;
-    width: 1275px !important;
-}
-.root{
-    display: flex;
-}
-.drawer{
-    width: 100%;
-    flex-Shrink: 0,
-}
-.drawerHeader{
-    width: 100%;
+.ml-x {
+	margin-left: -16px;
 }
