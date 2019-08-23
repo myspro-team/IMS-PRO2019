@@ -1,6 +1,8 @@
 import { getHeader } from '../../utils/apiHelper';
-import config from '../../../configs';
-
+import config from '../../configs';
+import _ from 'lodash';
+import $ from 'jquery';
+import * as types from '../common/method.type'
 function HttpRequest() { };
 global.indicatorKeys = [];
 
@@ -35,7 +37,7 @@ HttpRequest.delete = function (url, data, callback) {
 };
 
 function getUrl(url) {
-    return config.API_DATA + url;
+    return config.API_URL + url;
 }
 
 function async(method, url, body, callback) {
@@ -43,6 +45,8 @@ function async(method, url, body, callback) {
     let headers = getHeader(null, method, apiUrl, body);
     let indicatorKey = Math.random();
     global.indicatorKeys.push(indicatorKey);
+    console.log(apiUrl)
+    console.log(body)
     return $.ajax({
         method: method,
         contentType: 'text/json',
