@@ -3,15 +3,64 @@ div.active {
 	color: white;
 }
 
-.custom:active {
-	font-size: 1px !important;
-	color: gray;
-}
-
 .custom {
-	margin-left: 20px;
+	margin-left: 54px;
 }
 
 .ml-x {
 	margin-left: -16px;
+	font-size: 0px;
+}
+
+.settingMenu {
+	padding-left: -50px;
+	color: red;
+}
+
+.aaa {
+	display: flex;
+}
+
+.appBar {
+	background-color: #17A2B8 !important;
+}
+
+.appBarShift {
+	width: calc(100% - 300px) !important;
+	margin-left: 300px !important;
+}
+
+.menuButton {
+	margin-right: 20px !important;
+}
+
+.drawer {
+	width: 300px !important;
+	flex-shrink: 0 !important;
+}
+
+.drawerHeader {
+	border: solid 1px #EBDDE2;
+	display: flex;
+	align-items: center;
+	padding: 0px 8px;
+	justify-content: flex-end;
+	background-color: #EBDDE2 ;
+}
+
+.content {
+	flex-grow: 1;
+	padding-left: 30px;
+	padding-right: 30px;
+	margin-left: -300px;
+}
+
+.contentShift {
+	margin-left: 0px;
+}
+
+.paperDrawer {
+	width: 300px !important;
+	border: solid 1px #EBDDE2 !important;
+	box-shadow: 0px 0px 0px 2px #EBDDE2 !important;
 }

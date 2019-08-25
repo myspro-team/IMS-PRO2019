@@ -42,50 +42,51 @@ class MenuSettingComponent extends Component {
         this.context.router.push(url);
     }
 
-    render() {
-
+    componentDidMount() {
         var { elements } = this.state
-
         elements = document.getElementsByClassName("bak");
-        
-            for(var i = 0; i < elements.length; i++)
-            {
-                elements[i].onclick = function(){                    
+        this.setState({
+            elements : elements
+        })
+        this.settingMenu(elements)
+    }
+
+    settingMenu = (elements) => {
+        if(elements.length) {
+            for(var i = 0; i < elements.length; i++){
+                elements[i].onclick = function(){                 
                     var el = elements[0];
-                    console.log(el)
                     while(el)
                     {
-                        if(el.tagName === "DIV"){
-                            //remove class
-                            el.classList.remove("active");
-                            
+                        if(el.tagName === "DIV"){                            
+                            el.classList.remove("active"); //remove class                            
                         }
-                        // pass to the new sibling
-                        el = el.nextSibling;
-                    }
-                    
+                        el = el.nextSibling; // pass to the new sibling
+                    }                    
                   this.classList.add("active");  
                 };
             }
+        }
+    }
 
-
+    render() {
         return (
             menuSeting.map((data, index) => {
                 return (
-                <div className='bak'> 
-                    <div className={index===2 ? 'custom' : ''} >
-                        <div className={index===3 ? 'custom mb-12' : ''} >
-                        <ListItem button key={data.menu} onClick={this.onClickMenu.bind(this, data.url)}>
-                            <ListItemIcon>
-                                <SvgIcon>
-                                    <path d={data.icon} />
-                                </SvgIcon>
-                            </ListItemIcon>
-                            <ListItemText className='ml-x' primary={data.menu} />                        
-                        </ListItem>
+                    <div className='bak'> 
+                        <div className={index===2 ? 'custom' : ''} >
+                            <div className={index===3 ? 'custom mb-12' : ''} >
+                            <ListItem button key={data.menu} onClick={this.onClickMenu.bind(this, data.url)}>
+                                <ListItemIcon>
+                                    <SvgIcon>
+                                        <path d={data.icon} />
+                                    </SvgIcon>
+                                </ListItemIcon>
+                                <ListItemText className={ index === 2 || index === 3 ? 'ml-x' : '' } primary={data.menu} />                        
+                            </ListItem>
+                        </div>
+                        </div>
                     </div>
-                    </div>
-                </div>
                 )
             })
         )
