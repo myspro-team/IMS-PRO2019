@@ -6,6 +6,7 @@ import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 import AddForm from './AddForm'
 import Modal from './Modal'
+
 class AddInternshipPage extends Component {
     constructor(props){
         super(props)
@@ -52,8 +53,8 @@ class AddInternshipPage extends Component {
                     <Modal
                     open={this.state.open}
                     handleClose={(value) => this.handleClose(value)}
-                    accept="image/*"
-                    maxFiles={3}
+                    accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, image/*"
+                    maxFiles={1}
                     ></Modal>
                 </Typography>
             )

@@ -18,4 +18,3 @@ class HomePageContainer extends React.Component {
 }
 
 export default HomePageContainer;
-
