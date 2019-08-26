@@ -11,7 +11,6 @@ class ViewInternship extends Component {
         }
     }
     componentWillMount() {
-        console.log(this.props.getAPI.getSourseList())
         this.props.getAPI.getSourseList()
         this.props.listIntern.map((value) => {
             if(value.ID === this.props.params.id){
@@ -22,7 +21,6 @@ class ViewInternship extends Component {
         })
     }
     render() {
-        console.log(this.props)
         return (
             <div>
                 <ViewInternshipPage

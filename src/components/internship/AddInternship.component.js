@@ -47,7 +47,6 @@ class AddInternshipPage extends Component {
                 <Typography component="div" style={{ padding: 8 * 3 }}>
                     <div className="toeic">
                         <button type="button" class="btn buttonAttach" onClick={() => this.handleOpen()}>ATTACH FILE</button>
-                        <button type="button" class="btn buttonAttach" onClick={() => this.handleOpen()}>CREATE</button>
                     </div>
                     <Modal
                     open={this.state.open}
