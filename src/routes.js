@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, IndexRoute } from 'react-router';
+import { Route } from 'react-router';
 // import { BrowserRouter as Router, Route } from 'react-router-dom'
 import HomePageContainer from './containers/HomePage.container';
 import InternshipPage from './containers/internship/Internship.container'
