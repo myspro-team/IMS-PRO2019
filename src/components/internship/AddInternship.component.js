@@ -13,6 +13,8 @@ class AddInternshipPage extends Component {
         this.state = {
             value: 0,
             open: false,
+            files: [],
+            valueOfExcelFile : []
         }
     }
 
@@ -51,10 +53,12 @@ class AddInternshipPage extends Component {
                         <button type="button" class="btn buttonAttach" onClick={() => this.handleOpen()}>CREATE</button>
                     </div>
                     <Modal
-                    open={this.state.open}
-                    handleClose={(value) => this.handleClose(value)}
-                    accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, image/*"
-                    maxFiles={1}
+                        showData={ this.props.showData }
+                        checkOut={ this.checkOut }
+                        open={this.state.open}
+                        handleClose={(value) => this.handleClose(value)}
+                        accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, image/*"
+                        maxFiles={1}
                     ></Modal>
                 </Typography>
             )

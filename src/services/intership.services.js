@@ -54,6 +54,14 @@ class IntershipService {
             callback(result)
         }
     }
+
+    async addDataToApi(callback, data) {
+        let path = getApiPath(API.GET_INTERN_LIST,"");
+        let result = await HttpRequest.post(path, data, callback)
+        if (callback) {
+            callback(result)
+        }
+    }
 }
 
 export default new IntershipService();

@@ -99,3 +99,16 @@ export const deleteIntern = (id, data) => {
         },id, data)
     }
 }
+
+export const addDataToApi = (data) => {
+    return function(dispatch){
+        IntershipService.addIntern(function(error, resultAdd, status, xhr) {
+            if(error){
+                console.log("co loi")
+                return
+            }
+            console.log(resultAdd)
+            return dispatch({type: types.ADD_DATA_TO_API, newIntern:resultAdd})
+        },data)
+    }
+}
