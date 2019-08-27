@@ -6,6 +6,7 @@ import InternshipPage from './containers/internship/Internship.container'
 import AddInternship from './containers/internship/AddInternship.container'
 import ViewInternship from './containers/internship/ViewInternship.container'
 
+
 export default (
   <Route>
     <Route path='/' component={Home}>

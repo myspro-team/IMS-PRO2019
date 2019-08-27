@@ -1,0 +1,31 @@
+
+.root {
+    width: 100%;
+    margin-top: 20px;
+    height: 100%;
+    min-width: 450px;
+}
+ .table{
+     min-width: 500px;
+ }
+ .color{
+    background-color: white;
+ } 
+.color1{
+    color: black !important;
+    font-size:larger !important;
+}
+.a{
+    margin-right: 10px !important;
+    font-size:x-small !important;
+ 
+}
+.tableRow:nth-child(even) {
+    background-color: #ebe7e7;
+}
+.columnName {
+    min-width: 1px;
+}
+.x{
+    margin-right: 5px !important;
+}
