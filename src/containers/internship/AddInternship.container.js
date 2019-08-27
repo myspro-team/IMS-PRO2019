@@ -6,15 +6,18 @@ import * as GetAPI from '../../actions/intership.action'
 class AddInternship extends Component {
     componentWillMount() {
         this.props.getAPI.getSourseList()
+        this.props.getAPI.getToeicScheduleList()
     }
 
     render() {
+        // console.log(this.props.toeicScheduleList)
         return (
             <div>
                 <AddInternshipPage
                 courseList={this.props.courseList}
                 listIntern={this.props.listIntern}
-                addIntern={this.props.getAPI}></AddInternshipPage>
+                addIntern={this.props.getAPI}
+                toeicScheduleList={this.props.toeicScheduleList}></AddInternshipPage>
             </div>
         );
     }
@@ -23,7 +26,8 @@ class AddInternship extends Component {
 const mapStateToProps = (state, ownProps) => {
     return {
         courseList: state.intership.course,
-        listIntern: state.intership.interships
+        listIntern: state.intership.interships,
+        toeicScheduleList: state.intership.toeicSchedule,
     }
 }
 

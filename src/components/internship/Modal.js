@@ -77,6 +77,12 @@ class Modal extends Component {
         }
     }
 
+    handleAttach = () => {
+        if(this.props.onAttach){
+            this.props.onAttach()
+        }
+    }
+
     render() {
         return (
             <div>
@@ -109,7 +115,7 @@ class Modal extends Component {
                     <DialogActions>
                         <button type="button" class="btn buttonView btnColor" onClick={() => this.closeDialog()}>CLOSE</button>
                         <button type="button" 
-                        class="btn buttonView" onClick={() => this.props.onAttach()}
+                        class="btn buttonView" onClick={() => this.handleAttach()}
                         disabled={this.disabledButton() ? false : true}>ATTACH</button>
                     </DialogActions>
                 </Dialog>

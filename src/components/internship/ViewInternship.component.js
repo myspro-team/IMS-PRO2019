@@ -77,7 +77,9 @@ class ViewInternshipPage extends Component {
             return (
                 <Typography component="div" style={{ paddingLeft: 8*3, paddingRight: 8*3, paddingBottom: 8*3 }}>
                     <Toeic
-                    handleOpenModalDropFile={() => this.handleOpenModalDropFile()}></Toeic>
+                    handleOpenModalDropFile={() => this.handleOpenModalDropFile()}
+                    toeicScheduleList={this.props.toeicScheduleList}
+                    intern={this.props.intern}></Toeic>
                     <Modal
                     open={this.state.openModalDropFile}
                     handleClose={(value) => this.handleCloseModalDropFile(value)}
