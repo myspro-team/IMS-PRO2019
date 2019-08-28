@@ -89,14 +89,26 @@ export const updateIntern = (data, id) => {
 
 export const deleteIntern = (id, data) => {
     return function(dispatch) {
-        IntershipService.deleteIntern(function(error, result, status, xhr) {
+        IntershipService.deleteIntern(function(error, resultAdd, status, xhr) {
             if(error){
                 console.log('Delete error: ....');
                 return;
             }
-            console.log(result)
+            console.log(resultAdd)
             return dispatch({type: types.DELETE_INTERN, oldIntern:result})
         },id, data)
+    }
+}
+
+export const addDataToApi = () => {
+    return function(dispatch) {
+        IntershipService.addIntern(function(error, result, status, xhr) {
+            if(error){
+                console.log('co loi');
+                return;
+            }
+            return dispatch({type: types.ADD_DATA_TO_API}, newIntern:resultAdd)
+        },data)
     }
 }
 
