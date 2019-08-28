@@ -100,7 +100,7 @@ export const deleteIntern = (id, data) => {
     }
 }
 
-export const addDataToApi = () => {
+export const addDataToApi = (data) => {
     return function(dispatch) {
         IntershipService.addIntern(function(error, result, status, xhr) {
             if(error){
