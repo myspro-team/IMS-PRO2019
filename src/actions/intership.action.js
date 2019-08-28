@@ -100,15 +100,26 @@ export const deleteIntern = (id, data) => {
     }
 }
 
-export const addDataToApi = (data) => {
-    return function(dispatch){
-        IntershipService.addIntern(function(error, resultAdd, status, xhr) {
+export const getToeicScheduleList = () => {
+    return function(dispatch) {
+        IntershipService.getToeicScheduleList(function(error, result, status, xhr) {
             if(error){
-                console.log("co loi")
+                console.log("Get toeic schedule error:...")
                 return
             }
-            console.log(resultAdd)
-            return dispatch({type: types.ADD_DATA_TO_API, newIntern:resultAdd})
-        },data)
+            return dispatch({type: types.GET_TOEIC_SCHEDULE_LIST, toeicSchedule: result})
+        })
+    }
+}
+
+export const uploadFiles  = (data) => {
+    return function(dispatch) {
+        IntershipService.uploadFiles(function(error, result, status, xhr) {
+            if(error){
+                console.log("Upload files error:...")
+                return
+            }
+            return dispatch({type: types.UPLOAD_FILES, totalCoreToeic: result})
+        }, data)
     }
 }

@@ -17,3 +17,6 @@ export const typeInvalid = (params) => {
 export const selectInvalid = (params) => {
     return "Please select input " + params; 
 }
+
+export const PLEASE_SELECT_THE_FILES_WITH_THE_EXTENSION_JPG_OR_PNG = "Please select the files with the extension .jpg or .png"
+

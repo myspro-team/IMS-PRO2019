@@ -19,6 +19,7 @@ class AddInternship extends Component {
 
     componentWillMount() {
         this.props.getAPI.getSourseList()
+        this.props.getAPI.getToeicScheduleList()
     }
 
     resetValue = () => {
@@ -95,21 +96,14 @@ class AddInternship extends Component {
     }
 
     render() {
-
-        var { value } = this.state;
-        
-        if(value.length){
-            this.checkOut(value)
-        }
-
+        // console.log(this.props.toeicScheduleList)
         return (
             <div>
                 <AddInternshipPage
-                    showData={ this.showData }
-                    courseList={this.props.courseList}
-                    listIntern={this.props.listIntern}
-                    addIntern={this.props.getAPI}>
-                </AddInternshipPage>
+                courseList={this.props.courseList}
+                listIntern={this.props.listIntern}
+                addIntern={this.props.getAPI}
+                toeicScheduleList={this.props.toeicScheduleList}></AddInternshipPage>
             </div>
         );
     }
@@ -118,7 +112,8 @@ class AddInternship extends Component {
 const mapStateToProps = (state, ownProps) => {
     return {
         courseList: state.intership.course,
-        listIntern: state.intership.interships
+        listIntern: state.intership.interships,
+        toeicScheduleList: state.intership.toeicSchedule,
     }
 }
 

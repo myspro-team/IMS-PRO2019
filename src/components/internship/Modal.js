@@ -12,9 +12,8 @@ class Modal extends Component {
     constructor(props){
         super(props)
         this.state = {
-            open : false,
-            files : [],
-            valueOfExcelFile : []
+            open: false,
+            files: [],
         }
     }
 
@@ -23,17 +22,12 @@ class Modal extends Component {
             let arr = this.state.files
             arr.push(file)
             this.setState({
-                files: arr
+                files: arr,
+                error: false,
             })
+            this.props.getFiles(file)
         }
-    }
-    
-    disabledButton = () => {
-        if(this.state.files.length > 0){
-            return true
-        }else {
-            return  false
-        }
+        this.props.getStatus(status)
     }
 
     Preview = ({ meta, fileWithMeta }) => {
@@ -56,32 +50,43 @@ class Modal extends Component {
             </div>
         )
     }
-
-    resetValue = () => {
-        this.setState({
-            files : [],
-            value : []
-        })
+    
+    disabledButton = () => {
+        if(this.state.files.length > 0){
+            return true
+        }else {
+            return  false
+        }
     }
 
-    closePopup = () => {
-        this.resetValue()
+    closeDialog = () => {
+        this.setState({
+            files: [],
+            error: false,
+        })
         this.props.handleClose(!this.props.open)
     }
 
-    onAttach = () => {
-        this.props.showData(this.state.files)
-        this.closePopup()
+    displayErrorMessage = () => {
+        if(this.props.errorMessage !== undefined && this.props.errorMessage !== ''){
+            return (
+                <span className="errorDropFile">{this.props.errorMessage}</span>
+            )
+        }
     }
 
-    render() {        
-        
+    handleAttach = () => {
+        if(this.props.onAttach){
+            this.props.onAttach()
+        }
+    }
 
+    render() {
         return (
             <div>
                 <Dialog
                     open={this.props.open}
-                    onClose={(value) => this.props.handleClose(!this.props.open)}
+                    onClose={() => this.closeDialog()}
                     aria-labelledby="alert-dialog-title"
                     aria-describedby="alert-dialog-description"
                 >
@@ -89,23 +94,26 @@ class Modal extends Component {
                     <DialogContent className="dropzone">
                         <DialogContentText id="alert-dialog-description">
                             <Dropzone
-                                PreviewComponent={this.Preview}
-                                onChangeStatus={this.handleChangeStatus}
-                                accept={this.props.accept}
-                                maxFiles={this.props.maxFiles}
-                                maxSizeBytes={this.props.maxSize}
-                                inputWithFilesContent={files => (this.props.maxFiles ? `${files.length}/${this.props.maxFiles}` : 'Add file')}
-                                inputContent={(files, extra) => (extra.reject ? 'File invalid' : 'Drag files or click to browse')}
-                                styles={{ dropzone: { minHeight: 300, maxHeight: 300 }, 
-                                inputLabel: (files, extra) => (extra.reject ? { color: 'red'} : {}),
-                                dropzoneReject: { borderColor: 'red', backgroundColor: '#DAA' }, }}
+                            PreviewComponent={this.Preview}
+                            onChangeStatus={this.handleChangeStatus}
+                            accept={this.props.accept}
+                            maxFiles={this.props.maxFiles}
+                            maxSizeBytes={this.props.maxSize}
+                            inputWithFilesContent={files => (this.props.maxFiles ? `${files.length}/${this.props.maxFiles}` : 'Add file')}
+                            inputContent={(files, extra) => (extra.reject ? 'File invalid' : 'Drag files or click to browse')}
+                            styles={{ dropzone: { minHeight: 285, maxHeight: 285 }, 
+                            inputLabel: (files, extra) => (extra.reject ? { color: 'red'} : {}),
+                            dropzoneReject: { borderColor: 'red', backgroundColor: '#DAA' }, }}
                             />
+                            <div>
+                            {this.displayErrorMessage()}
+                            </div>
                         </DialogContentText>
                     </DialogContent>
                     <DialogActions>
-                        <button type="button" class="btn buttonView btnColor" onClick={ this.closePopup }>CLOSE</button>
+                        <button type="button" class="btn buttonView btnColor" onClick={() => this.closeDialog()}>CLOSE</button>
                         <button type="button" 
-                        class="btn buttonView" onClick={ this.onAttach }
+                        class="btn buttonView" onClick={() => this.handleAttach()}
                         disabled={this.disabledButton() ? false : true}>ATTACH</button>
                     </DialogActions>
                 </Dialog>
