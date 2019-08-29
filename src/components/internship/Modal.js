@@ -6,6 +6,7 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import 'react-dropzone-uploader/dist/styles.css'
 import Dropzone from 'react-dropzone-uploader'
+import axios from 'axios'
 
 class Modal extends Component {
     constructor(props){
@@ -17,9 +18,6 @@ class Modal extends Component {
     }
 
     handleChangeStatus = ({ meta, file }, status) => {
-        console.log(status)
-        console.log(meta)
-        console.log(file)
         if(status === 'done'){
             let arr = this.state.files
             arr.push(file)

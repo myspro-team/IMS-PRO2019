@@ -3,11 +3,32 @@ import AddInternshipPage from '../../components/internship/AddInternship.compone
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import * as GetAPI from '../../actions/intership.action'
+
 class AddInternship extends Component {
+
+    constructor(props){
+        super(props)
+        this.state = {
+            files : [],
+            value : []
+        }
+    }
+
     componentWillMount() {
         this.props.getAPI.getSourseList()
         this.props.getAPI.getToeicScheduleList()
     }
+
+    resetValue = () => {
+        this.setState({
+            files : [],
+            value : []
+        })
+    }
+
+    
+
+    
 
     render() {
         // console.log(this.props.toeicScheduleList)
