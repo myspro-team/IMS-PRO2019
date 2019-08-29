@@ -138,6 +138,7 @@
     width: 100%
 }
 
+
 .grid {
 
     height: 50px;
@@ -152,6 +153,21 @@
     margin-top: 17px;
     height: 20px;
     display: flex;
+}
+
+
+.titleToeic {
+    display: block;
+    margin-bottom: 10px;
+}
+
+.errorDropFile {
+    margin-top: 10px;
+    margin-left: 10px;
+    color: red;
+    font-size: 13px;
+    font-family: 'Segoe UI Tahoma';
+    display: block;
 }
 
 @media (max-width:700px) {

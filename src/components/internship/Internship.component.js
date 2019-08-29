@@ -13,6 +13,7 @@ import orderBy from 'lodash/orderBy'
 import ToolbarTable from './table/Toolbar'
 import Loading from './table/Loading'
 import * as title from '../../core/common/column.js'
+import AddInternshipPage from './AddInternship.component'
 
 class InternshipTable extends Component {
     constructor(props){
@@ -146,7 +147,16 @@ class InternshipTable extends Component {
         return (
             <div>
                 <Paper className="root">
-                    <ToolbarTable handleSearch={(info) => this.handleSearch(info)}/>
+                    <ToolbarTable 
+                        handleSearch={(info) => this.handleSearch(info)}
+                        showData={ this.props.showData }
+                        open={this.props.open}
+                        showModal={this.props.showModal}
+                        errorMessage={this.props.errorMessage}
+                        handleCloseModalDropFile={this.props.handleCloseModalDropFile}
+                        validateExcelFile={this.props.validateExcelFile}
+                        getFile={this.props.getFile}
+                    />
                     <div className="tableWrapper">
                         {this.displayTable()}
                     </div>

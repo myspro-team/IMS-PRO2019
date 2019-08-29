@@ -6,7 +6,6 @@ class IntershipService {
 
     async getInternList(callback) {
         let path = getApiPath(API.GET_INTERN_LIST,"");
-        console.log(path)
         let result = await HttpRequest.get(path, callback);
         if (callback) {
             callback(result)
@@ -15,7 +14,6 @@ class IntershipService {
 
     async getCourseList(callback) {
         let path = getApiPath(API.GET_COURSE_LIST,"");
-        console.log(path)
         let result = await HttpRequest.get(path, callback);
         if (callback) {
             callback(result)
@@ -62,6 +60,19 @@ class IntershipService {
         if (callback) {
             callback(result)
             console.log(result)
+    async getToeicScheduleList(callback) {
+        let path = getApiPath(API.GET_TOEIC_SCHEDULE_LIST, "")
+        let result = await HttpRequest.get(path, callback)
+        if(callback){
+            callback(result)
+        }
+    }
+
+    async uploadFiles(callback, data) {
+        let path = getApiPath(API.UPLOAD_FILES, "")
+        let result = await HttpRequest.post(path, data, callback)
+        if(callback){
+            callback(result)
         }
     }
 }
