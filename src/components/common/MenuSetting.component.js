@@ -17,6 +17,11 @@ const menuSeting = [
     },
     { menu: 'Internship', icon: 'M19 13H5v-2h14v2z', url: '/internship' },
     { menu: 'Import File', icon: 'M19 13H5v-2h14v2z', url: '/' },
+    { 
+        menu: 'Toeic Schedule', 
+        icon: 'M19 18l2 1V3c0-1.1-.9-2-2-2H8.99C7.89 1 7 1.9 7 3h10c1.1 0 2 .9 2 2v13zM15 5H5c-1.1 0-2 .9-2 2v16l7-3 7 3V7c0-1.1-.9-2-2-2z', 
+        url: '/toeic' 
+    },
     {
         menu: 'Courses',
         icon: 'M18 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM6 4h5v8l-2.5-1.5L6 12V4z',
@@ -99,16 +104,16 @@ class MenuSettingComponent extends Component {
                 return (
                     <div className='bak'> 
                         <div className={index===2 ? 'custom customDisapered' : ''} >
-                            <div className={index===3 ? 'custom customDisapered mb-12' : ''} >
-                            <ListItem button key={data.menu} onClick={this.onClickMenu.bind(this, data.url)}>
-                                <ListItemIcon>
-                                    <SvgIcon>
-                                        <path d={data.icon} />
-                                    </SvgIcon>
-                                </ListItemIcon>
-                                <ListItemText className={ index === 2 || index === 3 ? 'ml-x' : '' } primary={data.menu} />                        
-                            </ListItem>
-                        </div>
+                            <div className={index===3 ? 'custom customDisapered' : ''} >
+                                <ListItem button key={data.menu} onClick={this.onClickMenu.bind(this, data.url)}>
+                                    <ListItemIcon>
+                                        <SvgIcon>
+                                            <path d={data.icon} />
+                                        </SvgIcon>
+                                    </ListItemIcon>
+                                    <ListItemText className={ index === 2 || index === 3 ? 'ml-x' : '' } primary={data.menu} />                        
+                                </ListItem>                                
+                            </div>
                         </div>
                     </div>
                 )
