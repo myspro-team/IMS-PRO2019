@@ -53,6 +53,13 @@ class IntershipService {
         }
     }
 
+    async getLoginList(callback, data) {
+        let path = getApiPath(API.GET_LOGIN_LIST, "");
+        console.log(path)
+        let result = await HttpRequest.put(path, data, callback);
+        if (callback) {
+            callback(result)
+            console.log(result)
     async getToeicScheduleList(callback) {
         let path = getApiPath(API.GET_TOEIC_SCHEDULE_LIST, "")
         let result = await HttpRequest.get(path, callback)

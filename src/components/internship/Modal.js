@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
@@ -81,6 +82,16 @@ class Modal extends Component {
         }
     }
 
+    // handleChangeStatus = ({meta, file}, status) => {
+    //     console.log(meta)
+    //     console.log(file)
+    //     console.log(status)
+    // }
+    // handleSubmit = (files, allFiles) => {
+    //     console.log(files)
+    //     console.log(allFiles)
+    //     allFiles.forEach(f => f.remove())
+    // }
     render() {
         return (
             <div>
@@ -90,7 +101,7 @@ class Modal extends Component {
                     aria-labelledby="alert-dialog-title"
                     aria-describedby="alert-dialog-description"
                 >
-                    <DialogTitle id="alert-dialog-title">{<font face="Arial" color="#3a3a3a">ATTACH FILE</font>}</DialogTitle>
+                    <DialogTitle id="alert-dialog-title">{"ATTACH FILE"}</DialogTitle>
                     <DialogContent className="dropzone">
                         <DialogContentText id="alert-dialog-description">
                             <Dropzone

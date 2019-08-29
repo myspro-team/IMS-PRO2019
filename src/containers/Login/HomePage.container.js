@@ -1,5 +1,5 @@
 import React from 'react';
-import SideBarMenuComponent from '../components/common/SideBarMenu';
+import SideBarMenuComponent from "./../../../src/components/common/SideBarMenu";
 import _ from 'lodash';
 import './../App.css';
 

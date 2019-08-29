@@ -90,6 +90,12 @@ class AddInternshipPage extends Component {
                     ></Modal>
                 </Typography>
             )
+        }else if(this.state.value === 2){
+            return(
+                <Modal
+                open={this.state.open}
+                handleClose={(value) => this.handleClose(value)}></Modal>
+            )
         }
     }
     render() {

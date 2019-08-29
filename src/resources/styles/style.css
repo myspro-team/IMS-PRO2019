@@ -25,8 +25,7 @@
 }
 .iconAddHover {
     margin: 10px;
-    color: cadetblue;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
+    color: cadetblue
 }
 
 .rootPagination {
@@ -39,7 +38,6 @@
     background-color: #00a0af;
     font-size: 12.5px;
     color: #fff;
-    float: right;
 }
 
 .search {
@@ -114,10 +112,6 @@
     font-size: 12.5px;
     color: #fff;
 }
-
-.btnColor {
-    background-color: #7e7c7c;
-}
 .space {
     margin-right: 10px
 }
@@ -125,10 +119,6 @@
     padding-top: 35px;
     color: cornflowerblue;
     font-size: 20px;
-}
-
-.t {
-    color: #3a3a3a;
 }
 
 .loading {
@@ -249,34 +239,3 @@
 }
 /* END */
 
-/* DROP OR SELECT FILE */
-.preview {
-    align-self: flex-start; 
-    display: flex;
-    width: 530px;
-}
-
-.image {
-    margin: 20px;
-    width: 15%;
-}
-
-.image img {
-    width: 70px;
-    height: 50px;
-}
-
-.content {
-    padding-top: 35px;
-    font-family: 'Segoe UI';
-    font-size: 14px;
-    color: black;
-    width: 61%;
-}
-
-.iconCancle {
-    padding-top: 35px;
-    padding-left: 50px;
-    width: 7%;
-}
-/* END */
