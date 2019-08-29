@@ -44,6 +44,7 @@ const IntershipReducer = function (state = defaultState, action) {
         }
         case types.LOGIN_INTERSHIP_LIST: {
             return _.assign({}, state, { course: action.course });
+        }
         case types.GET_TOEIC_SCHEDULE_LIST: {
             return _.assign({}, state, { toeicSchedule: action.toeicSchedule})
         }

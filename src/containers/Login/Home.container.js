@@ -6,7 +6,7 @@ class HomePage extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      user : JSON.parse(sessionStorage.getItem('user')),//lay data sau khi dang nhap
+      user : 'aaa',//lay data sau khi dang nhap
       name:{}
     }
     // console.log(this.state.user)

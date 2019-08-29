@@ -60,6 +60,8 @@ class IntershipService {
         if (callback) {
             callback(result)
             console.log(result)
+        }
+    }
     async getToeicScheduleList(callback) {
         let path = getApiPath(API.GET_TOEIC_SCHEDULE_LIST, "")
         let result = await HttpRequest.get(path, callback)
