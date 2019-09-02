@@ -3,6 +3,7 @@ import config from '../../configs';
 import _ from 'lodash';
 import $ from 'jquery';
 import * as types from '../common/method.type'
+
 function HttpRequest() { };
 global.indicatorKeys = [];
 

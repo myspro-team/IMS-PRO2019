@@ -21,7 +21,6 @@ class Login extends Component {
       showError: false
     };
   }
- 
   userName(a) {
     this.setState({ username: a.target.value })
     console.log(this.state.username)
@@ -33,7 +32,6 @@ class Login extends Component {
   handleclick(event) {
     event.preventDefault();
     console.log(this.props.getAPI);
-    this.props.getAPI.getLoginList({ "UserName": this.state.username, "Password": this.state.password })
     var { data } = this.props;
     console.log(data);
     if (data.ID !== undefined && data.Role === 3) {
@@ -49,8 +47,7 @@ class Login extends Component {
     }
   };
   render() {
-    // var {data}=this.props;
-    // console.log(data);
+    this.props.getAPI.getLoginList({ "UserName": this.state.username, "Password": this.state.password })
     return (
       <div className="root">
         <Grid item xs>

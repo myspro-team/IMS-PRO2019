@@ -16,5 +16,11 @@ export const API = {
     },
     CHECK_EMAIL: {
         path: 'checkemail/'
-    }
+    },
+    GET_TOEIC_SCHEDULE_LIST: {
+        path: 'toeicschedule'
+    },
+    UPLOAD_FILES: {
+        path: 'uploadfiles'
+    },
 };

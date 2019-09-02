@@ -1,6 +1,7 @@
 import React from 'react';
 import SideBarMenuComponent from "./../../../src/components/common/SideBarMenu";
 import _ from 'lodash';
+import '../../App.css';
 
 class HomePageContainer extends React.Component {
 
@@ -17,4 +18,3 @@ class HomePageContainer extends React.Component {
 }
 
 export default HomePageContainer;
-

@@ -3,18 +3,42 @@ import AddInternshipPage from '../../components/internship/AddInternship.compone
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import * as GetAPI from '../../actions/intership.action'
+
 class AddInternship extends Component {
-    componentWillMount() {
-        this.props.getAPI.getSourseList()
+
+    constructor(props){
+        super(props)
+        this.state = {
+            files : [],
+            value : []
+        }
     }
 
+    componentWillMount() {
+        this.props.getAPI.getSourseList()
+        this.props.getAPI.getToeicScheduleList()
+    }
+
+    resetValue = () => {
+        this.setState({
+            files : [],
+            value : []
+        })
+    }
+
+    
+
+    
+
     render() {
+        // console.log(this.props.toeicScheduleList)
         return (
             <div>
                 <AddInternshipPage
                 courseList={this.props.courseList}
                 listIntern={this.props.listIntern}
-                addIntern={this.props.getAPI}></AddInternshipPage>
+                addIntern={this.props.getAPI}
+                toeicScheduleList={this.props.toeicScheduleList}></AddInternshipPage>
             </div>
         );
     }
@@ -23,7 +47,8 @@ class AddInternship extends Component {
 const mapStateToProps = (state, ownProps) => {
     return {
         courseList: state.intership.course,
-        listIntern: state.intership.interships
+        listIntern: state.intership.interships,
+        toeicScheduleList: state.intership.toeicSchedule,
     }
 }
 
