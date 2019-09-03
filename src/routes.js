@@ -1,7 +1,7 @@
 import React from 'react';
 import { Route } from 'react-router';
 // import { BrowserRouter as Router, Route } from 'react-router-dom'
-import Home from "./containers/Login/Home.container";
+import Home from "./containers/Login/HomePage.container";
 import InternshipPage from './containers/internship/Internship.container'
 import AddInternship from './containers/internship/AddInternship.container'
 import ViewInternship from './containers/internship/ViewInternship.container'
