@@ -10,24 +10,33 @@ import Typography from '@material-ui/core/Typography';
 class Toeic extends Component {
 
     displayResultToeic = (toeicSchedule) => {
-        if(this.props.intern.Toeic){
-            this.props.intern.Toeic.map((value) => {
-                if(value.Id === toeicSchedule.Id){
-                    if(value.Score === undefined){
-                        return (
-                            <button 
-                            type="button" 
-                            class="btn buttonAttach" 
-                            onClick={() => this.props.handleOpenModalDropFile()}>ATTACH FILE</button>
-                        )
-                    }else {
-                        return (
-                            <div style={{ float: "right" }}><b>{"Total score: " + value.Score + "/990"}</b></div>
-                        )
+        if(this.props.intern){
+            if(this.props.intern.Toeic){
+                this.props.intern.Toeic.map((value) => {
+                    if(value.Id === toeicSchedule.Id){
+                        if(value.Score === undefined){
+                            return (
+                                <button 
+                                type="button" 
+                                class="btn buttonAttach" 
+                                onClick={() => this.props.handleOpenModalDropFile()}>ATTACH FILE</button>
+                            )
+                        }else {
+                            return (
+                                <div style={{ float: "right" }}><b>{"Total score: " + value.Score + "/990"}</b></div>
+                            )
+                        }
                     }
-                }
-            })
-        }else {
+                })
+            }else {
+                return (
+                    <button 
+                    type="button" 
+                    class="btn buttonAttach" 
+                    onClick={() => this.props.handleOpenModalDropFile()}>ATTACH FILE</button>
+                )
+            }
+        } else{
             return (
                 <button 
                 type="button" 
@@ -35,6 +44,7 @@ class Toeic extends Component {
                 onClick={() => this.props.handleOpenModalDropFile()}>ATTACH FILE</button>
             )
         }
+        
     }
 
     render() {
