@@ -13,7 +13,7 @@ import orderBy from 'lodash/orderBy'
 import ToolbarTable from './table/Toolbar'
 import Loading from './table/Loading'
 import * as title from '../../core/common/column.js'
-import AddInternshipPage from './AddInternship.component'
+import config from '../../core/common/configs'
 
 class InternshipTable extends Component {
     constructor(props){
@@ -30,7 +30,7 @@ class InternshipTable extends Component {
                 { id: 'Course', disablePadding: false, label: title.COURSE },
             ],
             currentPage: 0,
-            rowPerPage: 10,
+            rowPerPage: config.SIZE_PAGE,
             order: 'desc',
             orderBy: "",
             typeOrder: {
@@ -39,6 +39,7 @@ class InternshipTable extends Component {
             },
             searchInfor: '',
             id: '',
+            hideColumns: [],
         }
     }
 
@@ -69,7 +70,6 @@ class InternshipTable extends Component {
 
     // Search
     handleSearch = (info) => {
-        console.log(info)
         this.setState({
             searchInfor: info,
             currentPage: 0
@@ -83,6 +83,14 @@ class InternshipTable extends Component {
     }
     //end handle
 
+    //filter column
+    getSelectedColumns = (arrCol) => {
+        this.setState({
+            hideColumns: arrCol
+        })
+    }
+    // end filter column
+
     // handle loading
     displayTable = () => {
         let result = []
@@ -95,6 +103,7 @@ class InternshipTable extends Component {
         let indexOfFirst = indexOfLast - this.state.rowPerPage
         let listIntern = orderBy(result,this.state.orderBy,this.state.order)
                     .slice(indexOfFirst, indexOfLast) 
+        console.log(result)
         if(this.props.loading === false) {
             return (
                 <Loading></Loading>
@@ -104,10 +113,13 @@ class InternshipTable extends Component {
                 <div>
                     <Table className="table">   
                         <TableHead
+                        className="table-head"
                         columns={this.state.columns}
                         handleSort={(event, columnName) => this.handleSort(event, columnName)}
                         order={this.state.order}
-                        orderBy={this.state.orderBy}>
+                        orderBy={this.state.orderBy}
+                        hideColumns={this.state.hideColumns}
+                        >
                         </TableHead>
                         <TableBody className="tableBody">
                             {
@@ -117,14 +129,14 @@ class InternshipTable extends Component {
                                         hover
                                         onClick={(id) => this.onViewInternship(value.ID)}
                                         className="tableRow">
-                                            <TableCell align="left" className="columnName">{value.Name}</TableCell>
-                                            <TableCell align="left">{value.Phone}</TableCell>
-                                            <TableCell align="left">{value.Email}</TableCell>
-                                            <TableCell align="left">{value.Gender}</TableCell>
-                                            <TableCell align="left">{value.DOB}</TableCell>
-                                            <TableCell align="left">{value.University}</TableCell>
-                                            <TableCell align="left">{value.Faculty}</TableCell>
-                                            <TableCell align="left">{value.Course}</TableCell>
+                                            <TableCell align="left" className="columnName" style={{display: this.state.hideColumns.indexOf('Name') !== -1 ? 'none' : ''}}>{value.Name}</TableCell>
+                                            <TableCell align="left" style={{display: this.state.hideColumns.indexOf('Phone') !== -1 ? 'none' : ''}}>{value.Phone}</TableCell>
+                                            <TableCell align="left" style={{display: this.state.hideColumns.indexOf('Email') !== -1 ? 'none' : ''}}>{value.Email}</TableCell>
+                                            <TableCell align="left" style={{display: this.state.hideColumns.indexOf('Gender') !== -1 ? 'none' : ''}}>{value.Gender}</TableCell>
+                                            <TableCell align="left" style={{display: this.state.hideColumns.indexOf('DOB') !== -1 ? 'none' : ''}}>{value.DOB}</TableCell>
+                                            <TableCell align="left" style={{display: this.state.hideColumns.indexOf('University') !== -1 ? 'none' : ''}}>{value.University}</TableCell>
+                                            <TableCell align="left" style={{display: this.state.hideColumns.indexOf('Faculty') !== -1 ? 'none' : ''}}>{value.Faculty}</TableCell>
+                                            <TableCell align="left" style={{display: this.state.hideColumns.indexOf('Course') !== -1 ? 'none' : ''}}>{value.Course}</TableCell>
                                         </TableRow>
                                     )
                                 })
@@ -156,6 +168,7 @@ class InternshipTable extends Component {
                         handleCloseModalDropFile={this.props.handleCloseModalDropFile}
                         validateExcelFile={this.props.validateExcelFile}
                         getFile={this.props.getFile}
+                        getSelectedColumns={(arrCol) => this.getSelectedColumns(arrCol)}
                     />
                     <div className="tableWrapper">
                         {this.displayTable()}

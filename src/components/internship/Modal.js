@@ -41,7 +41,7 @@ class Modal extends Component {
                 <div className="image">
                     <img src={src}></img>
                 </div>
-                <div className="content">
+                <div className="content-modal">
                     <p><font color="black">{name}</font>, {size + "bytes"}</p>
                 </div>
                 <div className="iconCancle dzu-previewButton">
