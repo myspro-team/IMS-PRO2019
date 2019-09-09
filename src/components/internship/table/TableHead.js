@@ -15,9 +15,11 @@ class TableHead extends Component {
                     this.props.columns.map((value) => {
                         return(
                         <TableCell
+                        className="cell-head"
+                        style={{ display: this.props.hideColumns.indexOf(value.id) !== -1 ? 'none' : ''}}
                         key={value.id}
                         align="left"
-                        //padding={value.disablePadding ? 'none' : 'default'}
+                        // padding={value.disablePadding ? 'none' : 'default'}
                         sortDirection={this.props.orderBy === value.id ? 'asc' : 'desc'}>
                             <b>{value.label}</b>
                             <TableSortLabel 
