@@ -7,8 +7,10 @@ class TableHead extends Component {
     createSortHandler = property => event => {
         console.log(property)
         this.props.handleSort(event, property);
+        console.log(property)
     };
     render() {
+        console.log(this.props.columns)
         return (
             <TableRow>
                 {
@@ -19,7 +21,9 @@ class TableHead extends Component {
                         align="left"
                         //padding={value.disablePadding ? 'none' : 'default'}
                         sortDirection={this.props.orderBy === value.id ? 'asc' : 'desc'}>
-                            <b>{value.label}</b>
+                            {console.log(value.id)}
+                            <b>{value.id}</b>
+                            {console.log(value.id)}
                             <TableSortLabel 
                             active={true}
                             direction={this.props.orderBy === value.id ? this.props.order: 'desc'}

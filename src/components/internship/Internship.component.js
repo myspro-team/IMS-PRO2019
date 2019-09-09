@@ -59,11 +59,21 @@ class InternshipTable extends Component {
 
     // Sort
     handleSort = (event, columnName) => {
+        console.log(columnName)
         this.setState({
             orderBy: columnName,
             order: this.state.orderBy === columnName ? this.state.typeOrder[this.state.order] : 'asc'
         })
     }
+
+    /*
+        order : desc 
+        this.state.typrOrder[this.state.order] = this.state.typeOrder[desc] = 'asc'
+        handleSort run => order : 'asc'
+        this.state.typrOrder[this.state.order] = this.state.typeOrder[asc] = 'desc'
+        handleSort run => order : 'desc'
+    */
+
     // end sort
 
     // Search
@@ -85,16 +95,22 @@ class InternshipTable extends Component {
     // handle loading
     displayTable = () => {
         let result = []
+        console.log(this.state.searchInfor)
         this.props.listIntern.map((value) => {
-            // console.log(value.Name)
+            console.log(value.Name)
             if(value.Name.toLowerCase().indexOf(this.state.searchInfor.toLowerCase()) !== -1){
                 result.push(value)
+                // console.log(result)
             }
         })
         let indexOfLast = (this.state.currentPage + 1) * this.state.rowPerPage
         let indexOfFirst = indexOfLast - this.state.rowPerPage
+        console.log(this.state.orderBy)
+        console.log(this.state.order)
+        
         let listIntern = orderBy(result,this.state.orderBy,this.state.order)
                     .slice(indexOfFirst, indexOfLast) 
+        console.log(listIntern)
         if(this.props.loading === false) {
             return (
                 <Loading></Loading>
