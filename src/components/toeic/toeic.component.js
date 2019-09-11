@@ -34,6 +34,7 @@ class ToeicTable extends Component {
                 asc: "desc",
                 desc: "asc"
             }
+            
         }
     }
 
@@ -96,17 +97,18 @@ class ToeicTable extends Component {
 
                         />
                         <TableBody >
+                            
                             {
                                 ListToeic.map((value, index) => {
                                     return (
-                                        <TableRow key={index} className="tableRow ">
-                                            <StyledTableCell align="left" >
+                                            <TableRow key={index} className="tableRow ">
+                                            <StyledTableCell className="columnName "  align="left" >
                                                 {value.Name_Schadule}
                                             </StyledTableCell>
-                                            <StyledTableCell align="left">{value.Data} </StyledTableCell>
-                                            <StyledTableCell align="left">{value.Location} </StyledTableCell>
+                                            <StyledTableCell   align="left">{value.Data} </StyledTableCell>
+                                            <StyledTableCell  align="left">{value.Location} </StyledTableCell>
                                             <ButtonAction />
-                                        </TableRow>
+                                        </TableRow>                                       
                                     )
                                 })
                             }
