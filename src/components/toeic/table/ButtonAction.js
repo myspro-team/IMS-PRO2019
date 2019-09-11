@@ -5,7 +5,7 @@ import "./../styles.css"
 class ButtonAction extends Component {
     render() {
         return (
-            <StyledTableCell align="left" >
+            <StyledTableCell align="left" >{this.props.item}
                   <Button variant="contained" color="primary" className="a"  >
                   <i className="material-icons md-18 x"  >
                     edit</i>

@@ -168,3 +168,9 @@ div.active {
     transition-duration: 0.5s !important;
     overflow-x: hidden !important;
 }
+#content{
+  margin-left: 30%;
+  width: 40%;
+  height: 450px;
+  
+}

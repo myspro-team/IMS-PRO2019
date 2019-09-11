@@ -33,3 +33,7 @@
 .height{
     height: 500px;
 }
+.xx{
+    empty-cells: initial !important;
+    
+}
