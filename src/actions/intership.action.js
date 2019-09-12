@@ -130,13 +130,14 @@ export const getLoginList = (data) => {
 
 export const addDataToApi = (data) => {
     return function(dispatch) {
-        IntershipService.addIntern(function(error, resultAdd, status, xhr) {
+        IntershipService.addDataToApi(function(error, result, status, xhr) {
             if(error){
-                console.log('co loi');
-                return;
+                console.log("Upload files error:...")
+                return
             }
-            return dispatch({type: types.ADD_DATA_TO_API, newIntern:resultAdd})
-        },data)
+            console.log(result)
+            return dispatch({type: types.ADD_DATA_TO_API, totalCoreToeic: result})
+        }, data)
     }
 }
 

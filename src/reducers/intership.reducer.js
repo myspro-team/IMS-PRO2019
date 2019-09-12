@@ -36,6 +36,9 @@ const IntershipReducer = function (state = defaultState, action) {
         case types.CREATE_NEW_INTERN: {
             return _.assign({}, state, { newIntern: action.newIntern });
         }
+        case types.ADD_DATA_TO_API: {
+            return _.assign({}, state, { newIntern: action.newIntern });
+        }
         case types.UPDATE_INTERN: {
             return state;
         }

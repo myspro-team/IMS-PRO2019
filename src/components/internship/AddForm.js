@@ -289,7 +289,10 @@ class AddForm extends Component {
             // let arr = this.state.DOB.value.split('/')
             // let d = arr[2] + "-" + arr[1] + "-" + arr[0]
             const moment = require('moment');
+            console.log(this.state.DOB)
+            console.log(this.state.DOB.value)
             let date = moment.utc(this.state.DOB.value).format();
+            console.log(typeof(date))
             let intern = {
                 "Name": this.state.Name.value,
                 "PhoneNumber": this.state.Phone.value,
@@ -307,6 +310,7 @@ class AddForm extends Component {
                 }
             })
             if(check === true){
+                console.log(intern)
                 this.props.addIntern.addIntern(intern.Email, intern)
                 this.resetForm()
                 this.notification("success", messages.ADD_SUCCESSFUL)
