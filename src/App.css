@@ -1,36 +1,3 @@
-.App {
-  text-align: center;
-}
-
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
-  pointer-events: none;
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
 .table{
   padding-top: 10px;
   border:solid 0px gray;
@@ -45,8 +12,10 @@
 .paper{
   margin-Top: 50px ;
   display: flex;
-  flex-Direction: column;
-  align-Items: center;
+  /*flex-Direction: column;
+  align-Items: center;*/
+  flex-direction: column;
+  align-items: center;
 }
 .avatar{
   margin: 30px;
@@ -54,7 +23,7 @@
 }
 .form{
   width: 100%;
-   margin-Top: 10px;
+   margin-top: 10px;
 }
 .submit{
   margin-top:40px ;
@@ -69,11 +38,11 @@
 .paper1 {
   border: solid 0px red;
   padding:20px;
-  text-Align: center;
+  text-align: center;
   background-color: #F5F5F5;
 }
 .root {
-  flex-Grow: 1;
+  flex-grow: 1;
 }
 .text{
   color: red;
@@ -145,6 +114,7 @@ div.active {
 	padding-left: 30px;
 	padding-right: 30px;
 	margin-left: -245px;
+  margin-top: 50px;
 }
 
 .contentShift {
