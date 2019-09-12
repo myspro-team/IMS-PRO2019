@@ -7,6 +7,7 @@ import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import MenuSettingComponent from './MenuSetting.component';
 import HeaderComponent from './Header.component';
+import './menu.css'
 
 class SideBarMenuComponent extends Component {
 

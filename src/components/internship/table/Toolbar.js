@@ -11,13 +11,6 @@ import * as message from '../../../core/common/message.en'
 
 class ToolbarTable extends Component {
 
-    resetValue = () => {
-        this.setState({
-            value : [],
-            file : []
-        })
-    }
-
     handleChange = (event) => {
         this.props.handleSearch(event.target.value)
     }
@@ -45,6 +38,7 @@ class ToolbarTable extends Component {
     handleAttachFile = () => {
         console.log("attach successful")
         this.props.showData()
+        this.props.showLoading()
     }
 
     showDialog = () => {

@@ -147,7 +147,8 @@ class InternshipTable extends Component {
         return (
             <div>
                 <Paper className="root">
-                    <ToolbarTable 
+                    <ToolbarTable
+                        showLoading={this.props.showLoading}
                         handleSearch={(info) => this.handleSearch(info)}
                         showData={ this.props.showData }
                         open={this.props.open}
