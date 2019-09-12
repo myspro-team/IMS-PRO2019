@@ -18,15 +18,19 @@ class Login extends Component {
     this.state = {
       username: "",
       password: "",
-      showError: false
+      showError: false,
+      Name:true,
+      Pass:true
     };
   }
   userName(a) {
-    this.setState({ username: a.target.value })
+    this.setState({ username: a.target.value
+     })
     console.log(this.state.username)
   }
   password(a) {
-    this.setState({ password: a.target.value })
+    this.setState({ password: a.target.value 
+    })
     console.log(this.state.password)
   }
   handleclick(event) {
@@ -42,7 +46,7 @@ class Login extends Component {
     }
     else {
       this.setState({
-        showError: true
+        showError: true,
       });
     }
   };

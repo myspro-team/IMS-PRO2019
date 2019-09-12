@@ -15,7 +15,7 @@
 }
 .tableWrapper {
     overflow: auto;
-    height: 300px;
+    height: 450px;
     min-width: 550px;
 }
 .columnName {
@@ -172,6 +172,13 @@
     display: block;
 }
 
+.multi-select {
+    width: 32px;
+    padding-right: 120px;
+    padding-bottom: 15px;
+}
+
+
 @media (max-width:700px) {
     .appBar {
         width: 700px;
@@ -241,3 +248,50 @@
 }
 /* END */
 
+/* DROP OR SELECT FILE */
+.preview {
+    align-self: flex-start; 
+    display: flex;
+    width: 530px;
+}
+
+.image {
+    margin: 20px;
+    width: 15%;
+}
+
+.image img {
+    width: 70px;
+    height: 50px;
+}
+
+.content-modal {
+    padding-top: 35px;
+    font-family: 'Segoe UI';
+    font-size: 14px;
+    color: black;
+    width: 61%;
+}
+
+.iconCancle {
+    padding-top: 35px;
+    padding-left: 50px;
+    width: 7%;
+}
+/* END */
+
+/* .dataTables_wrapper .table thead tr th:nth-child(1),
+.dataTables_wrapper .table tbody tr td:nth-child(1)
+{
+  display: none;
+ }  */
+
+/* .cell-head:nth-child(2),
+.cell-body:nth-child(2) {
+     display: none;
+ }
+
+.cell-head:nth-child(1),
+.cell-body:nth-child(1) {
+     display: none;
+ } */

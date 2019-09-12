@@ -8,8 +8,16 @@ import 'material-design-icons/iconfont/material-icons.css';
 import Modal from './../Modal'
 import AddInternshipPage from '../AddInternship.component'
 import * as message from '../../../core/common/message.en'
+import MultiSelectDropdown from './MultiSelectDropdown'
 
 class ToolbarTable extends Component {
+
+    resetValue = () => {
+        this.setState({
+            value : [],
+            file : []
+        })
+    }
 
     handleChange = (event) => {
         this.props.handleSearch(event.target.value)
@@ -38,7 +46,6 @@ class ToolbarTable extends Component {
     handleAttachFile = () => {
         console.log("attach successful")
         this.props.showData()
-        this.props.showLoading()
     }
 
     showDialog = () => {
@@ -67,6 +74,11 @@ class ToolbarTable extends Component {
                         <span className="title">INTERNSHIPS</span>
                     </Typography>
                     <div className="spacer" />
+                    <div className="multi-select">
+                        <MultiSelectDropdown
+                        getSelectedColumns={(arrCol) => this.props.getSelectedColumns(arrCol)}
+                        ></MultiSelectDropdown>
+                    </div>
                     <Paper className="search">
                         <InputBase
                             placeholder="Search internship"

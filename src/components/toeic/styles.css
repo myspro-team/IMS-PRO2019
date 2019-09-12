@@ -14,6 +14,8 @@
 .color1{
     color: black !important;
     font-size:larger !important;
+    font-size:100% !important;
+    align-items: left !important;
 }
 .a{
     margin-right: 10px !important;
@@ -32,3 +34,10 @@
 /* .l{
     position:fixed !important;
 } */
+.height{
+    height: 500px;
+}
+.xx{
+    empty-cells: initial !important;
+    
+}

@@ -5,7 +5,6 @@ import { bindActionCreators } from 'redux'
 import * as GetAPI from '../../actions/intership.action'
 import * as XLSX from 'xlsx';
 import * as message from '../../core/common/message.en'
-import Loading from '../../components/internship/table/Loading'
 
 class InternshipPage extends Component {
 
@@ -83,6 +82,7 @@ class InternshipPage extends Component {
                 files : [],
                 value : value
             })
+            console.log(value)
         };
         reader.readAsArrayBuffer(f);
     }
