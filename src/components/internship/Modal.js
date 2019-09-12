@@ -7,7 +7,6 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import 'react-dropzone-uploader/dist/styles.css'
 import Dropzone from 'react-dropzone-uploader'
-import axios from 'axios'
 
 class Modal extends Component {
     constructor(props){
@@ -42,7 +41,7 @@ class Modal extends Component {
                 <div className="image">
                     <img src={src}></img>
                 </div>
-                <div className="content">
+                <div className="content-modal">
                     <p><font color="black">{name}</font>, {size + "bytes"}</p>
                 </div>
                 <div className="iconCancle dzu-previewButton">

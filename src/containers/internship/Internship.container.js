@@ -147,6 +147,7 @@ class InternshipPage extends Component {
     }
 
     render() {
+        console.log(this.props.listIntern)
         var {value, open, errorMessage} = this.state
         if(value.length){
             this.checkOut(value)

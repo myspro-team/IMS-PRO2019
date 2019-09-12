@@ -114,7 +114,7 @@ div.active {
 	padding-left: 30px;
 	padding-right: 30px;
 	margin-left: -245px;
-  margin-top: 50px;
+  	margin-top: 50px;
 }
 
 .contentShift {
@@ -136,4 +136,10 @@ div.active {
 	transition-property: width !important;
     transition-duration: 0.5s !important;
     overflow-x: hidden !important;
+}
+#content{
+  margin-left: 30%;
+  width: 40%;
+  height: 450px;
+  
 }

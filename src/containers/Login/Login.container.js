@@ -18,22 +18,24 @@ class Login extends Component {
     this.state = {
       username: "",
       password: "",
-      showError: false
+      showError: false,
+      Name:true,
+      Pass:true
     };
   }
- 
   userName(a) {
-    this.setState({ username: a.target.value })
+    this.setState({ username: a.target.value
+     })
     console.log(this.state.username)
   }
   password(a) {
-    this.setState({ password: a.target.value })
+    this.setState({ password: a.target.value 
+    })
     console.log(this.state.password)
   }
   handleclick(event) {
     event.preventDefault();
     console.log(this.props.getAPI);
-    this.props.getAPI.getLoginList({ "UserName": this.state.username, "Password": this.state.password })
     var { data } = this.props;
     console.log(data);
     if (data.ID !== undefined && data.Role === 3) {
@@ -44,13 +46,12 @@ class Login extends Component {
     }
     else {
       this.setState({
-        showError: true
+        showError: true,
       });
     }
   };
   render() {
-    // var {data}=this.props;
-    // console.log(data);
+    this.props.getAPI.getLoginList({ "UserName": this.state.username, "Password": this.state.password })
     return (
       <div className="root">
         <Grid item xs>
