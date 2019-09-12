@@ -43,10 +43,10 @@
   box-shadow: 2px 2px 6px 6px #D3D3D3;   
 }
 .paper{
-  margin-Top: 50px ;
+  margin-top: 50px ;
   display: flex;
-  flex-Direction: column;
-  align-Items: center;
+  flex-direction: column;
+  align-items: center;
 }
 .avatar{
   margin: 30px;
@@ -54,7 +54,7 @@
 }
 .form{
   width: 100%;
-   margin-Top: 10px;
+   margin-top: 10px;
 }
 .submit{
   margin-top:40px ;
@@ -69,102 +69,6 @@
 .paper1 {
   border: solid 0px red;
   padding:20px;
-  text-Align: center;
+  text-align: center;
   background-color: #F5F5F5;
-}
-.root {
-  flex-Grow: 1;
-}
-.text{
-  color: red;
-}
-div.active {
-	background-color: #8B8989;
-	color: white;
-}
-
-.custom {
-	margin-left: 54px;
-}
-
-.customDisapered {
-	position: absolute;
-    top: -9999px;
-    left: -9999px;
-}
-
-.ml-x {
-	margin-left: -16px;
-	font-size: 0px;
-}
-
-.settingMenu {
-	padding-left: -50px;
-	color: red;
-}
-
-.aaa {
-	display: flex !important;
-}
-
-.appBar {
-	background-color: #17A2B8 !important;
-	width: calc(100% - 55px) !important;
-	transition-property: width !important;
-	transition-duration: 0.5s !important;
-}
-
-.appBarShift {
-	width: calc(100% - 300px) !important;
-	margin-left: 300px !important;
-	transition-property: width !important;
-	transition-duration: 0.5s !important;
-}
-
-.menuButton {
-	margin-right: 20px !important;
-}
-
-.drawer {
-	width: 300px !important;
-	flex-shrink: 0 !important;
-}
-
-.drawerHeader {
-	border: solid 1px #EBDDE2;
-	display: flex;
-	align-items: center;
-	padding: 0px 8px;
-	justify-content: flex-end;
-	background-color: #EBDDE2 ;
-	height: 46px
-}
-
-.content {
-	flex-grow: 1;
-	padding-left: 30px;
-	padding-right: 30px;
-  margin-left: -245px;
-  margin-top: 50px;
-}
-
-.contentShift {
-	margin-left: 0px;
-}
-
-.paperDrawer {
-	width: 300px !important;
-	border: solid 1px #EBDDE2 !important;
-	box-shadow: 0px 0px 0px 2px #EBDDE2 !important;
-	transition-property: width !important;
-    transition-duration: 0.5s !important;
-}
-
-.paperSmallDrawer {
-	width: 55px !important;
-	border: solid 1px #EBDDE2 !important;
-	box-shadow: 0px 0px 0px 2px #EBDDE2 !important;
-	transition-property: width !important;
-    transition-duration: 0.5s !important;
-    overflow-x: hidden !important;
 }
