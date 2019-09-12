@@ -17,3 +17,10 @@ export const typeInvalid = (params) => {
 export const selectInvalid = (params) => {
     return "Please select input " + params; 
 }
+
+export const PLEASE_SELECT_THE_FILES_WITH_THE_EXTENSION_JPG_OR_PNG = "Please select the files with the extension .jpg or .png"
+export const PLEASE_SELECT_ONLY_FILE_EXCEL = 'Please select file excel only'
+export const EMAIL = 'Please fill data into Email Account collumm'
+export const FULL_NAME = 'Please fill data into Name collumm'
+export const DOB = 'Please fill data into DoB collumm'
+export const PHONE = 'Please fill data into Phone collumm'

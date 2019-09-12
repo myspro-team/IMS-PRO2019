@@ -4,7 +4,7 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import SvgIcon from '@material-ui/core/SvgIcon';
-
+import './menu.css'
 
 const menuSeting = [
     { 
@@ -14,10 +14,15 @@ const menuSeting = [
     {
         menu: 'Internship Managements',
         icon: 'M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z',
-        url: '/internship'
+        url: '/'
     },
-    { menu: 'Internship', icon: '', url: '/' },
-    { menu: 'Import', icon: '', url: '/' },
+    { menu: 'Internship', icon: 'M19 13H5v-2h14v2z', url: '/internship' },
+    { menu: 'Import File', icon: 'M19 13H5v-2h14v2z', url: '/' },
+    { 
+        menu: 'Toeic Schedule', 
+        icon: 'M19 18l2 1V3c0-1.1-.9-2-2-2H8.99C7.89 1 7 1.9 7 3h10c1.1 0 2 .9 2 2v13zM15 5H5c-1.1 0-2 .9-2 2v16l7-3 7 3V7c0-1.1-.9-2-2-2z', 
+        url: '/toeic' 
+    },
     {
         menu: 'Courses',
         icon: 'M18 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM6 4h5v8l-2.5-1.5L6 12V4z',
@@ -34,28 +39,86 @@ class MenuSettingComponent extends Component {
 
     constructor(props) {
         super();
+        this.state = {
+            elements : '',
+            elements_02: ''
+        }
     }
 
     onClickMenu(url) {
         this.context.router.push(url);
     }
 
+    componentDidMount() {
+        var { elements, elements_02 } = this.state
+        elements = document.getElementsByClassName("bak");
+        elements_02 = document.getElementsByClassName("customDisapered");
+        this.setState({
+            elements : elements,
+            elements_02: elements_02
+        })
+
+        this.settingMenu(elements)
+        this.customDisapered(elements, elements_02)
+        
+    }
+
+    settingMenu = (elements) => {
+        if(elements.length) {
+            for(var i = 0; i < elements.length; i++){
+                elements[i].onclick = function(){                 
+                    var el = elements[0];
+                    while(el)
+                    {
+                        if(el.tagName === "DIV"){                            
+                            el.classList.remove("active"); //remove class                            
+                        }
+                        el = el.nextSibling; // pass to the new sibling
+                    }                    
+                    this.classList.add("active");  
+                };
+            }
+        }
+    }
+
+    customDisapered = (elements, elements_02) => {
+
+        
+        var el_02 = elements_02[0]
+        var el_03 = elements_02[1]
+        
+        if(elements.length) {
+            elements[1].onclick = function(){
+                
+                el_02.classList.toggle('customDisapered')
+                
+                el_03.classList.toggle('customDisapered')
+                
+            }
+
+        }
+    }
+
     render() {
         return (
             menuSeting.map((data, index) => {
                 return (
-                    <ListItem button key={data.menu} onClick={this.onClickMenu.bind(this, data.url)}>
-                        <ListItemIcon>
-                            <SvgIcon>
-                                <path d={data.icon} />
-                            </SvgIcon>
-                        </ListItemIcon>
-                        <ListItemText primary={data.menu} />
-                    </ListItem>
+                    <div className='bak'> 
+                        <div className={index===2 ? 'custom customDisapered' : ''} >
+                            <div className={index===3 ? 'custom customDisapered' : ''} >
+                                <ListItem button key={data.menu} onClick={this.onClickMenu.bind(this, data.url)}>
+                                    <ListItemIcon>
+                                        <SvgIcon>
+                                            <path d={data.icon} />
+                                        </SvgIcon>
+                                    </ListItemIcon>
+                                    <ListItemText className={ index === 2 || index === 3 ? 'ml-x' : '' } primary={data.menu} />                        
+                                </ListItem>                                
+                            </div>
+                        </div>
+                    </div>
                 )
-
             })
-
         )
     }
 }
