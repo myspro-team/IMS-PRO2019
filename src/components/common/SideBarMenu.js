@@ -7,13 +7,14 @@ import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import MenuSettingComponent from './MenuSetting.component';
 import HeaderComponent from './Header.component';
+import './menu.css'
 
 class SideBarMenuComponent extends Component {
 
     constructor(props){
         super(props)
         this.state = {
-            open : true,
+            open : false,
         }
     }
 
@@ -48,9 +49,7 @@ class SideBarMenuComponent extends Component {
                     </div>
                     <Divider />
                     <List>
-
                         <MenuSettingComponent />
-
                     </List>
                 </Drawer>
                 <main

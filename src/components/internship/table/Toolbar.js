@@ -6,6 +6,8 @@ import InputBase from '@material-ui/core/InputBase';
 import Paper from '@material-ui/core/Paper';
 import 'material-design-icons/iconfont/material-icons.css';
 import Modal from './../Modal'
+import AddInternshipPage from '../AddInternship.component'
+import * as message from '../../../core/common/message.en'
 import MultiSelectDropdown from './MultiSelectDropdown'
 
 class ToolbarTable extends Component {

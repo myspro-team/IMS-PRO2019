@@ -13,6 +13,7 @@
  } 
 .color1{
     color: black !important;
+    font-size:larger !important;
     font-size:100% !important;
     align-items: left !important;
 }
@@ -30,6 +31,9 @@
 .x{
     margin-right: 5px !important;
 }
+/* .l{
+    position:fixed !important;
+} */
 .height{
     height: 500px;
 }

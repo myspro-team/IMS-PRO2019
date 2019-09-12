@@ -90,21 +90,21 @@ class InternshipPage extends Component {
     checkOut = (value) => {
         var index = 1
         for(var i=0; i<value.length; i++){
-            if(typeof(value[i].ID) !== 'number'){                
+            if(typeof(value[i].DoB) !== 'string'){                
                 index = -1
-                this.showMessageId()
+                this.showMessageDoB()
                 this.resetValue()
                 return
             }
-            if(typeof(value[i]['Full Name']) !== 'string'){
+            if(typeof(value[i].Name) !== 'string'){
                 index = -1
-                this.showMessageFullname()
+                this.showMessageName()
                 this.resetValue()
                 return
             }
-            if(typeof(value[i]['TMA Account']) !== 'string'){
+            if(typeof(value[i].Email) !== 'string'){
                 index = -1
-                this.showMessageTmaAccount()
+                this.showMessageEmail()
                 this.resetValue()
                 return
             }
@@ -116,27 +116,29 @@ class InternshipPage extends Component {
             }                
         }
         if(index === 1) {            
-            this.props.getAPI.addDataToApi(value)            
+            // this.props.getAPI.uploadFiles(value)
+            this.props.getAPI.addDataToApi(value)
+                        
             console.log('day la du lieu post len api')
             this.resetValue()
         }
     }
 
-    showMessageId = () => {
+    showMessageDoB = () => {
         this.setState({
-            errorMessage : message.ID
+            errorMessage : message.DOB
         })
     }
 
-    showMessageFullname = () => {
+    showMessageName = () => {
         this.setState({
             errorMessage : message.FULL_NAME
         })
     }
 
-    showMessageTmaAccount = () => {
+    showMessageEmail = () => {
         this.setState({
-            errorMessage : message.TMA_ACCOUNT
+            errorMessage : message.EMAIL
         })
     }
 

@@ -13,6 +13,7 @@ import orderBy from 'lodash/orderBy'
 import ToolbarTable from './table/Toolbar'
 import Loading from './table/Loading'
 import * as title from '../../core/common/column.js'
+import AddInternshipPage from './AddInternship.component'
 import config from '../../core/common/configs'
 
 class InternshipTable extends Component {

@@ -36,6 +36,28 @@ class IntershipService {
         }
     }
 
+    async addDataToApi(callback, data) {
+        let path = getApiPath(API.GET_INTERN_LIST, "");
+        const moment = require('moment')
+        for(var i=0; i<data.length; i++){
+            let value = {
+                "Name": data[i].Name,
+                "PhoneNumber": data[i].Phone,
+                "Email": data[i].Email,
+                'Gender' : data[i].Gender === 'male' ? true : false,
+                'DoB' : moment.utc(data[i].DoB.replace(/(\d\d)\/(\d\d)\/(\d{4})/, "$3-$2-$1")).format(),
+                "University": data[i].University,
+                "Faculty": data[i].Faculty,
+                "CourseID": data[i].Course === 'Golang' ? '5c906973ad09b6cc4134b41f' : '5c906973ad09b6cc4134b414',
+                "IsDeleted": false
+            }
+            let result = await HttpRequest.post(path, value, callback)
+            if (callback) {
+                callback(result)
+            }
+        } 
+    }
+
     async updateIntern(callback, data, id) {
         let path = getApiPath(API.UPDATE_INTERN, id);
         let result = await HttpRequest.put(path, data, callback)

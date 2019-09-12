@@ -18,6 +18,7 @@ class ToeicTable extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            search: "",
             columns: [
                 { label: "Name_Schadule" },
                 { label: "Data" },
