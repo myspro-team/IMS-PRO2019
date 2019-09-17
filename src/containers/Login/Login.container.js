@@ -5,7 +5,7 @@ import TextField from '@material-ui/core/TextField';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
-import "./../../../src/Style.css"
+import "./../../../src/resources/styles/stylesPage.css"
 import React, { Component } from 'react';
 import Grid from '@material-ui/core/Grid';
 import {connect} from "react-redux";
@@ -53,20 +53,20 @@ class Login extends Component {
   render() {
     this.props.getAPI.getLoginList({ "UserName": this.state.username, "Password": this.state.password })
     return (
-      <div className="root">
+      <div className="rootLogin">
         <Grid item xs>
-          <div className="table">
+          <div className="tableLogin">
             <Grid item xs>
               <Container component="main" maxWidth="xs">
                 <CssBaseline />
-                <div className="paper" >
+                <div className="paperLogin" >
                   <Avatar style={{ color: "#eceff1", backgroundColor: "#ff1744" }}>
                     <LockOutlinedIcon />
                   </Avatar>
                   <Typography component="h1" variant="h5">
                     Login
                 </Typography>
-                  <form className="form" noValidate>
+                  <form className="formLogin" noValidate>
                     <TextField
                       variant="outlined"
                       margin="normal"
@@ -75,7 +75,7 @@ class Login extends Component {
                       autoComplete="email"
                       onChange={this.userName.bind(this)}
                     />
-                    <div className="top">
+                    <div className="topLogin">
                       <TextField
                         variant="outlined"
                         margin="normal"
@@ -87,11 +87,11 @@ class Login extends Component {
                       />
                     </div>
                     {this.state.showError ?
-                      <div className="alert alert-danger custom-top text">
+                      <div className="alert alert-danger custom-top textLogin">
                         "userName or password is not correct!"
               </div> : null
                     }
-                    <div className="submit">
+                    <div className="submitLogin">
                       <Button
                         type="submit"
                         fullWidth
@@ -114,7 +114,7 @@ class Login extends Component {
 }
 const mapStateToProps = state => {
   return {
-    data: state.intership.course
+    data: state.intership.login
   }
 }
 const mapDispatchToProps = (dispatch, ownProps) => {
