@@ -123,7 +123,7 @@ export const getLoginList = (data) => {
                 console.log('Sourse error: ....');
                 return;
             }
-            return dispatch({ type: types.LOGIN_INTERSHIP_LIST, course: result })
+            return dispatch({ type: types.LOGIN_INTERSHIP_LIST, login: result })
         }, data)
     }
 }

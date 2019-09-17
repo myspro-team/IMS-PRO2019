@@ -4,6 +4,7 @@ import * as types from "./../core/common/action.types";
 const defaultState = {
     interships: [],
     course: [],
+    login:[],
     newIntern: {},
     oldIntern: {},
     loading: false,
@@ -43,7 +44,7 @@ const IntershipReducer = function (state = defaultState, action) {
             return _.assign({}, state, { oldIntern: action.oldIntern});
         }
         case types.LOGIN_INTERSHIP_LIST: {
-            return _.assign({}, state, { course: action.course });
+            return _.assign({}, state, { login: action.login });
         }
         case types.GET_TOEIC_SCHEDULE_LIST: {
             return _.assign({}, state, { toeicSchedule: action.toeicSchedule})

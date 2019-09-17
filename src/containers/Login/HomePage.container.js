@@ -1,7 +1,7 @@
 import React from 'react';
 import SideBarMenuComponent from "./../../../src/components/common/SideBarMenu";
 import _ from 'lodash';
-import '../../App.css';
+// import '../../App.css';
 import HomePage from './Home.container';
 class HomePageContainer extends React.Component {
 

@@ -7,7 +7,7 @@ import 'material-design-icons/iconfont/material-icons.css';
 import React, { Component } from 'react';
 import 'material-design-icons/iconfont/material-icons.css';
 import { filter, includes, orderBy as OrderBy } from "lodash";
-import "./styles.css";
+import "./../../resources/styles/stylesPage.css";
 import ToolbarTable from './toolbar';
 import TableHeader from './table/TableHead';
 import ButtonAction from './table/ButtonAction';
@@ -89,7 +89,7 @@ class ToeicTable extends Component {
         else {
             return (
                 <div>
-                    <Table className="table">
+                    <Table className="tableToeic">
                         <TableHeader data={this.state.columns}
                             handleSort={(event, columnName) => this.handleSort(event, columnName)}
                             order={this.state.order}
@@ -127,10 +127,10 @@ class ToeicTable extends Component {
             return includes(item.Name_Schadule.toLowerCase(), search);
         })
         return (
-            <div className="x">
-                <Paper className="root">
+            <div className="xToeic">
+                <Paper className="rootToeic">
                     <ToolbarTable Search={(info) => this.handleSearch(info)} />
-                    <div className="tableWrapper height">
+                    <div className="tableWrapper heightToeic">
                         {this.displayTable()}
                     </div>
                     <Pagination count={data.length}

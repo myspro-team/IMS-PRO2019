@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import TableRow from '@material-ui/core/TableRow';
 import StyledTableCell from '@material-ui/core/TableCell';
-import "./../styles.css"
+import "./../../../resources/styles/stylesPage.css"
 import TableHead from '@material-ui/core/TableHead';
 import { TableSortLabel } from '@material-ui/core';
 class TableHeader extends Component {
@@ -13,13 +13,13 @@ class TableHeader extends Component {
     render() {
         console.log(this.props.order)
         return (
-            <TableHead className="color" >
+            <TableHead className="colorToeic" >
                 <TableRow >
                     {
                         this.props.data.map((value) => {
                             return (
                                 <StyledTableCell
-                                    className="color1"
+                                    className="color1Toeic"
                                     key={value.label}
                                     align="left"
                                     sortDirection={this.props.orderBy === value.label ? "asc" : "desc"}>
@@ -33,7 +33,7 @@ class TableHeader extends Component {
                             )
                         })
                     }
-                    <StyledTableCell className="color1" align="left"><b>Action</b></StyledTableCell>
+                    <StyledTableCell className="color1Toeic" align="left"><b>Action</b></StyledTableCell>
                 </TableRow>
             </TableHead>
         );
