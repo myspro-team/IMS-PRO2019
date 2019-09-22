@@ -20,6 +20,15 @@ export const API = {
     GET_TOEIC_SCHEDULE_LIST: {
         path: 'toeicschedule'
     },
+    ADD_TOEIC_SCHEDULE: {
+        path: 'toiecScheduleADD'
+    },
+    DELETE_TOEIC_SCHEDULE: {
+        path: 'toiecScheduleDELETE'
+    },
+    EDIT_TOEIC_SCHEDULE: {
+        path: 'toiecScheduleEDIT'
+    },
     UPLOAD_FILES: {
         path: 'uploadfiles'
     },

@@ -14,8 +14,8 @@ export const getInternList = () => {
                 //let stt = 1
                 console.log(result)
                 result.map((value => {
-                    let middle = value.Intern.DoB.split('-', 3)
-                    let date = middle[2].substring(0, 2) + "/" + middle[1] + "/" + middle[0]
+                    let middle = value.Intern.DoB.split('/', 3)
+                    let date = middle[0].substring(0, 2) + "/" + middle[1] + "/" + middle[2]
                     let item = {}
                     item.ID = value.Intern.ID
                     item.Name = value.Intern.Name
@@ -151,7 +151,43 @@ export const getToeicScheduleList = () => {
         })
     }
 }
+export const addSchedule = (data) => {
+    return function(dispatch) {
+        IntershipService.addSchedule(function(error, resultAdd, status, xhr) {
+                    if(error){
+                        console.log("Add error: ...")
+                        return
+                    }
+                    console.log(resultAdd)
+                    return dispatch({type: types.ADD_TOEIC_SCHEDULE, newSchedule :resultAdd})
+                },data)
+            }
+    }
 
+export const editSchedule = (data, id) => {
+    return function(dispatch) {
+        IntershipService.editSchedule(function(error, result, status, xhr) {
+            if(error){
+                console.log('Update error: ....');
+                return;
+            }
+            return dispatch({type: types.EDIT_TOEIC_SCHEDULE})
+        },data, id)
+    }
+}
+
+export const deleteSchedule = (id, data) => {
+    return function(dispatch) {
+        IntershipService.deleteSchedule(function(error, result, status, xhr) {
+            if(error){
+                console.log('Delete error: ....');
+                return;
+            }
+            console.log(result)
+            return dispatch({type: types.DELETE_TOEIC_SCHEDULE, oldSchedule:result})
+        },id, data)
+    }
+}
 export const uploadFiles  = (data) => {
     return function(dispatch) {
         IntershipService.uploadFiles(function(error, result, status, xhr) {
