@@ -11,8 +11,8 @@ class ViewInternship extends Component {
         }
     }
     componentWillMount() {
-        console.log(this.props.getAPI.getSourseList())
         this.props.getAPI.getSourseList()
+        this.props.getAPI.getToeicScheduleList()
         this.props.listIntern.map((value) => {
             if(value.ID === this.props.params.id){
                 this.setState({
@@ -22,7 +22,6 @@ class ViewInternship extends Component {
         })
     }
     render() {
-        console.log(this.props)
         return (
             <div>
                 <ViewInternshipPage
@@ -30,7 +29,8 @@ class ViewInternship extends Component {
                 courseList={this.props.courseList}
                 intern={this.state.info}
                 listIntern={this.props.listIntern}
-                getAPI={this.props.getAPI}></ViewInternshipPage>
+                getAPI={this.props.getAPI}
+                toeicScheduleList={this.props.toeicScheduleList}></ViewInternshipPage>
             </div>
         );
     }
@@ -39,7 +39,8 @@ class ViewInternship extends Component {
 const mapStateToProps = (state, ownProps) => {
     return {
         listIntern: state.intership.interships,
-        courseList: state.intership.course
+        courseList: state.intership.course,
+        toeicScheduleList: state.intership.toeicSchedule,
     }
 }
 const mapDispatchToProps = (dispatch, ownProps) => {

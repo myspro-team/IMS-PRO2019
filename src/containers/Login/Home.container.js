@@ -2,6 +2,7 @@ import Login from "./Login.container";
 import React, { Component } from 'react';
 import "./../../App.css"
 import HomePageContainer from "./HomePage.container";
+import PropTypes from 'prop-types';
 class HomePage extends Component {
   constructor(props) {
     super(props);
@@ -26,8 +27,16 @@ class HomePage extends Component {
     });
     sessionStorage.clear();
   }
+
+  // onLoginPage = () => {
+  //   this.context.router.push("/login")
+  // }
+
   handleComponent () {
     if (this.state.user === null) {
+      // this.onLoginPage()
+      
+      // this.onLoginPage()
       return (
       <div className="flexible-content">
       <main id="content" className="p-5">
@@ -37,6 +46,7 @@ class HomePage extends Component {
       )
     }
     else{
+      // this.context.router.push("/menu")
       return (
         <div className="flexible-content">
             <HomePageContainer />
@@ -56,6 +66,9 @@ class HomePage extends Component {
   }
 }
 
+HomePage.contextTypes = {
+  router: PropTypes.object
+}
 export default HomePage;
 
 

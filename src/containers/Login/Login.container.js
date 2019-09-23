@@ -5,7 +5,7 @@ import TextField from '@material-ui/core/TextField';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
-import "./../../../src/Style.css"
+import "./../../../src/resources/styles/stylesPage.css"
 import React, { Component } from 'react';
 import Grid from '@material-ui/core/Grid';
 import {connect} from "react-redux";
@@ -18,22 +18,24 @@ class Login extends Component {
     this.state = {
       username: "",
       password: "",
-      showError: false
+      showError: false,
+      Name:true,
+      Pass:true
     };
   }
- 
   userName(a) {
-    this.setState({ username: a.target.value })
+    this.setState({ username: a.target.value
+     })
     console.log(this.state.username)
   }
   password(a) {
-    this.setState({ password: a.target.value })
+    this.setState({ password: a.target.value 
+    })
     console.log(this.state.password)
   }
   handleclick(event) {
     event.preventDefault();
     console.log(this.props.getAPI);
-    this.props.getAPI.getLoginList({ "UserName": this.state.username, "Password": this.state.password })
     var { data } = this.props;
     console.log(data);
     if (data.ID !== undefined && data.Role === 3) {
@@ -44,28 +46,27 @@ class Login extends Component {
     }
     else {
       this.setState({
-        showError: true
+        showError: true,
       });
     }
   };
   render() {
-    // var {data}=this.props;
-    // console.log(data);
+    this.props.getAPI.getLoginList({ "UserName": this.state.username, "Password": this.state.password })
     return (
-      <div className="root">
+      <div className="rootLogin">
         <Grid item xs>
-          <div className="table">
+          <div className="tableLogin">
             <Grid item xs>
               <Container component="main" maxWidth="xs">
                 <CssBaseline />
-                <div className="paper" >
+                <div className="paperLogin" >
                   <Avatar style={{ color: "#eceff1", backgroundColor: "#ff1744" }}>
                     <LockOutlinedIcon />
                   </Avatar>
                   <Typography component="h1" variant="h5">
                     Login
                 </Typography>
-                  <form className="form" noValidate>
+                  <form className="formLogin" noValidate>
                     <TextField
                       variant="outlined"
                       margin="normal"
@@ -74,7 +75,7 @@ class Login extends Component {
                       autoComplete="email"
                       onChange={this.userName.bind(this)}
                     />
-                    <div className="top">
+                    <div className="topLogin">
                       <TextField
                         variant="outlined"
                         margin="normal"
@@ -86,11 +87,11 @@ class Login extends Component {
                       />
                     </div>
                     {this.state.showError ?
-                      <div className="alert alert-danger custom-top text">
+                      <div className="alert alert-danger custom-top textLogin">
                         "userName or password is not correct!"
               </div> : null
                     }
-                    <div className="submit">
+                    <div className="submitLogin">
                       <Button
                         type="submit"
                         fullWidth
@@ -113,7 +114,7 @@ class Login extends Component {
 }
 const mapStateToProps = state => {
   return {
-    data: state.intership.course
+    data: state.intership.login
   }
 }
 const mapDispatchToProps = (dispatch, ownProps) => {
