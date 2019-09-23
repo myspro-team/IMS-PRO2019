@@ -11,18 +11,12 @@ class ButtonAction extends Component {
         return (
             <StyledTableCell align="left" >
             <Grid container spacing={1}>
-                  {/* <Button variant="contained" color="primary" className="a"  >
-                  <i className="material-icons md-18 x"  >
-                    edit</i>
-                    Edit</Button> */}
+                 
                     <ButtonEdit 
                     Schedule={this.props.Schedule}
                     editSchedule={this.props.editSchedule}
                   />
-                  {/* <Button  variant="contained" color="default" className="a" >
-                  <i className="material-icons md-18 x" >
-                   delete</i>
-                    Delete</Button> */}
+                  
                     <ButtonDelete
                     Schedule={this.props.Schedule}
                     deleteSchedule={this.props.deleteSchedule}/>

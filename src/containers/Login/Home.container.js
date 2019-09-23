@@ -28,9 +28,9 @@ class HomePage extends Component {
     sessionStorage.clear();
   }
 
-  onLoginPage = () => {
-    this.context.router.push("/login")
-  }
+  // onLoginPage = () => {
+  //   this.context.router.push("/login")
+  // }
 
   handleComponent () {
     if (this.state.user === null) {
