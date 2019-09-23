@@ -107,7 +107,10 @@ class ToeicTable extends Component {
                                             </StyledTableCell>
                                             <StyledTableCell   align="left">{value.Data} </StyledTableCell>
                                             <StyledTableCell  align="left">{value.Location} </StyledTableCell>
-                                            <ButtonAction />
+                                            <ButtonAction 
+                                            Schedule={value}
+                                            deleteSchedule={this.props.deleteSchedule}
+                                            editSchedule={this.props.editSchedule} />
                                         </TableRow>                                       
                                     )
                                 })
@@ -129,7 +132,10 @@ class ToeicTable extends Component {
         return (
             <div className="xToeic">
                 <Paper className="rootToeic">
-                    <ToolbarTable Search={(info) => this.handleSearch(info)} />
+                    <ToolbarTable 
+                    Search={(info) => this.handleSearch(info)} 
+                    addSchedule={this.props.addSchedule}
+                    />
                     <div className="tableWrapper heightToeic">
                         {this.displayTable()}
                     </div>

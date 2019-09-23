@@ -3,6 +3,7 @@ import InputBase from '@material-ui/core/InputBase';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import Paper from '@material-ui/core/Paper';
+import ButtonAdd from '../ButtonSchedule/ButtonAdd';
 class ToolbarTable extends Component {
     handleChange = (event) => {
         this.props.Search(event.target.value)
@@ -23,8 +24,9 @@ class ToolbarTable extends Component {
                         />
                         <i className="fa fa-search icon" aria-hidden="true" ></i>
                     </Paper>
-                    <button type="button" className="btn buttonView">ADD
-                    </button>
+                    <ButtonAdd addSchedule={this.props.addSchedule}/>
+                    {/* <button type="button" className="btn buttonView">ADD
+                    </button> */}
                 </Toolbar>
             </div>
         );

@@ -151,7 +151,43 @@ export const getToeicScheduleList = () => {
         })
     }
 }
+export const addSchedule = (data) => {
+    return function(dispatch) {
+        IntershipService.addSchedule(function(error, resultAdd, status, xhr) {
+                    if(error){
+                        console.log("Add error: ...")
+                        return
+                    }
+                    console.log(resultAdd)
+                    return dispatch({type: types.ADD_TOEIC_SCHEDULE, newSchedule :resultAdd})
+                },data)
+            }
+    }
 
+export const editSchedule = (data, id) => {
+    return function(dispatch) {
+        IntershipService.editSchedule(function(error, result, status, xhr) {
+            if(error){
+                console.log('Update error: ....');
+                return;
+            }
+            return dispatch({type: types.EDIT_TOEIC_SCHEDULE})
+        },data, id)
+    }
+}
+
+export const deleteSchedule = (id, data) => {
+    return function(dispatch) {
+        IntershipService.deleteSchedule(function(error, result, status, xhr) {
+            if(error){
+                console.log('Delete error: ....');
+                return;
+            }
+            console.log(result)
+            return dispatch({type: types.DELETE_TOEIC_SCHEDULE, oldSchedule:result})
+        },id, data)
+    }
+}
 export const uploadFiles  = (data) => {
     return function(dispatch) {
         IntershipService.uploadFiles(function(error, result, status, xhr) {
