@@ -132,11 +132,11 @@ class InternshipTable extends Component {
                                             <TableCell align="left" className="columnName" style={{display: this.state.hideColumns.indexOf('Name') !== -1 ? 'none' : ''}}>{value.Name}</TableCell>
                                             <TableCell align="left" style={{display: this.state.hideColumns.indexOf('Phone') !== -1 ? 'none' : ''}}>{value.Phone}</TableCell>
                                             <TableCell align="left" style={{display: this.state.hideColumns.indexOf('Email') !== -1 ? 'none' : ''}}>{value.Email}</TableCell>
-                                            <TableCell align="left" style={{display: this.state.hideColumns.indexOf('Gender') !== -1 ? 'none' : ''}}>{value.Gender}</TableCell>
+                                            <TableCell align="left" style={{display: this.state.hideColumns.indexOf('Gender') !== -1 ? 'none' : '', minWidth: "100px"}}>{value.Gender}</TableCell>
                                             <TableCell align="left" style={{display: this.state.hideColumns.indexOf('DOB') !== -1 ? 'none' : ''}}>{value.DOB}</TableCell>
-                                            <TableCell align="left" style={{display: this.state.hideColumns.indexOf('University') !== -1 ? 'none' : ''}}>{value.University}</TableCell>
-                                            <TableCell align="left" style={{display: this.state.hideColumns.indexOf('Faculty') !== -1 ? 'none' : ''}}>{value.Faculty}</TableCell>
-                                            <TableCell align="left" style={{display: this.state.hideColumns.indexOf('Course') !== -1 ? 'none' : ''}}>{value.Course}</TableCell>
+                                            <TableCell align="left" style={{display: this.state.hideColumns.indexOf('University') !== -1 ? 'none' : '', minWidth: "120px"}}>{value.University}</TableCell>
+                                            <TableCell align="left" style={{display: this.state.hideColumns.indexOf('Faculty') !== -1 ? 'none' : '', minWidth: "110px"}}>{value.Faculty}</TableCell>
+                                            <TableCell align="left" style={{display: this.state.hideColumns.indexOf('Course') !== -1 ? 'none' : '', minWidth: "110px"}}>{value.Course}</TableCell>
                                         </TableRow>
                                     )
                                 })

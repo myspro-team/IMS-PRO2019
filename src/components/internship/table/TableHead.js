@@ -15,7 +15,7 @@ class TableHead extends Component {
                     this.props.columns.map((value) => {
                         return(
                         <TableCell
-                        className="cell-head"
+                        // className="cell-head"
                         style={{ display: this.props.hideColumns.indexOf(value.id) !== -1 ? 'none' : ''}}
                         key={value.id}
                         align="left"
