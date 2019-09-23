@@ -12,8 +12,12 @@ class ToeicPage extends Component {
     // console.log(this.props.toeicSchedule);
     return (
      <div>
-       <ToeicTable data={this.props.toeicSchedule}
-       loading={this.props.load}></ToeicTable>
+       <ToeicTable 
+       data={this.props.toeicSchedule}
+       loading={this.props.load}
+       addSchedule={this.props.getAPI}
+       deleteSchedule={this.props.getAPI}
+       editSchedule={this.props.getAPI}></ToeicTable>
      </div>
     );
   }
