@@ -69,7 +69,28 @@ class IntershipService {
             callback(result)
         }
     }
-
+    async addSchedule(callback, data) {
+        let path = getApiPath(API.ADD_TOEIC_SCHEDULE, "");
+        let result = await HttpRequest.post(path, data, callback)
+        if (callback) {
+            callback(result)
+        }
+    }
+    async editSchedule(callback, data, id) {
+        let path = getApiPath(API.EDIT_TOEIC_SCHEDULE, id);
+        let result = await HttpRequest.put(path, data, callback)
+        if (callback) {
+            callback(result)
+        }
+    }
+    async deleteSchedule(callback, id, data) {
+        console.log('123');
+        let path = getApiPath(API.DELETE_TOEIC_SCHEDULE, id);
+        let result = await HttpRequest.delete(path, data, callback)
+        if (callback) {
+            callback(result)
+        }
+    }
     async uploadFiles(callback, data) {
         let path = getApiPath(API.UPLOAD_FILES, "")
         let result = await HttpRequest.post(path, data, callback)

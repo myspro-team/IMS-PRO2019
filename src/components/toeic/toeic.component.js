@@ -107,7 +107,10 @@ class ToeicTable extends Component {
                                             </StyledTableCell>
                                             <StyledTableCell   align="left">{value.Data} </StyledTableCell>
                                             <StyledTableCell  align="left">{value.Location} </StyledTableCell>
-                                            <ButtonAction />
+                                            <ButtonAction
+                                            Schedule={value}
+                                            deleteSchedule={this.props.deleteSchedule}
+                                            editSchedule={this.props.editSchedule} />
                                         </TableRow>                                       
                                     )
                                 })
@@ -121,16 +124,17 @@ class ToeicTable extends Component {
 
     render() {
         let result = this.props.data;
-        // console.log(this.props.data)
         var search = this.state.search;
         var data = filter(result, (item) => {
             return includes(item.Name_Schadule.toLowerCase(), search);
         })
         return (
-            <div className="xToeic">
-                <Paper className="rootToeic">
-                    <ToolbarTable Search={(info) => this.handleSearch(info)} />
-                    <div className="tableWrapper heightToeic">
+            <div className="x">
+                <Paper className="root">
+                    <ToolbarTable 
+                    Search={(info) => this.handleSearch(info)}
+                    addSchedule={this.props.addSchedule} />
+                    <div className="tableWrapper height">
                         {this.displayTable()}
                     </div>
                     <Pagination count={data.length}
