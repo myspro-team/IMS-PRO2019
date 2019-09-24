@@ -8,7 +8,7 @@ import DialogTitle from "@material-ui/core/DialogTitle";
 import Grid from "@material-ui/core/Grid";
 import Button from '@material-ui/core/Button';
 import * as messages from '../../core/common/message.en';
-import "./../toeic/styles.css";
+
 class ButtonEdit extends Component {
   
     constructor(props){

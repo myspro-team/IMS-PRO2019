@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 import StyledTableCell from '@material-ui/core/TableCell';
-import "./../styles.css";
+
 import ButtonDelete from '../../ButtonSchedule/ButtonDelete';
 import ButtonEdit from '../../ButtonSchedule/ButtonEdit';
 

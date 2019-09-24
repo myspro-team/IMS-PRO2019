@@ -14,8 +14,9 @@ export const getInternList = () => {
                 //let stt = 1
                 console.log(result)
                 result.map((value => {
-                    let middle = value.Intern.DoB.split('/', 3)
-                    let date = middle[0].substring(0, 2) + "/" + middle[1] + "/" + middle[2]
+                    let middle = value.Intern.DoB.split('-', 3)
+                    console.log(middle)
+                    let date = middle[2].substring(0, 2) + "/" + middle[1] + "/" + middle[0]
                     let item = {}
                     item.ID = value.Intern.ID
                     item.Name = value.Intern.Name
